@@ -12,7 +12,5 @@ public class MasterManager : SingletonMonoBehaviour<MasterManager>
 	void Start()
 	{
 		Top.instance.Show();
-		Game.instance.Hide();
 	}
-
 }

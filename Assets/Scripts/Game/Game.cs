@@ -9,6 +9,12 @@ public class Game : SingletonMonoBehaviour<Game>
 // NGUI
 	public GameObject nguiGame;
 
+	protected override void Awake()
+	{
+		base.Awake();
+		Hide();
+	}
+
 	public void Show()
 	{
 		nguiGame.gameObject.SetActive(true);
