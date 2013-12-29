@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Game : SingletonMonoBehaviour<Game>
 {
 // Scene
+	public CellManager cellManager;
 
 // NGUI
 	public GameObject nguiGame;
