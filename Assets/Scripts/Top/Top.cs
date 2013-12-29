@@ -12,8 +12,10 @@ public class Top : SingletonMonoBehaviour<Top>
 
 	public void Show()
 	{
-		cube.OnShow();
+		gameObject.SetActive(true);
 		nguiTop.gameObject.SetActive(true);
+
+		cube.OnShow();
 	}
 
 	public void Hide()

@@ -324,18 +324,18 @@ MonoBehaviour:
   mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
---- !u!1 &402717695
+--- !u!1 &382030639
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 402717696}
-  - 20: {fileID: 402717700}
-  - 92: {fileID: 402717699}
-  - 124: {fileID: 402717698}
-  - 81: {fileID: 402717697}
+  - 4: {fileID: 382030640}
+  - 20: {fileID: 382030644}
+  - 92: {fileID: 382030643}
+  - 124: {fileID: 382030642}
+  - 81: {fileID: 382030641}
   m_Layer: 0
   m_Name: GameCamera
   m_TagString: MainCamera
@@ -343,44 +343,44 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &402717696
+--- !u!4 &382030640
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 402717695}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_GameObject: {fileID: 382030639}
+  m_LocalRotation: {x: .573576868, y: 0, z: 0, w: .819151819}
+  m_LocalPosition: {x: 4.5, y: 8, z: .5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1024598112}
---- !u!81 &402717697
+--- !u!81 &382030641
 AudioListener:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 402717695}
+  m_GameObject: {fileID: 382030639}
   m_Enabled: 1
---- !u!124 &402717698
+--- !u!124 &382030642
 Behaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 402717695}
+  m_GameObject: {fileID: 382030639}
   m_Enabled: 1
---- !u!92 &402717699
+--- !u!92 &382030643
 Behaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 402717695}
+  m_GameObject: {fileID: 382030639}
   m_Enabled: 1
---- !u!20 &402717700
+--- !u!20 &382030644
 Camera:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 402717695}
+  m_GameObject: {fileID: 382030639}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
@@ -915,8 +915,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 402717696}
   - {fileID: 1428114142}
+  - {fileID: 382030640}
   m_Father: {fileID: 0}
 --- !u!114 &1024598113
 MonoBehaviour:
@@ -1306,6 +1306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 1024598113}
+  cellPrefab: {fileID: 100002, guid: 311e70ca9923a4109a675171d3d051b8, type: 2}
 --- !u!4 &1428114142
 Transform:
   m_ObjectHideFlags: 0

@@ -18,7 +18,10 @@ public class Game : SingletonMonoBehaviour<Game>
 
 	public void Show()
 	{
+		gameObject.SetActive(true);
 		nguiGame.gameObject.SetActive(true);
+
+		cellManager.Show();
 	}
 
 	public void Hide()
