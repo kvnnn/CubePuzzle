@@ -11,7 +11,7 @@ public class TopCube : MonoInheritance
 
 	private void RotateRandomly()
 	{
-		TweenRotation _rotate = TweenRotation.Begin(gameObject, Random.Range(3f, 4f), Quaternion.Euler(new Vector3(Random.Range(-360, 360), Random.Range(-360, 360), Random.Range(-360, 360))));
+		TweenRotation _rotate = TweenRotation.Begin(gameObject, Random.Range(2f, 4f), Quaternion.Euler(new Vector3(Random.Range(-360, 360), Random.Range(-360, 360), Random.Range(-360, 360))));
 		_rotate.onFinished = (_tween)=>{
 			RotateRandomly();
 		};
