@@ -18,6 +18,7 @@ public class Top : SingletonMonoBehaviour<Top>
 
 	public void Hide()
 	{
+		gameObject.SetActive(false);
 		nguiTop.gameObject.SetActive(false);
 	}
 
@@ -26,7 +27,8 @@ public class Top : SingletonMonoBehaviour<Top>
 //----------------
 	void StartClick()
 	{
-
+		Hide();
+		Game.instance.Show();
 	}
 
 	void SettingClick()
@@ -38,5 +40,4 @@ public class Top : SingletonMonoBehaviour<Top>
 	{
 
 	}
-
 }

@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class MasterManager : SingletonMonoBehaviour<MasterManager>
 {
-	public Top topPage;
-
 	protected override void Awake()
 	{
 		base.Awake();
@@ -13,7 +11,8 @@ public class MasterManager : SingletonMonoBehaviour<MasterManager>
 
 	void Start()
 	{
-		topPage.Show();
+		Top.instance.Show();
+		Game.instance.Hide();
 	}
 
 }
