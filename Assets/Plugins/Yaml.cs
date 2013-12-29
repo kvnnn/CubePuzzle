@@ -3,7 +3,8 @@ using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Yaml {
+public class Yaml
+{
 	public static Regex YAML_IGNORE = new System.Text.RegularExpressions.Regex("(#.*$| )");
 	public Dictionary<string, string> values {get; private set;}
 
