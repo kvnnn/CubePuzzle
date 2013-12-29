@@ -21,5 +21,4 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 			}
 		}
 	}
-
 }
