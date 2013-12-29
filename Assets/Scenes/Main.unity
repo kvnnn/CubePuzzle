@@ -97,8 +97,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 355729550}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 20, y: 20, z: 1}
+  m_LocalPosition: {x: 0, y: 7, z: -1}
+  m_LocalScale: {x: 21, y: 21, z: 1}
   m_Children: []
   m_Father: {fileID: 941924548}
 --- !u!114 &355729552
@@ -112,11 +112,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mColor: {r: .0294117928, g: .0294117928, b: .0294117928, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mDepth: 1
-  mFont: {fileID: 11400000, guid: e2636c342a6374d3587eb7802ebcd525, type: 2}
-  mText: 
+  mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
+  mText: START
   mMaxLineWidth: 0
   mMaxLineHeight: 0
   mEncoding: 1
@@ -201,7 +201,7 @@ Transform:
   m_GameObject: {fileID: 508097319}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 150, y: 30, z: 1}
+  m_LocalScale: {x: 100, y: 30, z: 1}
   m_Children: []
   m_Father: {fileID: 941924548}
 --- !u!114 &508097321
@@ -219,7 +219,7 @@ MonoBehaviour:
   mPivot: 4
   mDepth: 0
   mAtlas: {fileID: 11400000, guid: 5a3aa506d3dcc4f3484153743e3fca8f, type: 2}
-  mSpriteName: btn_white_normal
+  mSpriteName: btn_black_normal
   mFillCenter: 1
   mType: 1
   mFillDirection: 4
@@ -327,10 +327,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 508097321}
-  normalSprite: btn_white_normal
-  hoverSprite: btn_white_normal
-  pressedSprite: btn_white_pressed
-  disabledSprite: btn_white_pressed
+  normalSprite: btn_black_normal
+  hoverSprite: btn_black_normal
+  pressedSprite: btn_black_pressed
+  disabledSprite: btn_black_pressed
 --- !u!65 &941924551
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -341,8 +341,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 96.00103, y: 30.0007954, z: 0}
-  m_Center: {x: -.000427246094, y: -.000946044922, z: -.999998093}
+  m_Size: {x: 100.001389, y: 32.4995995, z: 0}
+  m_Center: {x: -.000946044922, y: 1.248456, z: -.999998093}
 --- !u!1 &1281103084
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +417,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 1
-  m_Depth: 0
+  m_Depth: 10
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 256
@@ -552,7 +552,7 @@ Camera:
   m_GameObject: {fileID: 1730594525}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -565,7 +565,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: -5
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967039
