@@ -1,0 +1,273 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: common
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0c51bb0b6e93049af5e88f93826e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 33c2990caad9a4aa5bb40df48c0b2b63, type: 2}
+  sprites:
+  - name: btn_gray_pressed
+    outer:
+      serializedVersion: 2
+      x: 81
+      y: 70
+      width: 80
+      height: 27
+    inner:
+      serializedVersion: 2
+      x: 111
+      y: 80
+      width: 20
+      height: 7
+    rotated: 0
+    paddingLeft: .0125000002
+    paddingRight: .0125000002
+    paddingTop: .0370370373
+    paddingBottom: .0370370373
+  - name: btn_white_normal
+    outer:
+      serializedVersion: 2
+      x: 0
+      y: 98
+      width: 80
+      height: 30
+    inner:
+      serializedVersion: 2
+      x: 30
+      y: 108
+      width: 20
+      height: 5
+    rotated: 0
+    paddingLeft: .0125000002
+    paddingRight: .0125000002
+    paddingTop: .0333333351
+    paddingBottom: .0333333351
+  - name: btn_black_pressed
+    outer:
+      serializedVersion: 2
+      x: 162
+      y: 14
+      width: 80
+      height: 27
+    inner:
+      serializedVersion: 2
+      x: 192
+      y: 24
+      width: 20
+      height: 7
+    rotated: 0
+    paddingLeft: .0125000002
+    paddingRight: .0125000002
+    paddingTop: .0370370373
+    paddingBottom: .0370370373
+  - name: btn_black_normal
+    outer:
+      serializedVersion: 2
+      x: 0
+      y: 67
+      width: 80
+      height: 30
+    inner:
+      serializedVersion: 2
+      x: 30
+      y: 77
+      width: 20
+      height: 5
+    rotated: 0
+    paddingLeft: .0125000002
+    paddingRight: .0125000002
+    paddingTop: .0333333351
+    paddingBottom: .0333333351
+  - name: btn_green_pressed
+    outer:
+      serializedVersion: 2
+      x: 81
+      y: 42
+      width: 80
+      height: 27
+    inner:
+      serializedVersion: 2
+      x: 111
+      y: 52
+      width: 20
+      height: 7
+    rotated: 0
+    paddingLeft: .0125000002
+    paddingRight: .0125000002
+    paddingTop: .0370370373
+    paddingBottom: .0370370373
+  - name: btn_white_pressed
+    outer:
+      serializedVersion: 2
+      x: 81
+      y: 14
+      width: 80
+      height: 27
+    inner:
+      serializedVersion: 2
+      x: 111
+      y: 24
+      width: 20
+      height: 7
+    rotated: 0
+    paddingLeft: .0125000002
+    paddingRight: .0125000002
+    paddingTop: .0370370373
+    paddingBottom: .0370370373
+  - name: btn_red_pressed
+    outer:
+      serializedVersion: 2
+      x: 162
+      y: 70
+      width: 80
+      height: 27
+    inner:
+      serializedVersion: 2
+      x: 192
+      y: 80
+      width: 20
+      height: 7
+    rotated: 0
+    paddingLeft: .0125000002
+    paddingRight: .0125000002
+    paddingTop: .0370370373
+    paddingBottom: .0370370373
+  - name: btn_green_normal
+    outer:
+      serializedVersion: 2
+      x: 0
+      y: 36
+      width: 80
+      height: 30
+    inner:
+      serializedVersion: 2
+      x: 30
+      y: 46
+      width: 20
+      height: 5
+    rotated: 0
+    paddingLeft: .0125000002
+    paddingRight: .0125000002
+    paddingTop: .0333333351
+    paddingBottom: .0333333351
+  - name: btn_gray_normal
+    outer:
+      serializedVersion: 2
+      x: 81
+      y: 98
+      width: 80
+      height: 30
+    inner:
+      serializedVersion: 2
+      x: 111
+      y: 108
+      width: 20
+      height: 5
+    rotated: 0
+    paddingLeft: .0125000002
+    paddingRight: .0125000002
+    paddingTop: .0333333351
+    paddingBottom: .0333333351
+  - name: btn_blue_pressed
+    outer:
+      serializedVersion: 2
+      x: 162
+      y: 42
+      width: 80
+      height: 27
+    inner:
+      serializedVersion: 2
+      x: 192
+      y: 52
+      width: 20
+      height: 7
+    rotated: 0
+    paddingLeft: .0125000002
+    paddingRight: .0125000002
+    paddingTop: .0370370373
+    paddingBottom: .0370370373
+  - name: btn_blue_normal
+    outer:
+      serializedVersion: 2
+      x: 162
+      y: 98
+      width: 80
+      height: 30
+    inner:
+      serializedVersion: 2
+      x: 192
+      y: 108
+      width: 20
+      height: 5
+    rotated: 0
+    paddingLeft: .0125000002
+    paddingRight: .0125000002
+    paddingTop: .0333333351
+    paddingBottom: .0333333351
+  - name: btn_red_normal
+    outer:
+      serializedVersion: 2
+      x: 0
+      y: 5
+      width: 80
+      height: 30
+    inner:
+      serializedVersion: 2
+      x: 30
+      y: 15
+      width: 20
+      height: 5
+    rotated: 0
+    paddingLeft: .0125000002
+    paddingRight: .0125000002
+    paddingTop: .0333333351
+    paddingBottom: .0333333351
+  mCoordinates: 0
+  mPixelSize: 1
+  mReplacement: {fileID: 0}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1
