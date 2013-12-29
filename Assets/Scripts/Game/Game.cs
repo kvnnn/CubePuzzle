@@ -6,6 +6,7 @@ public class Game : SingletonMonoBehaviour<Game>
 {
 // Scene
 	public CellManager cellManager;
+	public Cube cube;
 
 // NGUI
 	public GameObject nguiGame;
