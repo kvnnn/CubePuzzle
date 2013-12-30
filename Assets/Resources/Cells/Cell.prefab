@@ -152,6 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da47f53c7cace4fce92713234c889229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  game: {fileID: 0}
+  currentType: 0
+  itemType: 0
+  tile: {fileID: 2300000}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

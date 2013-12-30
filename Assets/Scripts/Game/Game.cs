@@ -17,9 +17,23 @@ public class Game : SingletonMonoBehaviour<Game>
 
 // Parameter
 	public GameStatus status = GameStatus.End;
-	public float currentTime = 0f;
-	private float END_TIME = 180f;
-	public Material[] materials;
+
+	private Dictionary<string, Material> materials_;
+	public Dictionary<string, Material> materials {
+		get {
+			if (materials_ == null) {
+				materials_ = new Dictionary<string, Material>();
+				string[] _names = new string[]{"Red", "Purple", "Blue", "Orange", "Yellow", "Green"};
+				foreach (string matName in _names) {
+					Material _mat = Resources.Load("Cubes/Materials/" + matName) as Material;
+					materials_.Add(_mat.name, _mat);
+				}
+			}
+			return materials_;
+		}
+	}
+	private float currentTime = 0f;
+	private const float END_TIME = 180f;
 
 	public IEnumerator Show()
 	{

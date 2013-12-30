@@ -11,6 +11,10 @@ public class Cell : MonoInheritance
 	public IntVector2 position;
 	public CellType currentType;
 	public ItemType itemType;
+	public Renderer tile;
+	public Material tileMat {
+		get {return tile.material;}
+	}
 
 	public void Init(IntVector2 position)
 	{

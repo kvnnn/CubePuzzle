@@ -84,6 +84,12 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 		return position;
 	}
 
+	public bool IsMovable(IntVector2 position, Game.Direction direction)
+	{
+		IntVector2 _pos = GetDirectionPosition(position, direction);
+		return cells.ContainsKey(_pos);
+	}
+
 	public bool IsAvailable(IntVector2 position, Game.Direction direction)
 	{
 		IntVector2 _pos = GetDirectionPosition(position, direction);

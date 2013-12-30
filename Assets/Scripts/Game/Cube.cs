@@ -88,13 +88,13 @@ public class Cube : SingletonMonoBehaviour<Cube>
   	while (true) {
   		if (!rotating && game.isPlay) {
 				if (Input.GetKey(KeyCode.D)) {
-					Move(Game.Direction.Right);
+					RotateTo(Game.Direction.Right);
 				} else if (Input.GetKey(KeyCode.A)) {
-					Move(Game.Direction.Left);
+					RotateTo(Game.Direction.Left);
 				} else if (Input.GetKey(KeyCode.W)) {
-					Move(Game.Direction.Up);
+					RotateTo(Game.Direction.Up);
 				} else if (Input.GetKey(KeyCode.S)) {
-					Move(Game.Direction.Down);
+					RotateTo(Game.Direction.Down);
 				}
 			}
 			yield return false;
@@ -144,9 +144,9 @@ public class Cube : SingletonMonoBehaviour<Cube>
 		rotating = false;
 	}
 
-	public void Move(Game.Direction direction)
+	public void RotateTo(Game.Direction direction)
 	{
-		if (!cellManager.IsAvailable(position, direction)) {return;}
+		if (!cellManager.IsMovable(position, direction)) {return;}
 
 		switch (direction) {
 			case Game.Direction.Up:
