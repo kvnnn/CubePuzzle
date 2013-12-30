@@ -17,6 +17,7 @@ public class Game : SingletonMonoBehaviour<Game>
 		nguiGame.gameObject.SetActive(true);
 
 		cellManager.OnShow();
+		cube.OnShow();
 	}
 
 	public void Hide()
@@ -25,6 +26,7 @@ public class Game : SingletonMonoBehaviour<Game>
 		nguiGame.gameObject.SetActive(false);
 
 		cellManager.OnHide();
+		cube.OnHide();
 	}
 
 //----------------

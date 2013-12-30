@@ -6,7 +6,14 @@ public class Cube : SingletonMonoBehaviour<Cube>
 {
 // Scene
 	public Game game;
+	public CellManager cellManager {
+		get {
+			return game.cellManager;
+		}
+	}
+
 // Parameter
+	private IntVector2 position;
 	private float speed = 5.0f;
 	private Transform rotator;
 	private float halfCubeSize {
@@ -14,37 +21,70 @@ public class Cube : SingletonMonoBehaviour<Cube>
 	}
 	private bool rotating = false;
 
-	private void Start()
+	public void OnShow()
+	{
+		MoveTo(cellManager.startPos);
+		StartCube();
+	}
+
+	public void OnHide()
+	{
+		StopCoroutine("ControlCoroutine");
+	}
+
+//----------------
+// 操作
+//----------------
+	private void StartCube()
 	{
 		rotator = (new GameObject("Rotator")).transform;
 		rotator.parent = game.transform;
+
+		StartCoroutine("ControlCoroutine");
 	}
 
-	// TODO : 操作
-	private void Update()
+	private IEnumerator ControlCoroutine()
   {
-		if (!rotating) {
-			if (Input.GetKey(KeyCode.D)) {
-				rotating = true;
-				RotateCube(Vector3.right * halfCubeSize, -Vector3.forward);
-			} else if (Input.GetKey(KeyCode.A)) {
-				rotating = true;
-				RotateCube(-Vector3.right * halfCubeSize, Vector3.forward);
-			} else if (Input.GetKey(KeyCode.W)) {
-				rotating = true;
-				RotateCube(Vector3.forward * halfCubeSize, Vector3.right);
-			} else if (Input.GetKey(KeyCode.S)) {
-				rotating = true;
-				RotateCube(-Vector3.forward * halfCubeSize, -Vector3.right);
+  	while (true) {
+  		if (!rotating) {
+				if (Input.GetKey(KeyCode.D)) {
+					RotateCube(Vector3.right * halfCubeSize, -Vector3.forward);
+				} else if (Input.GetKey(KeyCode.A)) {
+					RotateCube(-Vector3.right * halfCubeSize, Vector3.forward);
+				} else if (Input.GetKey(KeyCode.W)) {
+					RotateCube(Vector3.forward * halfCubeSize, Vector3.right);
+				} else if (Input.GetKey(KeyCode.S)) {
+					RotateCube(-Vector3.forward * halfCubeSize, -Vector3.right);
+				}
 			}
-		}
+
+			yield return false;
+  	}
+	}
+
+	private void MoveTo(IntVector2 position)
+	{
+		MoveTo(cellManager.cells[position]);
+	}
+
+	private void MoveTo(Cell cell)
+	{
+		Vector3 _pos = transform.position;
+		_pos.x = cell.transform.position.x;
+		_pos.y = halfCubeSize;
+		_pos.z = cell.transform.position.z;
+
+		transform.position = _pos;
+		position = cell.position;
 	}
 
 //----------------
-// 回転処理
+// 回転
 //----------------
+
 	private void RotateCube(Vector3 refPoint, Vector3 rotationAxis)
 	{
+		rotating = true;
 		StartCoroutine(RotateCubeCoroutine(refPoint, rotationAxis));
 	}
 
@@ -62,5 +102,4 @@ public class Cube : SingletonMonoBehaviour<Cube>
 		transform.parent = game.transform;
 		rotating = false;
 	}
-
 }
