@@ -36,4 +36,14 @@ public class Game : SingletonMonoBehaviour<Game>
 	{
 
 	}
+
+//----------------
+// enum
+//----------------
+	public enum Direction {
+		Up,
+		Down,
+		Right,
+		Left,
+	}
 }

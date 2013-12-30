@@ -27,6 +27,9 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 		RemoveStage();
 	}
 
+//----------------
+// Stage
+//----------------
 	public void CreateStage(int id = 0)
 	{
 		cells = new Dictionary<IntVector2, Cell>();
@@ -40,7 +43,7 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 
 				Cell _cell = _object.GetComponent<Cell>();
 				_cell.game = game;
-				_cell.position = new IntVector2(x, z);
+				_cell.Init(new IntVector2(x, z));
 
 				cells[_cell.position] = _cell;
 			}
@@ -52,5 +55,36 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 		foreach (Transform child in transform) {
 			Destroy(child);
 		}
+	}
+
+//----------------
+// Cells
+//----------------
+	public IntVector2 GetDirectionPosition(IntVector2 position, Game.Direction direction)
+	{
+		switch (direction) {
+			case Game.Direction.Up:
+				position.y += 1;
+			break;
+			case Game.Direction.Down:
+				position.y -= 1;
+			break;
+			case Game.Direction.Left:
+				position.x -= 1;
+			break;
+			case Game.Direction.Right:
+				position.x += 1;
+			break;
+		}
+		return position;
+	}
+
+	public bool IsAvailable(IntVector2 position, Game.Direction direction)
+	{
+		IntVector2 _pos = GetDirectionPosition(position, direction);
+		if (!cells.ContainsKey(_pos)) {return false;}
+		Cell _cell = cells[_pos];
+
+		return _cell.IsAvailable();
 	}
 }

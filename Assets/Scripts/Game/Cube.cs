@@ -48,13 +48,13 @@ public class Cube : SingletonMonoBehaviour<Cube>
   	while (true) {
   		if (!rotating) {
 				if (Input.GetKey(KeyCode.D)) {
-					RotateCube(Vector3.right * halfCubeSize, -Vector3.forward);
+					Move(Game.Direction.Right);
 				} else if (Input.GetKey(KeyCode.A)) {
-					RotateCube(-Vector3.right * halfCubeSize, Vector3.forward);
+					Move(Game.Direction.Left);
 				} else if (Input.GetKey(KeyCode.W)) {
-					RotateCube(Vector3.forward * halfCubeSize, Vector3.right);
+					Move(Game.Direction.Up);
 				} else if (Input.GetKey(KeyCode.S)) {
-					RotateCube(-Vector3.forward * halfCubeSize, -Vector3.right);
+					Move(Game.Direction.Down);
 				}
 			}
 
@@ -81,14 +81,13 @@ public class Cube : SingletonMonoBehaviour<Cube>
 //----------------
 // 回転
 //----------------
-
-	private void RotateCube(Vector3 refPoint, Vector3 rotationAxis)
+	private void RotateCube(Vector3 refPoint, Vector3 rotationAxis, Game.Direction direction)
 	{
 		rotating = true;
-		StartCoroutine(RotateCubeCoroutine(refPoint, rotationAxis));
+		StartCoroutine(RotateCubeCoroutine(refPoint, rotationAxis, direction));
 	}
 
-	private IEnumerator RotateCubeCoroutine(Vector3 refPoint, Vector3 rotationAxis)
+	private IEnumerator RotateCubeCoroutine(Vector3 refPoint, Vector3 rotationAxis, Game.Direction direction)
 	{
 		rotator.localRotation = Quaternion.identity;
 		rotator.position = transform.position - Vector3.up * halfCubeSize + refPoint;
@@ -100,6 +99,30 @@ public class Cube : SingletonMonoBehaviour<Cube>
 			yield return false;
 		}
 		transform.parent = game.transform;
+
+		MoveTo(cellManager.GetDirectionPosition(position, direction));
+
 		rotating = false;
+	}
+
+	public void Move(Game.Direction direction)
+	{
+		if (!cellManager.IsAvailable(position, direction)) {return;}
+
+		switch (direction) {
+			case Game.Direction.Up:
+				RotateCube(Vector3.forward * halfCubeSize, Vector3.right, direction);
+			break;
+			case Game.Direction.Down:
+				RotateCube(-Vector3.forward * halfCubeSize, -Vector3.right, direction);
+			break;
+			case Game.Direction.Left:
+				RotateCube(-Vector3.right * halfCubeSize, Vector3.forward, direction);
+			break;
+			case Game.Direction.Right:
+				RotateCube(Vector3.right * halfCubeSize, -Vector3.forward, direction);
+			break;
+		}
+
 	}
 }

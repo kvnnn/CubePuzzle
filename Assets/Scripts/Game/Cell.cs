@@ -12,11 +12,22 @@ public class Cell : MonoInheritance
 	public CellType currentType;
 	public ItemType itemType;
 
+	public void Init(IntVector2 position)
+	{
+		this.position = position;
+		this.currentType = CellType.Normal;
+		this.itemType = ItemType.None;
+	}
 
+	public bool IsAvailable()
+	{
+		return true;
+	}
 
-
+//----------------
+// enum
+//----------------
 	public enum CellType {
-		Empty,
 		Normal,
 		Colored,
 		Goal,
