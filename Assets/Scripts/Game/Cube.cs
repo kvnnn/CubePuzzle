@@ -37,7 +37,6 @@ public class Cube : SingletonMonoBehaviour<Cube>
 	public Material backMat {
 		get {return backSide.material;}
 	}
-
 	private IntVector2 position;
 	private float speed = 5.0f;
 	private Transform rotator;
@@ -162,6 +161,5 @@ public class Cube : SingletonMonoBehaviour<Cube>
 				RotateCube(Vector3.right * halfCubeSize, -Vector3.forward, direction);
 			break;
 		}
-
 	}
 }

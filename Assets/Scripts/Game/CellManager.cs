@@ -90,12 +90,12 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 		return cells.ContainsKey(_pos);
 	}
 
-	public bool IsAvailable(IntVector2 position, Game.Direction direction)
+	public bool IsAvailable(IntVector2 position, Game.Direction direction, string matName)
 	{
 		IntVector2 _pos = GetDirectionPosition(position, direction);
 		if (!cells.ContainsKey(_pos)) {return false;}
 		Cell _cell = cells[_pos];
 
-		return _cell.IsAvailable();
+		return _cell.IsAvailable(matName);
 	}
 }

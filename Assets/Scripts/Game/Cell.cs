@@ -15,6 +15,9 @@ public class Cell : MonoInheritance
 	public Material tileMat {
 		get {return tile.material;}
 	}
+	public string matName {
+		get {return tileMat.name;}
+	}
 
 	public void Init(IntVector2 position)
 	{
@@ -23,9 +26,18 @@ public class Cell : MonoInheritance
 		this.itemType = ItemType.None;
 	}
 
-	public bool IsAvailable()
+	public bool IsAvailable(string matName)
 	{
-		return true;
+		switch (currentType) {
+			case CellType.Normal:
+				return true;
+			case CellType.Colored:
+			case CellType.Goal:
+				return this.matName == matName;
+			case CellType.Item:
+				return false;
+		}
+		return false;
 	}
 
 //----------------
