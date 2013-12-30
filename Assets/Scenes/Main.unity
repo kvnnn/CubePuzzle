@@ -1141,6 +1141,13 @@ MonoBehaviour:
   pointLabel: {fileID: 0}
   status: 2
   currentTime: 0
+  materials:
+  - {fileID: 2100000, guid: 0c5b98e5e53554b5bacbdbd2e20b16f5, type: 2}
+  - {fileID: 2100000, guid: 8a7bc59e4013c4e3b88142457e8b67e6, type: 2}
+  - {fileID: 2100000, guid: d1a083261268d4baab1447fafd9fc13f, type: 2}
+  - {fileID: 2100000, guid: 27c32997612ba48f092464c04e4407bb, type: 2}
+  - {fileID: 2100000, guid: 046688d99a20e4aa48789145e7a26c84, type: 2}
+  - {fileID: 2100000, guid: 6aa0c9f31203d4d57b5a52137d763338, type: 2}
 --- !u!1 &1041166333
 GameObject:
   m_ObjectHideFlags: 0

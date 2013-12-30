@@ -19,6 +19,7 @@ public class Game : SingletonMonoBehaviour<Game>
 	public GameStatus status = GameStatus.End;
 	public float currentTime = 0f;
 	private float END_TIME = 180f;
+	public Material[] materials;
 
 	public IEnumerator Show()
 	{
