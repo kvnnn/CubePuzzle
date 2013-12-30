@@ -40,6 +40,9 @@ public class Cube : SingletonMonoBehaviour<Cube>
 		}
 	}
 
+//----------------
+// 回転処理
+//----------------
 	private void RotateCube(Vector3 refPoint, Vector3 rotationAxis)
 	{
 		StartCoroutine(RotateCubeCoroutine(refPoint, rotationAxis));

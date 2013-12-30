@@ -11,24 +11,20 @@ public class Game : SingletonMonoBehaviour<Game>
 // NGUI
 	public GameObject nguiGame;
 
-	protected override void Awake()
-	{
-		base.Awake();
-		Hide();
-	}
-
 	public void Show()
 	{
 		gameObject.SetActive(true);
 		nguiGame.gameObject.SetActive(true);
 
-		cellManager.Show();
+		cellManager.OnShow();
 	}
 
 	public void Hide()
 	{
 		gameObject.SetActive(false);
 		nguiGame.gameObject.SetActive(false);
+
+		cellManager.OnHide();
 	}
 
 //----------------
