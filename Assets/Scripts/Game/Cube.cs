@@ -13,6 +13,31 @@ public class Cube : SingletonMonoBehaviour<Cube>
 	}
 
 // Parameter
+	public Renderer upperSide;
+	public Material upperMat {
+		get {return upperSide.material;}
+	}
+	public Renderer downSide;
+	public Material downMat {
+		get {return downSide.material;}
+	}
+	public Renderer rightSide;
+	public Material rightMat {
+		get {return rightSide.material;}
+	}
+	public Renderer leftSide;
+	public Material leftMat {
+		get {return leftSide.material;}
+	}
+	public Renderer behindSide;
+	public Material behindMat {
+		get {return upperSide.material;}
+	}
+	public Renderer backSide;
+	public Material backMat {
+		get {return backSide.material;}
+	}
+
 	private IntVector2 position;
 	private float speed = 5.0f;
 	private Transform rotator;

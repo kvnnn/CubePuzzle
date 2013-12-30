@@ -20,7 +20,6 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 	public IEnumerator OnShow()
 	{
 		yield return StartCoroutine(CreateStage());
-		yield break;
 	}
 
 	public void OnHide()
@@ -53,7 +52,7 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 			}
 		}
 
-		yield return StartCoroutine(WaitForSecondsIgnoreTimeScale(0.1f));
+		yield return StartCoroutine(WaitForSecondsIgnoreTimeScale(0.05f));
 	}
 
 	public void RemoveStage()
