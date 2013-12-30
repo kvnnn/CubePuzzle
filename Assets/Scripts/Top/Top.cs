@@ -30,7 +30,7 @@ public class Top : SingletonMonoBehaviour<Top>
 	void StartClick()
 	{
 		Hide();
-		Game.instance.Show();
+		MasterManager.instance.StartCoroutine(Game.instance.Show());
 	}
 
 	void SettingClick()

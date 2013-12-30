@@ -17,9 +17,10 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 		}
 	}
 
-	public void OnShow()
+	public IEnumerator OnShow()
 	{
-		CreateStage();
+		yield return StartCoroutine(CreateStage());
+		yield break;
 	}
 
 	public void OnHide()
@@ -30,7 +31,7 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 //----------------
 // Stage
 //----------------
-	public void CreateStage(int id = 0)
+	public IEnumerator CreateStage(int id = 0)
 	{
 		cells = new Dictionary<IntVector2, Cell>();
 		Vector3 _scale = cellPrefab.transform.localScale;
@@ -38,7 +39,7 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 			for (int z = 0; z < maxSize.y; z++) {
 				GameObject _object = (GameObject)Instantiate(cellPrefab, new Vector3(), new Quaternion());
 				_object.transform.parent = transform;
-				_object.transform.localPosition = new Vector3(_scale.x * x, 0f, _scale.z * z);
+				_object.transform.localPosition = new Vector3(_scale.x * x, 10f, _scale.z * z);
 				_object.name = string.Format("{0}:{1}", x, z);
 
 				Cell _cell = _object.GetComponent<Cell>();
@@ -46,8 +47,13 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 				_cell.Init(new IntVector2(x, z));
 
 				cells[_cell.position] = _cell;
+
+				TweenPosition.Begin(_object, 0.25f, new Vector3(_scale.x * x, 0f, _scale.z * z));
+				yield return StartCoroutine(WaitForSecondsIgnoreTimeScale(0.025f));
 			}
 		}
+
+		yield return StartCoroutine(WaitForSecondsIgnoreTimeScale(0.1f));
 	}
 
 	public void RemoveStage()

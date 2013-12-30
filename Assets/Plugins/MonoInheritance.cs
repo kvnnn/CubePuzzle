@@ -33,4 +33,16 @@ public class MonoInheritance : MonoBehaviour
 		}
 	}
 
+	public IEnumerator WaitForSecondsIgnoreTimeScale(float time)
+  {
+    if (Time.timeScale == 0f) {
+      float _targetTime = Time.realtimeSinceStartup + time;
+      while(Time.realtimeSinceStartup < _targetTime) {
+        yield return new WaitForEndOfFrame();
+      }
+    } else {
+      yield return new WaitForSeconds(time);
+    }
+  }
+
 }

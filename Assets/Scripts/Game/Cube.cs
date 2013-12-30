@@ -21,10 +21,25 @@ public class Cube : SingletonMonoBehaviour<Cube>
 	}
 	private bool rotating = false;
 
-	public void OnShow()
+	public IEnumerator OnShow()
 	{
-		MoveTo(cellManager.startPos);
-		StartCube();
+		Vector3 _startPos = cellManager.cells[cellManager.startPos].transform.position;
+		Vector3 _pos = transform.position;
+		_pos.x = _startPos.x;
+		_pos.z = _startPos.z;
+
+		_pos.y = 10f;
+		transform.position = _pos;
+		_pos.y = halfCubeSize;
+
+		gameObject.SetActive(true);
+		TweenPosition _tweenPos = TweenPosition.Begin(gameObject, 0.25f, _pos);
+		_tweenPos.onFinished = (_tween)=>{
+			game.StartGame();
+			MoveTo(cellManager.startPos);
+			StartCube();
+		};
+		yield break;
 	}
 
 	public void OnHide()
@@ -46,7 +61,7 @@ public class Cube : SingletonMonoBehaviour<Cube>
 	private IEnumerator ControlCoroutine()
   {
   	while (true) {
-  		if (!rotating) {
+  		if (!rotating && game.isPlay) {
 				if (Input.GetKey(KeyCode.D)) {
 					Move(Game.Direction.Right);
 				} else if (Input.GetKey(KeyCode.A)) {
@@ -57,7 +72,6 @@ public class Cube : SingletonMonoBehaviour<Cube>
 					Move(Game.Direction.Down);
 				}
 			}
-
 			yield return false;
   	}
 	}
