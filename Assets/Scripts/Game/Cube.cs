@@ -29,9 +29,9 @@ public class Cube : SingletonMonoBehaviour<Cube>
 	public Material leftMat {
 		get {return leftSide.material;}
 	}
-	public Renderer behindSide;
-	public Material behindMat {
-		get {return upperSide.material;}
+	public Renderer frontSide;
+	public Material frontMat {
+		get {return frontSide.material;}
 	}
 	public Renderer backSide;
 	public Material backMat {
@@ -141,6 +141,9 @@ public class Cube : SingletonMonoBehaviour<Cube>
 		MoveTo(cellManager.GetDirectionPosition(position, direction));
 
 		rotating = false;
+
+
+		UnityEngine.Debug.LogError(upperSide.transform.position + "\n" + downSide.transform.position + "\n" + rightSide.transform.position + "\n" + leftSide.transform.position + "\n" + frontSide.transform.position + "\n" + backSide.transform.position);
 	}
 
 	public void RotateTo(Game.Direction direction)

@@ -490,7 +490,7 @@ MonoBehaviour:
   downSide: {fileID: 2300000}
   rightSide: {fileID: 2300004}
   leftSide: {fileID: 2300002}
-  behindSide: {fileID: 2300006}
+  frontSide: {fileID: 2300006}
   backSide: {fileID: 2300008}
 --- !u!1001 &100100000
 Prefab:
