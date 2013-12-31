@@ -99,21 +99,24 @@ private const float END_TIME = 180f;
 	private void Update()
 	{
 		if (!isPlay) {return;}
+		// Time Label
 		currentTime += Time.deltaTime;
 		float _leftTime = UpdateTimeLabel();
 		if (_leftTime <= 0) {
 			EndGame();
 		}
 
-		ManageGame();
+		// Manage Game
+		ManageColoredCell();
 	}
 
 private float nextTime = 0f;
-private int maxNormalCount = 80;
-	private void ManageGame()
+private int maxColoredCount = 80;
+private int maxGoalCount = 5;
+	private void ManageColoredCell()
 	{
 		if (nextTime > currentTime) {return;}
-		if (Cell.currentCount[Cell.CellType.Normal] >= maxNormalCount) {return
+		if (Cell.currentCount[Cell.CellType.Colored] >= maxColoredCount) {return
 			;}
 		Cell _cell = cellManager.GetRandomFreeCell();
 		if (_cell == null) {return;}

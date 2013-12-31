@@ -64,18 +64,19 @@ public class Cell : MonoInheritance
 //----------------
 	public void AutoChange()
 	{
-		currentCount[currentType]--;
-		clearCount[currentType]++;
 		switch (currentType) {
 			case CellType.Normal:
 			break;
 			case CellType.Colored:
+				clearCount[currentType]++;
 				ToNormal();
 			break;
 			case CellType.Goal:
+				clearCount[currentType]++;
 				ToNormal();
 			break;
 			case CellType.Item:
+				clearCount[currentType]++;
 				ToNormal();
 			break;
 		}
@@ -115,6 +116,12 @@ public class Cell : MonoInheritance
 		TweenScale.Begin(tile.gameObject, 1f, new Vector3(1f, 1f, 1f));
 	}
 
+	public void SetCurrentCount(CellType to)
+	{
+		currentCount[currentType]--;
+		currentCount[to]++;
+	}
+
 //----------------
 // enum
 //----------------
@@ -134,20 +141,20 @@ public class Cell : MonoInheritance
 	public bool isGoal {get {return currentType == CellType.Goal;}}
 	public bool isItem {get {return currentType == CellType.Item;}}
 	private void toNormal() {
+		SetCurrentCount(CellType.Normal);
 		currentType = CellType.Normal;
-		currentCount[CellType.Normal]++;
 	}
 	private void toColored() {
+		SetCurrentCount(CellType.Colored);
 		currentType = CellType.Colored;
-		currentCount[CellType.Colored]++;
 	}
 	private void toGoal() {
+		SetCurrentCount(CellType.Goal);
 		currentType = CellType.Goal;
-		currentCount[CellType.Goal]++;
 	}
 	private void toItem() {
+		SetCurrentCount(CellType.Item);
 		currentType = CellType.Item;
-		currentCount[CellType.Item]++;
 	}
 
 //----------------
