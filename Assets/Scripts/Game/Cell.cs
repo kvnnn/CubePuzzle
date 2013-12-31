@@ -16,11 +16,18 @@ public class Cell : MonoInheritance
 		get {return tile.sharedMaterial;}
 		set {tile.sharedMaterial = value;}
 	}
+	private Color tileColor {
+		get {return tile.sharedMaterial.color;}
+	}
 	private string matName {get {return tileMat.name;}}
 	public Renderer icon;
 	private Material iconMat {
-		get {return icon.sharedMaterial;}
-		set {icon.sharedMaterial = value;}
+		get {return icon.material;}
+		set {icon.material = value;}
+	}
+	private Color iconColor {
+		get {return icon.material.color;}
+		set {icon.material.color = value;}
 	}
 // Materials
 	private Dictionary<string, Material> materials_;
@@ -90,7 +97,9 @@ public class Cell : MonoInheritance
 	{
 		if (isNormal) {return;}
 		toNormal();
+
 		tile.transform.localScale = new Vector3();
+		tile.enabled = false;
 		tile.gameObject.SetActive(false);
 		icon.gameObject.SetActive(false);
 	}
@@ -99,7 +108,9 @@ public class Cell : MonoInheritance
 	{
 		if (isColored) {return;}
 		toColored();
+
 		tile.transform.localScale = new Vector3();
+		tile.enabled = true;
 		tile.gameObject.SetActive(true);
 		tileMat = mat;
 
@@ -112,8 +123,10 @@ public class Cell : MonoInheritance
 	{
 		if (isGoal) {return;}
 		toGoal();
-		tile.gameObject.SetActive(true);
+
 		tile.transform.localScale = new Vector3();
+		tile.enabled = false;
+		tile.gameObject.SetActive(true);
 		tileMat = mat;
 
 		icon.gameObject.SetActive(true);
@@ -126,11 +139,14 @@ public class Cell : MonoInheritance
 	{
 		if (isBomb) {return;}
 		toBomb();
-		tile.gameObject.SetActive(true);
+
 		tile.transform.localScale = Vector3.one;
+		tile.enabled = false;
+		tile.gameObject.SetActive(true);
 
 		icon.gameObject.SetActive(true);
 		iconMat = materials["Bomb"];
+		iconColor = tileColor;
 	}
 
 
