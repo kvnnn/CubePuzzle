@@ -63,8 +63,26 @@ public class Cell : MonoInheritance
 //----------------
 // Change Type
 //----------------
+	public void AutoChange()
+	{
+		switch (currentType) {
+			case CellType.Normal:
+			break;
+			case CellType.Colored:
+				ToNormal();
+			break;
+			case CellType.Goal:
+				ToNormal();
+			break;
+			case CellType.Item:
+				ToNormal();
+			break;
+		}
+	}
+
 	public void ToNormal()
 	{
+		if (isNormal) {return;}
 		toNormal();
 		tile.transform.localScale = new Vector3();
 		tile.gameObject.SetActive(false);
@@ -73,6 +91,7 @@ public class Cell : MonoInheritance
 
 	public void ToColor(Material mat)
 	{
+		if (isColored) {return;}
 		toColored();
 		tile.gameObject.SetActive(true);
 		tile.transform.localScale = new Vector3();
@@ -84,6 +103,7 @@ public class Cell : MonoInheritance
 
 	public void ToGoal(Material mat)
 	{
+		if (isGoal) {return;}
 		toGoal();
 		tile.gameObject.SetActive(true);
 		tile.transform.localScale = new Vector3();

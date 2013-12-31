@@ -64,7 +64,7 @@ public class Game : SingletonMonoBehaviour<Game>
 	public void StartGame()
 	{
 		currentTime = 0f;
-		nextTime = Random.Range(4f, 6f);
+		SetRandomNextTime();
 
 		status = GameStatus.Play;
 
@@ -114,7 +114,12 @@ private float nextTime = 0f;
 		if (_cell == null) {return;}
 
 		_cell.ToColor(randomMaterial);
-		nextTime = currentTime + Random.Range(4f, 6f);
+		SetRandomNextTime();
+	}
+
+	private void SetRandomNextTime()
+	{
+		nextTime = currentTime + Random.Range(3f, 5f);
 	}
 
 //----------------

@@ -141,6 +141,7 @@ public class Cube : SingletonMonoBehaviour<Cube>
 		position = cell.position;
 
 		SetCurrentSide();
+		cell.AutoChange();
 	}
 
 //----------------
