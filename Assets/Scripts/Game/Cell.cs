@@ -68,6 +68,7 @@ public class Cell : MonoInheritance
 		toNormal();
 		tile.transform.localScale = new Vector3();
 		tile.gameObject.SetActive(false);
+		icon.gameObject.SetActive(false);
 	}
 
 	public void ToColor(Material mat)
@@ -76,6 +77,7 @@ public class Cell : MonoInheritance
 		tile.gameObject.SetActive(true);
 		tile.transform.localScale = new Vector3();
 		tileMat = mat;
+		icon.gameObject.SetActive(false);
 
 		TweenScale.Begin(tile.gameObject, 1f, new Vector3(1f, 1f, 1f));
 	}
@@ -86,6 +88,8 @@ public class Cell : MonoInheritance
 		tile.gameObject.SetActive(true);
 		tile.transform.localScale = new Vector3();
 		tileMat = mat;
+		icon.gameObject.SetActive(true);
+		iconMat = materials["Star"];
 
 		TweenScale.Begin(tile.gameObject, 1f, new Vector3(1f, 1f, 1f));
 	}
@@ -105,11 +109,11 @@ public class Cell : MonoInheritance
 		PointIncrease,
 	}
 	public bool isNormal {get {return currentType == CellType.Normal;}}
-	private void toNormal() {currentType = CellType.Normal;}
 	public bool isColored {get {return currentType == CellType.Colored;}}
-	private void toColored() {currentType = CellType.Colored;}
 	public bool isGoal {get {return currentType == CellType.Goal;}}
-	private void toGoal() {currentType = CellType.Goal;}
 	public bool isItem {get {return currentType == CellType.Item;}}
+	private void toNormal() {currentType = CellType.Normal;}
+	private void toColored() {currentType = CellType.Colored;}
+	private void toGoal() {currentType = CellType.Goal;}
 	private void toItem() {currentType = CellType.Item;}
 }
