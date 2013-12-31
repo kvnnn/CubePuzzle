@@ -11,7 +11,6 @@ public class Cube : SingletonMonoBehaviour<Cube>
 			return game.cellManager;
 		}
 	}
-
 // Parameter
 	private Dictionary<SidePosition, string> sides = new Dictionary<SidePosition, string>();
 	private IntVector2 position;

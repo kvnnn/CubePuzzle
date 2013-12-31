@@ -7,17 +7,15 @@ public class Game : SingletonMonoBehaviour<Game>
 // Scene
 	public CellManager cellManager;
 	public Cube cube;
-
 // NGUI
 	public GameObject nguiGame;
 	public GameObject timeLabelsGo;
 	public UILabel minutesLabel;
 	public UILabel secondLabel;
 	public UILabel pointLabel;
-
 // Parameter
 	public GameStatus status = GameStatus.End;
-
+// Materials
 	private Dictionary<string, Material> materials_;
 	public Dictionary<string, Material> materials {
 		get {

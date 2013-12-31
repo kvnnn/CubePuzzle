@@ -7,7 +7,6 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 // Scene
 	public Game game;
 	public GameObject cellPrefab;
-
 // Parameter
 	public Dictionary<IntVector2, Cell> cells;
 	private IntVector2 maxSize = new IntVector2(12, 10);

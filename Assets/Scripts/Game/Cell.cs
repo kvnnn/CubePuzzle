@@ -6,18 +6,37 @@ public class Cell : MonoInheritance
 {
 // Scene
 	public Game game;
-
 // Parameter
 	public IntVector2 position;
 	public CellType currentType;
 	public ItemType itemType;
 	public Renderer tile;
-	public Material tileMat {
+	private Material tileMat {
 		get {return tile.sharedMaterial;}
 		set {tile.sharedMaterial = value;}
 	}
-	public string matName {
+	private string matName {
 		get {return tileMat.name;}
+	}
+	public Renderer icon;
+	private Material iconMat {
+		get {return icon.sharedMaterial;}
+		set {icon.sharedMaterial = value;}
+	}
+// Materials
+	private Dictionary<string, Material> materials_;
+	public Dictionary<string, Material> materials {
+		get {
+			if (materials_ == null) {
+				materials_ = new Dictionary<string, Material>();
+				string[] _names = new string[]{"Red", "Purple", "Blue", "Orange", "Yellow", "Green"};
+				foreach (string matName in _names) {
+					Material _mat = Resources.Load("Cubes/Materials/" + matName) as Material;
+					materials_.Add(_mat.name, _mat);
+				}
+			}
+			return materials_;
+		}
 	}
 
 	public void Init(IntVector2 position)
