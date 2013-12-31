@@ -113,7 +113,7 @@ private int maxNormalCount = 80;
 	private void ManageGame()
 	{
 		if (nextTime > currentTime) {return;}
-		if (currentNormalCount >= maxNormalCount) {return
+		if (Cell.currentCount[Cell.CellType.Normal] >= maxNormalCount) {return
 			;}
 		Cell _cell = cellManager.GetRandomFreeCell();
 		if (_cell == null) {return;}
@@ -150,7 +150,7 @@ private int maxNormalCount = 80;
 //----------------
 	void PauseClick()
 	{
-
+		PauseGame();
 	}
 
 //----------------

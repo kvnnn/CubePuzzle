@@ -41,8 +41,8 @@ public class Cell : MonoInheritance
 	public void Init(IntVector2 position)
 	{
 		this.position = position;
-		this.currentType = CellType.Normal;
 		this.itemType = ItemType.None;
+		ToNormal();
 	}
 
 	public bool IsAvailable(string matName)
@@ -64,6 +64,8 @@ public class Cell : MonoInheritance
 //----------------
 	public void AutoChange()
 	{
+		currentCount[currentType]--;
+		clearCount[currentType]++;
 		switch (currentType) {
 			case CellType.Normal:
 			break;
@@ -131,8 +133,41 @@ public class Cell : MonoInheritance
 	public bool isColored {get {return currentType == CellType.Colored;}}
 	public bool isGoal {get {return currentType == CellType.Goal;}}
 	public bool isItem {get {return currentType == CellType.Item;}}
-	private void toNormal() {currentType = CellType.Normal;}
-	private void toColored() {currentType = CellType.Colored;}
-	private void toGoal() {currentType = CellType.Goal;}
-	private void toItem() {currentType = CellType.Item;}
+	private void toNormal() {
+		currentType = CellType.Normal;
+		currentCount[CellType.Normal]++;
+	}
+	private void toColored() {
+		currentType = CellType.Colored;
+		currentCount[CellType.Colored]++;
+	}
+	private void toGoal() {
+		currentType = CellType.Goal;
+		currentCount[CellType.Goal]++;
+	}
+	private void toItem() {
+		currentType = CellType.Item;
+		currentCount[CellType.Item]++;
+	}
+
+//----------------
+// static
+//----------------
+	public static Dictionary<CellType, int> currentCount;
+	public static Dictionary<CellType, int> clearCount;
+	public static void ResetCount()
+	{
+		currentCount = new Dictionary<CellType, int>(){
+			{CellType.Normal, 0},
+			{CellType.Colored, 0},
+			{CellType.Goal, 0},
+			{CellType.Item, 0},
+		};
+		clearCount = new Dictionary<CellType, int>(){
+			{CellType.Normal, 0},
+			{CellType.Colored, 0},
+			{CellType.Goal, 0},
+			{CellType.Item, 0},
+		};
+	}
 }
