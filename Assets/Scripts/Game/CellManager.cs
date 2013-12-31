@@ -15,8 +15,8 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 
 	public IEnumerator OnShow()
 	{
-		yield return StartCoroutine(CreateStage());
 		Cell.ResetCount();
+		yield return StartCoroutine(CreateStage());
 	}
 
 	public void OnHide()

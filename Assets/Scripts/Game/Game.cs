@@ -105,9 +105,11 @@ private const float END_TIME = 180f;
 		if (_leftTime <= 0) {
 			EndGame();
 		}
-
 		// Manage Game
 		ManageColoredCell();
+
+		// Debug
+		// Cell.DebugCount();
 	}
 
 private float nextTime = 0f;

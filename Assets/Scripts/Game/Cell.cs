@@ -41,6 +41,7 @@ public class Cell : MonoInheritance
 	public void Init(IntVector2 position)
 	{
 		this.position = position;
+		this.currentType = CellType.None;
 		this.itemType = ItemType.None;
 		ToNormal();
 	}
@@ -118,7 +119,9 @@ public class Cell : MonoInheritance
 
 	public void SetCurrentCount(CellType to)
 	{
-		currentCount[currentType]--;
+		if (currentType != CellType.None) {
+			currentCount[currentType]--;
+		}
 		currentCount[to]++;
 	}
 
@@ -126,6 +129,7 @@ public class Cell : MonoInheritance
 // enum
 //----------------
 	public enum CellType {
+		None,
 		Normal,
 		Colored,
 		Goal,
@@ -176,5 +180,21 @@ public class Cell : MonoInheritance
 			{CellType.Goal, 0},
 			{CellType.Item, 0},
 		};
+	}
+	public static void DebugCount()
+	{
+		string _log = "Current" + "\n";
+		foreach (KeyValuePair<CellType, int> kvp in currentCount) {
+			_log += kvp.Key + " : " + kvp.Value;
+			_log += "\n";
+		}
+		UnityEngine.Debug.Log(_log);
+
+		_log = "Clear" + "\n";
+		foreach (KeyValuePair<CellType, int> kvp in clearCount) {
+			_log += kvp.Key + " : " + kvp.Value;
+			_log += "\n";
+		}
+		UnityEngine.Debug.Log(_log);
 	}
 }
