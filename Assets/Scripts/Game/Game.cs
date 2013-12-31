@@ -136,13 +136,7 @@ public class Game : SingletonMonoBehaviour<Game>
 		Pause,
 		End,
 	}
-	public bool isPlay {
-		get { return status == GameStatus.Play; }
-	}
-	public bool isPause {
-		get { return status == GameStatus.Pause; }
-	}
-	public bool isEnd {
-		get { return status == GameStatus.End; }
-	}
+	public bool isPlay {get {return status == GameStatus.Play;}}
+	public bool isPause {get {return status == GameStatus.Pause;}}
+	public bool isEnd {get {return status == GameStatus.End;}}
 }
