@@ -29,9 +29,9 @@ public class Cell : MonoInheritance
 		get {
 			if (materials_ == null) {
 				materials_ = new Dictionary<string, Material>();
-				string[] _names = new string[]{"Red", "Purple", "Blue", "Orange", "Yellow", "Green"};
+				string[] _names = new string[]{"Bomb", "Heart", "HeartB", "Star", "StarB", "Time"};
 				foreach (string matName in _names) {
-					Material _mat = Resources.Load("Cubes/Materials/" + matName) as Material;
+					Material _mat = Resources.Load("Cubes/Icons/" + matName) as Material;
 					materials_.Add(_mat.name, _mat);
 				}
 			}
