@@ -6,11 +6,7 @@ public class Cube : SingletonMonoBehaviour<Cube>
 {
 // Scene
 	public Game game;
-	public CellManager cellManager {
-		get {
-			return game.cellManager;
-		}
-	}
+	public CellManager cellManager {get {return game.cellManager;}}
 // Parameter
 	public IntVector2 position;
 	private Dictionary<SidePosition, string> sides = new Dictionary<SidePosition, string>();

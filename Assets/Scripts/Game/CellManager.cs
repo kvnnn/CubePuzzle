@@ -6,20 +6,12 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 {
 // Scene
 	public Game game;
-	public Cube cube {
-		get {
-			return game.cube;
-		}
-	}
+	public Cube cube {get {return game.cube;}}
 	public GameObject cellPrefab;
 // Parameter
 	public Dictionary<IntVector2, Cell> cells;
 	private IntVector2 maxSize = new IntVector2(12, 10);
-	public IntVector2 startPos {
-		get {
-			return new IntVector2(maxSize.x/2, maxSize.y/2);
-		}
-	}
+	public IntVector2 startPos {get {return new IntVector2(maxSize.x/2, maxSize.y/2);}}
 
 	public IEnumerator OnShow()
 	{

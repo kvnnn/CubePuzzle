@@ -64,7 +64,7 @@ public class Game : SingletonMonoBehaviour<Game>
 	public void StartGame()
 	{
 		currentTime = 0f;
-		SetRandomNextTime();
+		nextTime = currentTime;
 
 		status = GameStatus.Play;
 
@@ -91,6 +91,9 @@ public class Game : SingletonMonoBehaviour<Game>
 		status = GameStatus.Play;
 	}
 
+//----------------
+// Manage Game
+//----------------
 private float currentTime = 0f;
 private const float END_TIME = 180f;
 	private void Update()
@@ -105,11 +108,13 @@ private const float END_TIME = 180f;
 		ManageGame();
 	}
 
-	// 管理
 private float nextTime = 0f;
+private int maxNormalCount = 80;
 	private void ManageGame()
 	{
 		if (nextTime > currentTime) {return;}
+		if (currentNormalCount >= maxNormalCount) {return
+			;}
 		Cell _cell = cellManager.GetRandomFreeCell();
 		if (_cell == null) {return;}
 

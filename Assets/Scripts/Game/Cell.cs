@@ -6,6 +6,7 @@ public class Cell : MonoInheritance
 {
 // Scene
 	public Game game;
+	public CellManager cellManager {get {return game.cellManager;}}
 // Parameter
 	public IntVector2 position;
 	public CellType currentType;
@@ -15,9 +16,7 @@ public class Cell : MonoInheritance
 		get {return tile.sharedMaterial;}
 		set {tile.sharedMaterial = value;}
 	}
-	private string matName {
-		get {return tileMat.name;}
-	}
+	private string matName {get {return tileMat.name;}}
 	public Renderer icon;
 	private Material iconMat {
 		get {return icon.sharedMaterial;}
