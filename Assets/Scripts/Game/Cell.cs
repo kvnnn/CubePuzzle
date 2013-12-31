@@ -50,6 +50,7 @@ public class Cell : MonoInheritance
 	{
 		switch (currentType) {
 			case CellType.Normal:
+			case CellType.Bomb:
 				return true;
 			case CellType.Colored:
 			case CellType.Goal:
@@ -70,7 +71,7 @@ public class Cell : MonoInheritance
 			break;
 			case CellType.Colored:
 				clearCount[currentType]++;
-				ToNormal();
+				ToBomb();
 			break;
 			case CellType.Goal:
 				clearCount[currentType]++;
@@ -79,6 +80,8 @@ public class Cell : MonoInheritance
 			case CellType.Item:
 				clearCount[currentType]++;
 				ToNormal();
+			break;
+			case CellType.Bomb:
 			break;
 		}
 	}
@@ -96,9 +99,10 @@ public class Cell : MonoInheritance
 	{
 		if (isColored) {return;}
 		toColored();
-		tile.gameObject.SetActive(true);
 		tile.transform.localScale = new Vector3();
+		tile.gameObject.SetActive(true);
 		tileMat = mat;
+
 		icon.gameObject.SetActive(false);
 
 		TweenScale.Begin(tile.gameObject, 1f, new Vector3(1f, 1f, 1f));
@@ -111,12 +115,28 @@ public class Cell : MonoInheritance
 		tile.gameObject.SetActive(true);
 		tile.transform.localScale = new Vector3();
 		tileMat = mat;
+
 		icon.gameObject.SetActive(true);
 		iconMat = materials["Star"];
 
 		TweenScale.Begin(tile.gameObject, 1f, new Vector3(1f, 1f, 1f));
 	}
 
+	public void ToBomb()
+	{
+		if (isBomb) {return;}
+		toBomb();
+		tile.gameObject.SetActive(true);
+		tile.transform.localScale = Vector3.one;
+
+		icon.gameObject.SetActive(true);
+		iconMat = materials["Bomb"];
+	}
+
+
+//----------------
+// Count
+//----------------
 	public void SetCurrentCount(CellType to)
 	{
 		if (currentType != CellType.None) {
@@ -134,6 +154,7 @@ public class Cell : MonoInheritance
 		Colored,
 		Goal,
 		Item,
+		Bomb,
 	}
 	public enum ItemType {
 		None,
@@ -144,6 +165,7 @@ public class Cell : MonoInheritance
 	public bool isColored {get {return currentType == CellType.Colored;}}
 	public bool isGoal {get {return currentType == CellType.Goal;}}
 	public bool isItem {get {return currentType == CellType.Item;}}
+	public bool isBomb {get {return currentType == CellType.Bomb;}}
 	private void toNormal() {
 		SetCurrentCount(CellType.Normal);
 		currentType = CellType.Normal;
@@ -160,9 +182,13 @@ public class Cell : MonoInheritance
 		SetCurrentCount(CellType.Item);
 		currentType = CellType.Item;
 	}
+	private void toBomb() {
+		SetCurrentCount(CellType.Bomb);
+		currentType = CellType.Bomb;
+	}
 
 //----------------
-// static
+// Static
 //----------------
 	public static Dictionary<CellType, int> currentCount;
 	public static Dictionary<CellType, int> clearCount;
@@ -173,12 +199,14 @@ public class Cell : MonoInheritance
 			{CellType.Colored, 0},
 			{CellType.Goal, 0},
 			{CellType.Item, 0},
+			{CellType.Bomb, 0},
 		};
 		clearCount = new Dictionary<CellType, int>(){
 			{CellType.Normal, 0},
 			{CellType.Colored, 0},
 			{CellType.Goal, 0},
 			{CellType.Item, 0},
+			{CellType.Bomb, 0},
 		};
 	}
 	public static void DebugCount()
