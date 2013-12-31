@@ -64,7 +64,7 @@ public class Game : SingletonMonoBehaviour<Game>
 	public void StartGame()
 	{
 		currentTime = 0f;
-		nextTime = currentTime;
+		nextColoredTime = currentTime;
 
 		status = GameStatus.Play;
 
@@ -107,29 +107,38 @@ private const float END_TIME = 180f;
 		}
 		// Manage Game
 		ManageColoredCell();
+		ManageGoalCell();
 
 		// Debug
 		// Cell.DebugCount();
 	}
 
-private float nextTime = 0f;
 private int maxColoredCount = 80;
-private int maxGoalCount = 5;
+private float nextColoredTime = 0f;
 	private void ManageColoredCell()
 	{
-		if (nextTime > currentTime) {return;}
-		if (Cell.currentCount[Cell.CellType.Colored] >= maxColoredCount) {return
+		if (nextColoredTime > currentTime) {return;}
+		if (Cell.coloredCount >= maxColoredCount) {return
 			;}
 		Cell _cell = cellManager.GetRandomFreeCell();
 		if (_cell == null) {return;}
-
 		_cell.ToColor(randomMaterial);
-		SetRandomNextTime();
+		ColoredRandomNextTime();
 	}
 
-	private void SetRandomNextTime()
+	private void ColoredRandomNextTime()
 	{
-		nextTime = currentTime + Random.Range(3f, 5f);
+		nextColoredTime = currentTime + Random.Range(3f, 5f);
+	}
+
+private int maxGoalCount = 2;
+	private void ManageGoalCell()
+	{
+		if (Cell.goalCount >= maxGoalCount) {return
+			;}
+		Cell _cell = cellManager.GetRandomFreeCell();
+		if (_cell == null) {return;}
+		_cell.ToGoal(randomMaterial);
 	}
 
 //----------------

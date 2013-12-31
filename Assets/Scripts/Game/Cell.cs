@@ -129,8 +129,10 @@ public class Cell : MonoInheritance
 		tile.gameObject.SetActive(true);
 		tileMat = mat;
 
+		iconColor = tileColor;
 		icon.gameObject.SetActive(true);
 		iconMat = materials["Star"];
+		iconColor = tileColor;
 
 		TweenScale.Begin(tile.gameObject, 1f, new Vector3(1f, 1f, 1f));
 	}
@@ -225,6 +227,16 @@ public class Cell : MonoInheritance
 			{CellType.Bomb, 0},
 		};
 	}
+	public static int normalCount {get {return currentCount[CellType.Normal];}}
+	public static int coloredCount {get {return currentCount[CellType.Colored];}}
+	public static int goalCount {get {return currentCount[CellType.Goal];}}
+	public static int itemCount {get {return currentCount[CellType.Item];}}
+	public static int bombCount {get {return currentCount[CellType.Bomb];}}
+	public static int normalClearCount {get {return clearCount[CellType.Normal];}}
+	public static int coloredClearCount {get {return clearCount[CellType.Colored];}}
+	public static int goalClearCount {get {return clearCount[CellType.Goal];}}
+	public static int itemClearCount {get {return clearCount[CellType.Item];}}
+	public static int bombClearCount {get {return clearCount[CellType.Bomb];}}
 	public static void DebugCount()
 	{
 		string _log = "Current" + "\n";
