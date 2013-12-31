@@ -58,7 +58,7 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 	public void RemoveStage()
 	{
 		foreach (Transform child in transform) {
-			Destroy(child);
+			Destroy(child.gameObject);
 		}
 	}
 

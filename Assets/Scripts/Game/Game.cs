@@ -41,6 +41,7 @@ public class Game : SingletonMonoBehaviour<Game>
 		nguiGame.gameObject.SetActive(true);
 		status = GameStatus.End;
 
+		// OnShow
 		yield return StartCoroutine(cellManager.OnShow());
 		yield return StartCoroutine(cube.OnShow());
 	}
@@ -49,8 +50,10 @@ public class Game : SingletonMonoBehaviour<Game>
 	{
 		gameObject.SetActive(false);
 		nguiGame.gameObject.SetActive(false);
+		timeLabelsGo.gameObject.SetActive(false);
 		status = GameStatus.End;
 
+		// OnHide
 		cellManager.OnHide();
 		cube.OnHide();
 	}
@@ -67,9 +70,11 @@ public class Game : SingletonMonoBehaviour<Game>
 	public void EndGame()
 	{
 		status = GameStatus.End;
+		Hide();
+		Top.instance.Show();
 	}
 
-	public void PuaseGame()
+	public void PauseGame()
 	{
 		status = GameStatus.Pause;
 		Time.timeScale = 0f;
@@ -85,22 +90,28 @@ public class Game : SingletonMonoBehaviour<Game>
 	{
 		if (!isPlay) { return; }
 		currentTime += Time.deltaTime;
-		UpdateTimeLabel();
+		float _leftTime = UpdateTimeLabel();
+		if (_leftTime <= 0) {
+			EndGame();
+		}
 	}
 
 //----------------
 // GUI
 //----------------
-	private void UpdateTimeLabel()
+	private float UpdateTimeLabel()
 	{
 		float _leftTime = END_TIME - currentTime;
 
 		float minutes = Mathf.Floor(_leftTime/60);
+		minutes = Mathf.Max(0, minutes);
 		float seconds = Mathf.RoundToInt(_leftTime%60);
 		seconds = Mathf.Max(0, seconds);
 
 		minutesLabel.text = minutes.ToString("00");
 		secondLabel.text = seconds.ToString("00");
+
+		return _leftTime;
 	}
 
 //----------------

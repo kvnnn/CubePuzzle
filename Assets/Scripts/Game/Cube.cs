@@ -24,11 +24,11 @@ public class Cube : SingletonMonoBehaviour<Cube>
 
 	public IEnumerator OnShow()
 	{
+		// Set To Start Position
 		Vector3 _startPos = cellManager.cells[cellManager.startPos].transform.position;
 		Vector3 _pos = transform.position;
 		_pos.x = _startPos.x;
 		_pos.z = _startPos.z;
-
 		_pos.y = 10f;
 		transform.position = _pos;
 		_pos.y = halfCubeSize;
@@ -46,6 +46,7 @@ public class Cube : SingletonMonoBehaviour<Cube>
 	public void OnHide()
 	{
 		StopCoroutine("ControlCoroutine");
+		gameObject.SetActive(false);
 	}
 
 //----------------
