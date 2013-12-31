@@ -6,6 +6,11 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 {
 // Scene
 	public Game game;
+	public Cube cube {
+		get {
+			return game.cube;
+		}
+	}
 	public GameObject cellPrefab;
 // Parameter
 	public Dictionary<IntVector2, Cell> cells;
@@ -96,5 +101,21 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 		Cell _cell = cells[_pos];
 
 		return _cell.IsAvailable(matName);
+	}
+
+	public Cell GetRandomFreeCell()
+	{
+		List<Cell> _pickabelCells = new List<Cell>();
+		foreach (Cell cell in cells.Values) {
+			if (cell.position.Equals(cube.position)) {continue;}
+			if (cell.isNormal) {
+				_pickabelCells.Add(cell);
+			}
+		}
+		if (_pickabelCells.Count <= 0) {
+			return null;
+		} else {
+			return _pickabelCells[Random.Range(0, _pickabelCells.Count - 1)];
+		}
 	}
 }

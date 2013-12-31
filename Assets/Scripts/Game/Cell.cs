@@ -25,7 +25,7 @@ public class Cell : MonoInheritance
 	}
 // Materials
 	private Dictionary<string, Material> materials_;
-	public Dictionary<string, Material> materials {
+	private Dictionary<string, Material> materials {
 		get {
 			if (materials_ == null) {
 				materials_ = new Dictionary<string, Material>();

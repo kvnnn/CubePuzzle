@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Game : SingletonMonoBehaviour<Game>
 {
@@ -17,7 +18,7 @@ public class Game : SingletonMonoBehaviour<Game>
 	public GameStatus status = GameStatus.End;
 // Materials
 	private Dictionary<string, Material> materials_;
-	public Dictionary<string, Material> materials {
+	private Dictionary<string, Material> materials {
 		get {
 			if (materials_ == null) {
 				materials_ = new Dictionary<string, Material>();
@@ -30,8 +31,9 @@ public class Game : SingletonMonoBehaviour<Game>
 			return materials_;
 		}
 	}
-	private float currentTime = 0f;
-	private const float END_TIME = 180f;
+	private Material randomMaterial {
+		get {return materials.Values.ToArray()[Random.Range(0, materials.Count - 1)];}
+	}
 
 	public IEnumerator Show()
 	{
@@ -56,10 +58,15 @@ public class Game : SingletonMonoBehaviour<Game>
 		cube.OnHide();
 	}
 
+//----------------
+// Game Status
+//----------------
 	public void StartGame()
 	{
-		status = GameStatus.Play;
 		currentTime = 0f;
+		nextTime = Random.Range(4f, 6f);
+
+		status = GameStatus.Play;
 
 		UpdateTimeLabel();
 		timeLabelsGo.gameObject.SetActive(true);
@@ -80,18 +87,34 @@ public class Game : SingletonMonoBehaviour<Game>
 
 	public void ResumeGame()
 	{
-		status = GameStatus.Play;
 		Time.timeScale = 1f;
+		status = GameStatus.Play;
 	}
 
+private float currentTime = 0f;
+private const float END_TIME = 180f;
 	private void Update()
 	{
-		if (!isPlay) { return; }
+		if (!isPlay) {return;}
 		currentTime += Time.deltaTime;
 		float _leftTime = UpdateTimeLabel();
 		if (_leftTime <= 0) {
 			EndGame();
 		}
+
+		ManageGame();
+	}
+
+	// 管理
+private float nextTime = 0f;
+	private void ManageGame()
+	{
+		if (nextTime > currentTime) {return;}
+		Cell _cell = cellManager.GetRandomFreeCell();
+		if (_cell == null) {return;}
+
+		_cell.ToColor(randomMaterial);
+		nextTime = currentTime + Random.Range(4f, 6f);
 	}
 
 //----------------

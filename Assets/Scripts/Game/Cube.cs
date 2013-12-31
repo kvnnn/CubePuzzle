@@ -12,8 +12,8 @@ public class Cube : SingletonMonoBehaviour<Cube>
 		}
 	}
 // Parameter
+	public IntVector2 position;
 	private Dictionary<SidePosition, string> sides = new Dictionary<SidePosition, string>();
-	private IntVector2 position;
 	private float speed = 5.0f;
 	private Transform rotator;
 	private float halfCubeSize {
