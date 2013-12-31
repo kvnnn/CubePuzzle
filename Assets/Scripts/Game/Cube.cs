@@ -13,30 +13,7 @@ public class Cube : SingletonMonoBehaviour<Cube>
 	}
 
 // Parameter
-	public Renderer upperSide;
-	public Material upperMat {
-		get {return upperSide.material;}
-	}
-	public Renderer downSide;
-	public Material downMat {
-		get {return downSide.material;}
-	}
-	public Renderer rightSide;
-	public Material rightMat {
-		get {return rightSide.material;}
-	}
-	public Renderer leftSide;
-	public Material leftMat {
-		get {return leftSide.material;}
-	}
-	public Renderer frontSide;
-	public Material frontMat {
-		get {return frontSide.material;}
-	}
-	public Renderer backSide;
-	public Material backMat {
-		get {return backSide.material;}
-	}
+	private Dictionary<SidePosition, string> sides = new Dictionary<SidePosition, string>();
 	private IntVector2 position;
 	private float speed = 5.0f;
 	private Transform rotator;
@@ -60,7 +37,7 @@ public class Cube : SingletonMonoBehaviour<Cube>
 		TweenPosition _tweenPos = TweenPosition.Begin(gameObject, 0.25f, _pos);
 		_tweenPos.onFinished = (_tween)=>{
 			game.StartGame();
-			MoveTo(cellManager.startPos);
+			AdjustTo(cellManager.startPos);
 			StartCube();
 		};
 		yield break;
@@ -100,24 +77,8 @@ public class Cube : SingletonMonoBehaviour<Cube>
   	}
 	}
 
-	private void MoveTo(IntVector2 position)
-	{
-		MoveTo(cellManager.cells[position]);
-	}
-
-	private void MoveTo(Cell cell)
-	{
-		Vector3 _pos = transform.position;
-		_pos.x = cell.transform.position.x;
-		_pos.y = halfCubeSize;
-		_pos.z = cell.transform.position.z;
-
-		transform.position = _pos;
-		position = cell.position;
-	}
-
 //----------------
-// 回転
+// 回転・移動
 //----------------
 	private void RotateCube(Vector3 refPoint, Vector3 rotationAxis, Game.Direction direction)
 	{
@@ -138,17 +99,15 @@ public class Cube : SingletonMonoBehaviour<Cube>
 		}
 		transform.parent = game.transform;
 
-		MoveTo(cellManager.GetDirectionPosition(position, direction));
-
+		AdjustTo(cellManager.GetDirectionPosition(position, direction));
 		rotating = false;
-
-
-		UnityEngine.Debug.LogError(upperSide.transform.position + "\n" + downSide.transform.position + "\n" + rightSide.transform.position + "\n" + leftSide.transform.position + "\n" + frontSide.transform.position + "\n" + backSide.transform.position);
 	}
 
 	public void RotateTo(Game.Direction direction)
 	{
-		if (!cellManager.IsMovable(position, direction)) {return;}
+		if (!cellManager.IsAvailable(position, direction, NextMatColor(direction))) {
+			return;
+		}
 
 		switch (direction) {
 			case Game.Direction.Up:
@@ -164,5 +123,78 @@ public class Cube : SingletonMonoBehaviour<Cube>
 				RotateCube(Vector3.right * halfCubeSize, -Vector3.forward, direction);
 			break;
 		}
+	}
+
+	private void AdjustTo(IntVector2 position)
+	{
+		AdjustTo(cellManager.cells[position]);
+	}
+
+	private void AdjustTo(Cell cell)
+	{
+		Vector3 _pos = transform.position;
+		_pos.x = cell.transform.position.x;
+		_pos.y = halfCubeSize;
+		_pos.z = cell.transform.position.z;
+
+		transform.position = _pos;
+		position = cell.position;
+
+		SetCurrentSide();
+	}
+
+//----------------
+// 面管理
+//----------------
+	private void SetCurrentSide()
+	{
+		foreach (Transform _trans in transform) {
+			Vector3 _pos = _trans.position - transform.position;
+			if (_pos.x > 0.45f) {
+				sides[SidePosition.Right] = _trans.renderer.sharedMaterial.name;
+			} else if (_pos.x < -0.45f) {
+				sides[SidePosition.Left] = _trans.renderer.sharedMaterial.name;
+			} else if (_pos.y > 0.45f) {
+				sides[SidePosition.Up] = _trans.renderer.sharedMaterial.name;
+			} else if (_pos.y < -0.45f) {
+				sides[SidePosition.Down] = _trans.renderer.sharedMaterial.name;
+			} else if (_pos.z > 0.45f) {
+				sides[SidePosition.Back] = _trans.renderer.sharedMaterial.name;
+			} else if (_pos.z < -0.45f) {
+				sides[SidePosition.Front] = _trans.renderer.sharedMaterial.name;
+			}
+		}
+	}
+
+	private string NextMatColor(Game.Direction direction)
+	{
+		string _matName = "";
+		switch (direction) {
+			case Game.Direction.Up:
+				_matName = sides[SidePosition.Front];
+			break;
+			case Game.Direction.Down:
+				_matName = sides[SidePosition.Back];
+			break;
+			case Game.Direction.Left:
+				_matName = sides[SidePosition.Right];
+			break;
+			case Game.Direction.Right:
+				_matName = sides[SidePosition.Left];
+			break;
+		}
+		return _matName;
+	}
+
+//----------------
+// enum
+//----------------
+	public enum SidePosition {
+		Up,
+		Down,
+		Right,
+		Left,
+		Front,
+		Back,
 	}
 }

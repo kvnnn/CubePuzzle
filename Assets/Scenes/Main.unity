@@ -2667,9 +2667,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 1024598113}
-  upperSide: {fileID: 153009989}
-  downSide: {fileID: 1911699341}
-  rightSide: {fileID: 1520498137}
-  leftSide: {fileID: 2072716097}
-  frontSide: {fileID: 2022745961}
-  backSide: {fileID: 67693459}

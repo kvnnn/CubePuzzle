@@ -120,7 +120,6 @@ public class Game : SingletonMonoBehaviour<Game>
 		Right,
 		Left,
 	}
-
 	public enum GameStatus {
 		Play,
 		Pause,
