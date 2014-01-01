@@ -13,7 +13,8 @@ public class Game : SingletonMonoBehaviour<Game>
 	public GameObject timeLabelsGo;
 	public UILabel minutesLabel;
 	public UILabel secondLabel;
-	public UILabel pointLabel;
+	public GameObject scoreLabelsGo;
+	public UILabel scoreLabel;
 // Parameter
 	public GameStatus status = GameStatus.End;
 	private bool isEasyMode = false;
@@ -36,6 +37,7 @@ public class Game : SingletonMonoBehaviour<Game>
 		gameObject.SetActive(false);
 		nguiGame.gameObject.SetActive(false);
 		timeLabelsGo.gameObject.SetActive(false);
+		scoreLabelsGo.gameObject.SetActive(false);
 		status = GameStatus.End;
 
 		// OnHide
@@ -55,6 +57,9 @@ public class Game : SingletonMonoBehaviour<Game>
 
 		UpdateTimeLabel();
 		timeLabelsGo.gameObject.SetActive(true);
+		score = 0;
+		UpdateScoreLabel();
+		scoreLabelsGo.gameObject.SetActive(true);
 	}
 
 	public void EndGame()
@@ -90,6 +95,9 @@ private const float END_TIME = 180f;
 		if (_leftTime <= 0) {
 			EndGame();
 		}
+		// Score Label
+		UpdateScoreLabel();
+
 		// Manage Game
 		ManageColoredCell();
 		ManageGoalCell();
@@ -145,6 +153,12 @@ private int maxGoalCount = 3;
 		secondLabel.text = seconds.ToString("00");
 
 		return _leftTime;
+	}
+
+public int score {get; set;}
+	private void UpdateScoreLabel()
+	{
+		scoreLabel.text = string.Format("{0:#,###0}", score);
 	}
 
 //----------------
