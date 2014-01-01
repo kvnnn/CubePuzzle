@@ -214,7 +214,7 @@ MonoBehaviour:
   itemType: 0
   tile: {fileID: 2300004}
   icon: {fileID: 2300000}
-  waveEffect: {fileID: 0}
+  bombEffectPrefab: {fileID: 100016, guid: 878c099c9bc304f43a7ef362da3c8590, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -29,6 +29,7 @@ public class Cell : MonoInheritance
 		get {return icon.material.color;}
 		set {icon.material.color = value;}
 	}
+	public GameObject bombEffectPrefab;
 // Materials
 	private Dictionary<string, Material> materials_;
 	private Dictionary<string, Material> materials {
@@ -190,17 +191,26 @@ private bool isBombing = false;
 		if (isBombing) {return;}
 		isBombing = true;
 		Vector3 _original = icon.transform.localScale;
-		TweenScale _tween1 = TweenScale.Begin(icon.gameObject, 0.3f, _original * 1.1f);
-		_tween1.onFinished = (_t)=>{
-			TweenScale _tween2 = TweenScale.Begin(icon.gameObject, 0.3f, _original * 0.9f);
-			_tween2.onFinished = (__t)=>{
-				TweenScale _tween3 = TweenScale.Begin(icon.gameObject, 0.3f, _original * 1.1f);
-				_tween3.onFinished = (___t)=>{
-					TweenScale _tween4 = TweenScale.Begin(icon.gameObject, 0.3f, _original * 0.9f);
-					_tween4.onFinished = (____t)=>{
-						ToNormal();
-						cellManager.BombSurround(position);
-						isBombing = false;
+		TweenScale _tween = TweenScale.Begin(icon.gameObject, 0.3f, _original * 1.1f);
+		_tween.onFinished = (_t)=>{
+			_tween = TweenScale.Begin(icon.gameObject, 0.3f, _original * 0.9f);
+			_tween.onFinished = (__t)=>{
+				_tween = TweenScale.Begin(icon.gameObject, 0.3f, _original * 1.1f);
+				_tween.onFinished = (___t)=>{
+					_tween = TweenScale.Begin(icon.gameObject, 0.3f, _original * 0.9f);
+					_tween.onFinished = (____t)=>{
+						GameObject _effectObject = Instantiate(bombEffectPrefab, transform.position, new Quaternion()) as GameObject;
+						_effectObject.transform.parent = transform;
+						_effectObject.transform.localScale = Vector3.one;
+						_effectObject.transform.localPosition = new Vector3();
+						BombEffect _effect = _effectObject.GetComponent<BombEffect>();
+						_effect.StartEffect(tileMat,
+							()=>{
+								ToNormal();
+								cellManager.BombSurround(position);
+								isBombing = false;
+							}
+						);
 					};
 				};
 			};
