@@ -26,45 +26,6 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 	}
 
 //----------------
-// Stage
-//----------------
-	public IEnumerator CreateStage(int stageID)
-	{
-		// stageID = 3;
-		IntVector2[] _stageData = stages[stageID];
-		cells = new Dictionary<IntVector2, Cell>();
-		Vector3 _scale = cellPrefab.transform.localScale;
-		for (int x = 0; x < maxSize.x; x++) {
-			for (int z = 0; z < maxSize.y; z++) {
-				if (_stageData.Contains(new IntVector2(x, z))) {continue;}
-
-				GameObject _object = (GameObject)Instantiate(cellPrefab, new Vector3(), new Quaternion());
-				_object.transform.parent = transform;
-				_object.transform.localPosition = new Vector3(_scale.x * x, 10f, _scale.z * z);
-				_object.name = string.Format("{0}:{1}", x, z);
-
-				Cell _cell = _object.GetComponent<Cell>();
-				_cell.game = game;
-				_cell.Init(new IntVector2(x, z));
-
-				cells[_cell.position] = _cell;
-
-				TweenPosition.Begin(_object, 0.25f, new Vector3(_scale.x * x, 0f, _scale.z * z));
-				yield return StartCoroutine(WaitForSecondsIgnoreTimeScale(0.025f));
-			}
-		}
-
-		yield return StartCoroutine(WaitForSecondsIgnoreTimeScale(0.05f));
-	}
-
-	public void RemoveStage()
-	{
-		foreach (Transform child in transform) {
-			Destroy(child.gameObject);
-		}
-	}
-
-//----------------
 // Cells
 //----------------
 	public IntVector2 GetDirectionPosition(IntVector2 position, Game.Direction direction)
@@ -117,6 +78,14 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 		}
 	}
 
+	public bool IsStable()
+	{
+		foreach (Cell cell in cells.Values) {
+			if (cell.isBombing) return false;
+		}
+		return true;
+	}
+
 //----------------
 // Bomb
 //----------------
@@ -145,6 +114,42 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 //----------------
 // Stage
 //----------------
+	public IEnumerator CreateStage(int stageID)
+	{
+		// stageID = 3;
+		IntVector2[] _stageData = stages[stageID];
+		cells = new Dictionary<IntVector2, Cell>();
+		Vector3 _scale = cellPrefab.transform.localScale;
+		for (int x = 0; x < maxSize.x; x++) {
+			for (int z = 0; z < maxSize.y; z++) {
+				if (_stageData.Contains(new IntVector2(x, z))) {continue;}
+
+				GameObject _object = (GameObject)Instantiate(cellPrefab, new Vector3(), new Quaternion());
+				_object.transform.parent = transform;
+				_object.transform.localPosition = new Vector3(_scale.x * x, 10f, _scale.z * z);
+				_object.name = string.Format("{0}:{1}", x, z);
+
+				Cell _cell = _object.GetComponent<Cell>();
+				_cell.game = game;
+				_cell.Init(new IntVector2(x, z));
+
+				cells[_cell.position] = _cell;
+
+				TweenPosition.Begin(_object, 0.25f, new Vector3(_scale.x * x, 0f, _scale.z * z));
+				yield return StartCoroutine(WaitForSecondsIgnoreTimeScale(0.025f));
+			}
+		}
+
+		yield return StartCoroutine(WaitForSecondsIgnoreTimeScale(0.05f));
+	}
+
+	public void RemoveStage()
+	{
+		foreach (Transform child in transform) {
+			Destroy(child.gameObject);
+		}
+	}
+
 	private Dictionary<int, IntVector2[]> stages_;
 	private Dictionary<int, IntVector2[]> stages {
 		get {

@@ -104,12 +104,16 @@ private float currentTime = 0f;
 private const float END_TIME = 180f;
 	private void Update()
 	{
+		if (isPrepareEnd && IsStable()) {
+			EndGame();
+		}
+
 		if (!isPlay) {return;}
 		// Time Label
 		currentTime += Time.deltaTime;
 		float _leftTime = UpdateTimeLabel();
 		if (_leftTime <= 0) {
-			EndGame();
+			status = GameStatus.PrepareEnd;
 		}
 		// Score Label
 		UpdateScoreLabel();
@@ -290,11 +294,13 @@ private const float comboTimer = 1.5f;
 		Prepare,
 		Play,
 		Pause,
+		PrepareEnd,
 		End,
 	}
 	public bool isPrepare {get {return status == GameStatus.Prepare;}}
 	public bool isPlay {get {return status == GameStatus.Play;}}
 	public bool isPause {get {return status == GameStatus.Pause;}}
+	public bool isPrepareEnd {get {return status == GameStatus.PrepareEnd;}}
 	public bool isEnd {get {return status == GameStatus.End;}}
 
 //----------------
