@@ -58,12 +58,11 @@ public class Cell : MonoInheritance
 		switch (currentType) {
 			case CellType.Normal:
 			case CellType.Bomb:
+			case CellType.Item:
 				return true;
 			case CellType.Colored:
 			case CellType.Goal:
 				return this.matName == matName;
-			case CellType.Item:
-				return false;
 		}
 		return false;
 	}
@@ -75,6 +74,7 @@ public class Cell : MonoInheritance
 	{
 		switch (currentType) {
 			case CellType.Normal:
+			case CellType.Bomb:
 			break;
 			case CellType.Colored:
 				clearCount[currentType]++;
@@ -87,8 +87,6 @@ public class Cell : MonoInheritance
 			case CellType.Item:
 				clearCount[currentType]++;
 				ToNormal();
-			break;
-			case CellType.Bomb:
 			break;
 		}
 	}
@@ -166,7 +164,15 @@ public class Cell : MonoInheritance
 //----------------
 // Effect
 //----------------
+	private void GoalEffect()
+	{
 
+	}
+
+	private void BombEffect()
+	{
+
+	}
 
 //----------------
 // enum
