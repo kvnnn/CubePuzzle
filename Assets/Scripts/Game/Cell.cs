@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -10,7 +11,7 @@ public class Cell : MonoInheritance
 // Parameter
 	public IntVector2 position;
 	public CellType currentType;
-	public ItemType itemType;
+	public ItemType currentItemType;
 	public Renderer tile;
 	private Material tileMat {
 		get {return tile.sharedMaterial;}
@@ -35,7 +36,7 @@ public class Cell : MonoInheritance
 	{
 		this.position = position;
 		this.currentType = CellType.None;
-		this.itemType = ItemType.None;
+		this.currentItemType = ItemType.None;
 		ToNormal();
 	}
 
@@ -72,6 +73,7 @@ public class Cell : MonoInheritance
 				AddClearCount(currentType);
 				ToNormal();
 				cellManager.BombSameColor(matName);
+				game.AddItem();
 			break;
 		}
 	}
@@ -87,6 +89,8 @@ public class Cell : MonoInheritance
 				BombEffect();
 			break;
 			case CellType.Item:
+				game.ActivateItem(currentItemType);
+				ToNormal();
 			break;
 			case CellType.Normal:
 			break;
@@ -129,10 +133,9 @@ public class Cell : MonoInheritance
 		tile.gameObject.SetActive(true);
 		tileMat = mat;
 
-		iconColor = tileColor;
-		icon.gameObject.SetActive(true);
 		iconMat = materials["Star"];
 		iconColor = tileColor;
+		icon.gameObject.SetActive(true);
 
 		TweenScale.Begin(tile.gameObject, 1f, new Vector3(1f, 1f, 1f));
 	}
@@ -146,9 +149,41 @@ public class Cell : MonoInheritance
 		tile.enabled = false;
 		tile.gameObject.SetActive(true);
 
-		icon.gameObject.SetActive(true);
 		iconMat = materials["Bomb"];
 		iconColor = tileColor;
+		icon.gameObject.SetActive(true);
+	}
+
+	public void ToRandomItem()
+	{
+		int _enum = UnityEngine.Random.Range(0, Enum.GetNames(typeof(ItemType)).Length);
+		ToItem((ItemType)_enum);
+	}
+
+	public void ToItem(ItemType itemType)
+	{
+		if (isItem) {return;}
+		toItem(itemType);
+
+		tile.transform.localScale = new Vector3();
+		tile.enabled = false;
+		tile.gameObject.SetActive(true);
+
+		string _itemMat = "";
+		switch (currentItemType) {
+			case ItemType.TimeIncrease:
+				_itemMat = "Time";
+			break;
+			case ItemType.PointIncrease:
+				_itemMat = "Heart";
+			break;
+		}
+
+		iconMat = materials[_itemMat];
+		iconColor = Color.white;
+		icon.gameObject.SetActive(true);
+
+		TweenScale.Begin(tile.gameObject, 1f, new Vector3(1f, 1f, 1f));
 	}
 
 //----------------
@@ -176,7 +211,7 @@ public class Cell : MonoInheritance
 
 	}
 
-private bool isBombing = false;
+public bool isBombing = false;
 	public void BombEffect()
 	{
 		if (isBombing) {return;}
@@ -221,9 +256,9 @@ private bool isBombing = false;
 		Bomb,
 	}
 	public enum ItemType {
-		None,
-		TimeIncrease,
-		PointIncrease,
+		None = 0,
+		TimeIncrease = 1,
+		PointIncrease = 2,
 	}
 	public bool isNormal {get {return currentType == CellType.Normal;}}
 	public bool isColored {get {return currentType == CellType.Colored;}}
@@ -233,22 +268,27 @@ private bool isBombing = false;
 	private void toNormal() {
 		SetCurrentCount(CellType.Normal);
 		currentType = CellType.Normal;
+		currentItemType = ItemType.None;
 	}
 	private void toColored() {
 		SetCurrentCount(CellType.Colored);
 		currentType = CellType.Colored;
+		currentItemType = ItemType.None;
 	}
 	private void toGoal() {
 		SetCurrentCount(CellType.Goal);
 		currentType = CellType.Goal;
+		currentItemType = ItemType.None;
 	}
-	private void toItem() {
+	private void toItem(ItemType itemType) {
 		SetCurrentCount(CellType.Item);
 		currentType = CellType.Item;
+		this.currentItemType = itemType;
 	}
 	private void toBomb() {
 		SetCurrentCount(CellType.Bomb);
 		currentType = CellType.Bomb;
+		currentItemType = ItemType.None;
 	}
 
 //----------------

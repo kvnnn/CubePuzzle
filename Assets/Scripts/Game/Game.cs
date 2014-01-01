@@ -104,7 +104,7 @@ private float currentTime = 0f;
 private const float END_TIME = 180f;
 	private void Update()
 	{
-		if (isPrepareEnd && IsStable()) {
+		if (isPrepareEnd && cellManager.IsStable()) {
 			EndGame();
 		}
 
@@ -174,6 +174,82 @@ private int maxGoalCount {
 	}
 
 //----------------
+// Item
+//----------------
+	public void AddItem()
+	{
+		if (Cell.goalClearCount%5 != 0) {
+			return;
+		}
+		Cell _cell = cellManager.GetRandomFreeCell();
+		_cell.ToRandomItem();
+	}
+
+	public void ActivateItem(Cell.ItemType itemType)
+	{
+		switch (itemType) {
+			case Cell.ItemType.TimeIncrease:
+				currentTime -= 20f;
+			break;
+			case Cell.ItemType.PointIncrease:
+				CalculateScore(1000f);
+			break;
+		}
+	}
+
+//----------------
+// Score
+//----------------
+private int score;
+private int combo;
+private float comboRate {
+	get {return isEasyMode ? 0.05f : 0.1f;}
+}
+private	float lastScoreAddedTime = -100f;
+private const float comboTimer = 1.5f;
+	public void AddScore(Cell.CellType type)
+	{
+		if (currentTime - lastScoreAddedTime <= comboTimer) {
+			combo++;
+		} else {
+			combo = 1;
+		}
+		lastScoreAddedTime = currentTime;
+
+		float _baseScore = 0f;
+		switch (type) {
+			case Cell.CellType.Goal:
+				_baseScore = 200f;
+			break;
+			case Cell.CellType.Colored:
+				_baseScore = 50f;
+			break;
+			case Cell.CellType.Bomb:
+				_baseScore = 20f;
+			break;
+			case Cell.CellType.Item:
+			case Cell.CellType.Normal:
+			break;
+		}
+		CalculateScore(_baseScore);
+		lastScoreAddedTime = currentTime;
+	}
+
+	private void CalculateScore(float baseScore)
+	{
+		float _comboF = (float)combo;
+		baseScore += baseScore * (_comboF * comboRate);
+		score += (int)baseScore;
+	}
+
+	private void CheckCombo()
+	{
+		if (currentTime - lastScoreAddedTime > comboTimer) {
+			combo = 1;
+		}
+	}
+
+//----------------
 // GUI
 //----------------
 	private float UpdateTimeLabel()
@@ -225,53 +301,6 @@ private int maxGoalCount {
 		}
 	}
 
-//----------------
-// Score
-//----------------
-private int score;
-private int combo;
-private float comboRate {
-	get {return isEasyMode ? 0.05f : 0.1f;}
-}
-private	float lastScoreAddedTime = -100f;
-private const float comboTimer = 1.5f;
-	public void AddScore(Cell.CellType type)
-	{
-		if (currentTime - lastScoreAddedTime <= comboTimer) {
-			combo++;
-		} else {
-			combo = 1;
-		}
-		lastScoreAddedTime = currentTime;
-
-		float _baseScore = 0f;
-		switch (type) {
-			case Cell.CellType.Goal:
-				_baseScore = 200f;
-			break;
-			case Cell.CellType.Colored:
-				_baseScore = 50f;
-			break;
-			case Cell.CellType.Bomb:
-				_baseScore = 20f;
-			break;
-			case Cell.CellType.Item:
-			case Cell.CellType.Normal:
-			break;
-		}
-
-		float _comboF = (float)combo;
-		float _addScore = _baseScore + _baseScore * (_comboF * comboRate);
-		score += (int)_addScore;
-		lastScoreAddedTime = currentTime;
-	}
-
-	private void CheckCombo()
-	{
-		if (currentTime - lastScoreAddedTime > comboTimer) {
-			combo = 1;
-		}
-	}
 
 //----------------
 // Touch Event
