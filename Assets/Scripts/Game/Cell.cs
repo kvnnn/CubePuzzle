@@ -156,7 +156,7 @@ public class Cell : MonoInheritance
 
 	public void ToRandomItem()
 	{
-		int _enum = UnityEngine.Random.Range(0, Enum.GetNames(typeof(ItemType)).Length);
+		int _enum = UnityEngine.Random.Range(1, Enum.GetNames(typeof(ItemType)).Length);
 		ToItem((ItemType)_enum);
 	}
 
