@@ -14,6 +14,7 @@ public class Game : SingletonMonoBehaviour<Game>
 	public UILabel minutesLabel;
 	public UILabel secondLabel;
 	public UILabel separatorLabel;
+	public UILabel addedTimeLabel;
 	public GameObject scoreLabelsGo;
 	public UILabel scoreLabel;
 	public UILabel comboLabel;
@@ -111,6 +112,7 @@ private const float END_TIME = 180f;
 		if (!isPlay) {return;}
 		// Time Label
 		currentTime += Time.deltaTime;
+		CheckAddedTimeLabel();
 		float _leftTime = UpdateTimeLabel();
 		if (_leftTime <= 0) {
 			status = GameStatus.PrepareEnd;
@@ -191,7 +193,9 @@ private int maxGoalCount {
 	{
 		switch (itemType) {
 			case Cell.ItemType.TimeIncrease:
-				currentTime -= 20f;
+				float _added = 20f;
+				currentTime -= _added;
+				UpdateAddedTimeLabel(_added);
 			break;
 			case Cell.ItemType.PointIncrease:
 				CalculateScore(1000f);
@@ -208,7 +212,7 @@ private float comboRate {
 	get {return isEasyMode ? 0.05f : 0.1f;}
 }
 private	float lastScoreAddedTime = -100f;
-private const float comboTimer = 1.5f;
+private const float comboTimer = 2f;
 	public void AddScore(Cell.CellType type)
 	{
 		if (currentTime - lastScoreAddedTime <= comboTimer) {
@@ -277,6 +281,21 @@ private const float comboTimer = 1.5f;
 		secondLabel.text = seconds.ToString("00");
 
 		return _leftTime;
+	}
+
+private float lastTimeAddedTime = 0f;
+	private void CheckAddedTimeLabel()
+	{
+		if (currentTime - lastTimeAddedTime > 2f) {
+			addedTimeLabel.gameObject.SetActive(false);
+		}
+	}
+
+	private void UpdateAddedTimeLabel(float addTime)
+	{
+		addedTimeLabel.text = string.Format("+ {0}", addTime);
+		addedTimeLabel.gameObject.SetActive(true);
+		lastTimeAddedTime = currentTime;
 	}
 
 	private void UpdateCountLabel()
