@@ -191,13 +191,13 @@ private bool isBombing = false;
 		if (isBombing) {return;}
 		isBombing = true;
 		Vector3 _original = icon.transform.localScale;
-		TweenScale _tween = TweenScale.Begin(icon.gameObject, 0.3f, _original * 1.1f);
+		TweenScale _tween = TweenScale.Begin(icon.gameObject, 0.25f, _original * 1.1f);
 		_tween.onFinished = (_t)=>{
-			_tween = TweenScale.Begin(icon.gameObject, 0.3f, _original * 0.9f);
+			_tween = TweenScale.Begin(icon.gameObject, 0.25f, _original * 0.9f);
 			_tween.onFinished = (__t)=>{
-				_tween = TweenScale.Begin(icon.gameObject, 0.3f, _original * 1.1f);
+				_tween = TweenScale.Begin(icon.gameObject, 0.25f, _original * 1.1f);
 				_tween.onFinished = (___t)=>{
-					_tween = TweenScale.Begin(icon.gameObject, 0.3f, _original * 0.9f);
+					_tween = TweenScale.Begin(icon.gameObject, 0.25f, _original * 0.9f);
 					_tween.onFinished = (____t)=>{
 						GameObject _effectObject = Instantiate(bombEffectPrefab, transform.position, new Quaternion()) as GameObject;
 						_effectObject.transform.parent = transform;

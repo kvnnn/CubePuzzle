@@ -19,7 +19,7 @@ public class BombEffect : MonoInheritance
 			r.sharedMaterial = material;
 		}
 
-		TweenPosition _tween = TweenPosition.Begin(gameObject, 0.25f, transform.localPosition + new Vector3(0f, 2f, 0f));
+		TweenPosition _tween = TweenPosition.Begin(gameObject, 0.2f, transform.localPosition + new Vector3(0f, 0.5f, 0f));
 		_tween.onFinished = (_t)=>{
 			TweenTo _tweenTo = TweenTo.UpLeft;
 			bool _setCallback = true;
@@ -37,14 +37,14 @@ public class BombEffect : MonoInheritance
 		switch (tweenTo) {
 			case TweenTo.UpLeft:
 				_pos.x -= cubeSize;
-				_pos.y += cubeSize;
+				_pos.z += cubeSize;
 			break;
 			case TweenTo.UpCenter:
-				_pos.y += cubeSize;
+				_pos.z += cubeSize;
 			break;
 			case TweenTo.UpRight:
 				_pos.x += cubeSize;
-				_pos.y += cubeSize;
+				_pos.z += cubeSize;
 			break;
 			case TweenTo.CenterLeft:
 				_pos.x -= cubeSize;
@@ -54,17 +54,17 @@ public class BombEffect : MonoInheritance
 			break;
 			case TweenTo.DownLeft:
 				_pos.x -= cubeSize;
-				_pos.y -= cubeSize;
+				_pos.z -= cubeSize;
 			break;
 			case TweenTo.DownCenter:
-				_pos.y -= cubeSize;
+				_pos.z -= cubeSize;
 			break;
 			case TweenTo.DownRight:
 				_pos.x += cubeSize;
-				_pos.y -= cubeSize;
+				_pos.z -= cubeSize;
 			break;
 		}
-		TweenPosition _tween = TweenPosition.Begin(cube, 0.25f, _pos);
+		TweenPosition _tween = TweenPosition.Begin(cube, 0.2f, _pos);
 
 		if (setCallback) {
 			_tween.onFinished = (_t)=>{
