@@ -13,6 +13,7 @@ public class Game : SingletonMonoBehaviour<Game>
 	public GameObject timeLabelsGo;
 	public UILabel minutesLabel;
 	public UILabel secondLabel;
+	public UILabel separatorLabel;
 	public GameObject scoreLabelsGo;
 	public UILabel scoreLabel;
 	public GameObject countLabelsGo;
@@ -173,6 +174,16 @@ private int maxGoalCount {
 		minutes = Mathf.Max(0, minutes);
 		float seconds = Mathf.RoundToInt(_leftTime%60);
 		seconds = Mathf.Max(0, seconds);
+
+		if (minutes <= 0 && seconds <= 20f) {
+			minutesLabel.color = Color.red;
+			secondLabel.color = Color.red;
+			separatorLabel.color = Color.red;
+		} else {
+			minutesLabel.color = Color.white;
+			secondLabel.color = Color.white;
+			separatorLabel.color = Color.white;
+		}
 
 		minutesLabel.text = minutes.ToString("00");
 		secondLabel.text = seconds.ToString("00");

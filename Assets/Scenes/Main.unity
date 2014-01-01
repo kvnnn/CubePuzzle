@@ -1699,6 +1699,7 @@ MonoBehaviour:
   timeLabelsGo: {fileID: 1041166333}
   minutesLabel: {fileID: 734139536}
   secondLabel: {fileID: 1440263169}
+  separatorLabel: {fileID: 1165070904}
   scoreLabelsGo: {fileID: 1767321749}
   scoreLabel: {fileID: 1823572075}
   countLabelsGo: {fileID: 1688593583}
