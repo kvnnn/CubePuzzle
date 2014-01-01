@@ -20,7 +20,8 @@ public class Cube : SingletonMonoBehaviour<Cube>
 	public IEnumerator OnShow()
 	{
 		// Set To Start Position
-		Vector3 _startPos = cellManager.cells[cellManager.startPos].transform.position;
+		Cell _startCell = cellManager.startCell;
+		Vector3 _startPos = _startCell.transform.position;
 		Vector3 _pos = transform.position;
 		_pos.x = _startPos.x;
 		_pos.z = _startPos.z;
@@ -34,7 +35,7 @@ public class Cube : SingletonMonoBehaviour<Cube>
 		TweenPosition _tweenPos = TweenPosition.Begin(gameObject, 0.25f, _pos);
 		_tweenPos.onFinished = (_tween)=>{
 			game.StartGame();
-			AdjustTo(cellManager.startPos);
+			AdjustTo(_startCell);
 			StartCube();
 		};
 		yield break;

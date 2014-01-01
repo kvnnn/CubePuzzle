@@ -156,9 +156,8 @@ private float nextColoredTime = 0f;
 
 private int maxGoalCount {
 	get {
-		int _max = Mathf.Min((Cell.goalClearCount/5) + 1, 8);
-		if (isEasyMode) _max = Mathf.Min((Cell.goalClearCount/5) + 1, 5);
-		return _max;
+		int _max = isEasyMode ? 5 : 10;
+		return Mathf.Min((Cell.goalClearCount/5) + 1, _max);;
 	}
 }
 	private void ManageGoalCell()
@@ -333,7 +332,7 @@ private const float comboTimer = 1.5f;
 		}
 	}
 	private Material randomMaterial {
-		get {return materials.Values.ToArray()[Random.Range(0, materials.Count - 1)];}
+		get {return materials.Values.ToArray()[Random.Range(0, materials.Count)];}
 	}
 	public Material upMaterial {
 		get {
