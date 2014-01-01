@@ -29,7 +29,6 @@ public class Cell : MonoInheritance
 		get {return icon.material.color;}
 		set {icon.material.color = value;}
 	}
-	public ParticleSystem waveEffect;
 // Materials
 	private Dictionary<string, Material> materials_;
 	private Dictionary<string, Material> materials {
@@ -83,7 +82,6 @@ public class Cell : MonoInheritance
 			break;
 			case CellType.Goal:
 				clearCount[currentType]++;
-				WaveEffect();
 				ToNormal();
 			break;
 			case CellType.Item:
@@ -136,8 +134,6 @@ public class Cell : MonoInheritance
 		iconMat = materials["Star"];
 		iconColor = tileColor;
 
-		waveEffect.startColor = tileColor;
-
 		TweenScale.Begin(tile.gameObject, 1f, new Vector3(1f, 1f, 1f));
 	}
 
@@ -170,10 +166,7 @@ public class Cell : MonoInheritance
 //----------------
 // Effect
 //----------------
-	private void WaveEffect()
-	{
-		waveEffect.Play();
-	}
+
 
 //----------------
 // enum
