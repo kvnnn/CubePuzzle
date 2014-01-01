@@ -152,7 +152,7 @@ private float nextColoredTime = 0f;
 	private void ColoredRandomNextTime()
 	{
 		if (isEasyMode) {
-			nextColoredTime = currentTime + Random.Range(4f, 6f);
+			nextColoredTime = currentTime + Random.Range(3f, 5f);
 		} else {
 			nextColoredTime = currentTime + Random.Range(3f, 5f);
 		}
