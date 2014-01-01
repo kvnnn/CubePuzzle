@@ -59,13 +59,13 @@ public class Cube : SingletonMonoBehaviour<Cube>
   {
   	while (true) {
   		if (!rotating && game.isPlay) {
-				if (Input.GetKey(KeyCode.D)) {
+				if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
 					RotateTo(Game.Direction.Right);
-				} else if (Input.GetKey(KeyCode.A)) {
+				} else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
 					RotateTo(Game.Direction.Left);
-				} else if (Input.GetKey(KeyCode.W)) {
+				} else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
 					RotateTo(Game.Direction.Up);
-				} else if (Input.GetKey(KeyCode.S)) {
+				} else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
 					RotateTo(Game.Direction.Down);
 				}
 			}
