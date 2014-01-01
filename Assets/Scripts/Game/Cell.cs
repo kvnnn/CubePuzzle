@@ -58,11 +58,13 @@ public class Cell : MonoInheritance
 		switch (currentType) {
 			case CellType.Normal:
 			case CellType.Bomb:
-			case CellType.Item:
 				return true;
+			case CellType.Item:
+				return false;
 			case CellType.Colored:
 			case CellType.Goal:
 				return this.matName == matName;
+
 		}
 		return false;
 	}
@@ -75,16 +77,13 @@ public class Cell : MonoInheritance
 		switch (currentType) {
 			case CellType.Normal:
 			case CellType.Bomb:
+			case CellType.Item:
 			break;
 			case CellType.Colored:
 				clearCount[currentType]++;
 				ToBomb();
 			break;
 			case CellType.Goal:
-				clearCount[currentType]++;
-				ToNormal();
-			break;
-			case CellType.Item:
 				clearCount[currentType]++;
 				ToNormal();
 			break;
