@@ -19,7 +19,7 @@ public class Cell : MonoInheritance
 	private Color tileColor {
 		get {return tile.sharedMaterial.color;}
 	}
-	private string matName {get {return tileMat.name;}}
+	public string matName {get {return tileMat.name;}}
 	public Renderer icon;
 	private Material iconMat {
 		get {return icon.material;}
@@ -64,7 +64,6 @@ public class Cell : MonoInheritance
 			case CellType.Colored:
 			case CellType.Goal:
 				return this.matName == matName;
-
 		}
 		return false;
 	}
@@ -86,6 +85,7 @@ public class Cell : MonoInheritance
 			case CellType.Goal:
 				clearCount[currentType]++;
 				ToNormal();
+				cellManager.BombSameColor(matName);
 			break;
 		}
 	}
@@ -148,7 +148,6 @@ public class Cell : MonoInheritance
 		iconColor = tileColor;
 	}
 
-
 //----------------
 // Count
 //----------------
@@ -168,9 +167,27 @@ public class Cell : MonoInheritance
 
 	}
 
-	private void BombEffect()
+private bool isBombing = false;
+	public void BombEffect()
 	{
-
+		if (isBombing) {return;}
+		isBombing = true;
+		Vector3 _original = icon.transform.localScale;
+		TweenScale _tween1 = TweenScale.Begin(icon.gameObject, 0.3f, _original * 1.1f);
+		_tween1.onFinished = (_t)=>{
+			TweenScale _tween2 = TweenScale.Begin(icon.gameObject, 0.3f, _original * 0.9f);
+			_tween2.onFinished = (__t)=>{
+				TweenScale _tween3 = TweenScale.Begin(icon.gameObject, 0.3f, _original * 1.1f);
+				_tween3.onFinished = (___t)=>{
+					TweenScale _tween4 = TweenScale.Begin(icon.gameObject, 0.3f, _original * 0.9f);
+					_tween4.onFinished = (____t)=>{
+						ToNormal();
+						cellManager.BombSurround(this);
+						isBombing = false;
+					};
+				};
+			};
+		};
 	}
 
 //----------------

@@ -114,12 +114,15 @@ private const float END_TIME = 180f;
 	}
 
 private int maxColoredCount = 80;
+private int minColoredCount = 5;
 private float nextColoredTime = 0f;
 	private void ManageColoredCell()
 	{
-		if (nextColoredTime > currentTime) {return;}
-		if (Cell.coloredCount >= maxColoredCount) {return
-			;}
+		if (minColoredCount < Cell.coloredCount) {
+			if (nextColoredTime > currentTime) {return;}
+			if (Cell.coloredCount >= maxColoredCount) {return
+				;}
+		}
 		Cell _cell = cellManager.GetRandomFreeCell();
 		if (_cell == null) {return;}
 		_cell.ToColor(randomMaterial);

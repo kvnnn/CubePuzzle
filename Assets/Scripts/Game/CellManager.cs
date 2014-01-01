@@ -111,4 +111,21 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 			return _pickabelCells[Random.Range(0, _pickabelCells.Count - 1)];
 		}
 	}
+
+//----------------
+// Bomb
+//----------------
+	public void BombSameColor(string matName)
+	{
+		foreach (Cell cell in cells.Values) {
+			if (cell.isBomb && cell.matName == matName) {
+				cell.BombEffect();
+			}
+		}
+	}
+
+	public void BombSurround(Cell cell)
+	{
+
+	}
 }
