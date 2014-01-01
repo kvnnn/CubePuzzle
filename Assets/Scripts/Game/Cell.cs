@@ -100,8 +100,9 @@ public class Cell : MonoInheritance
 			case CellType.Bomb:
 				BombEffect();
 			break;
-			case CellType.Normal:
 			case CellType.Item:
+			break;
+			case CellType.Normal:
 			break;
 		}
 	}
