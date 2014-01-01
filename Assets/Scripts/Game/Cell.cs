@@ -98,9 +98,7 @@ public class Cell : MonoInheritance
 				AutoChange();
 			break;
 			case CellType.Bomb:
-				if (!isBombing) {
-					BombEffect();
-				}
+				BombEffect();
 			break;
 			case CellType.Normal:
 			case CellType.Item:
