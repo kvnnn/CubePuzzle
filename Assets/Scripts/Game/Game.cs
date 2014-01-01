@@ -15,6 +15,10 @@ public class Game : SingletonMonoBehaviour<Game>
 	public UILabel secondLabel;
 	public GameObject scoreLabelsGo;
 	public UILabel scoreLabel;
+	public GameObject countLabelsGo;
+	public UILabel normalCountLabel;
+	public UILabel goalCountLabel;
+	public UILabel bombCountLabel;
 // Parameter
 	public GameStatus status = GameStatus.End;
 	private bool isEasyMode = false;
@@ -38,6 +42,7 @@ public class Game : SingletonMonoBehaviour<Game>
 		nguiGame.gameObject.SetActive(false);
 		timeLabelsGo.gameObject.SetActive(false);
 		scoreLabelsGo.gameObject.SetActive(false);
+		countLabelsGo.gameObject.SetActive(false);
 		status = GameStatus.End;
 
 		// OnHide
@@ -57,9 +62,13 @@ public class Game : SingletonMonoBehaviour<Game>
 
 		UpdateTimeLabel();
 		timeLabelsGo.gameObject.SetActive(true);
+
 		score = 0;
 		UpdateScoreLabel();
 		scoreLabelsGo.gameObject.SetActive(true);
+
+		UpdateCountLabel();
+		countLabelsGo.gameObject.SetActive(true);
 	}
 
 	public void EndGame()
@@ -97,6 +106,8 @@ private const float END_TIME = 180f;
 		}
 		// Score Label
 		UpdateScoreLabel();
+		// Count Label
+		UpdateCountLabel();
 
 		// Manage Game
 		ManageColoredCell();
@@ -159,6 +170,13 @@ public int score {get; set;}
 	private void UpdateScoreLabel()
 	{
 		scoreLabel.text = string.Format("{0:#,###0}", score);
+	}
+
+	private void UpdateCountLabel()
+	{
+		normalCountLabel.text = Cell.coloredClearCount.ToString();
+		goalCountLabel.text = Cell.goalClearCount.ToString();
+		bombCountLabel.text = Cell.bombClearCount.ToString();
 	}
 
 //----------------

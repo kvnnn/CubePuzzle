@@ -191,6 +191,7 @@ private bool isBombing = false;
 						BombEffect _effect = _effectObject.GetComponent<BombEffect>();
 						_effect.StartEffect(tileMat,
 							()=>{
+								clearCount[currentType]++;
 								ToNormal();
 								cellManager.BombSurround(position);
 								isBombing = false;
