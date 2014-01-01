@@ -16,6 +16,7 @@ public class Game : SingletonMonoBehaviour<Game>
 	public UILabel separatorLabel;
 	public GameObject scoreLabelsGo;
 	public UILabel scoreLabel;
+	public UILabel comboLabel;
 	public GameObject countLabelsGo;
 	public UILabel normalCountLabel;
 	public UILabel goalCountLabel;
@@ -113,6 +114,7 @@ private const float END_TIME = 180f;
 		// Score Label
 		UpdateScoreLabel();
 		// Count Label
+		CheckCombo();
 		UpdateCountLabel();
 
 		// Manage Game
@@ -206,6 +208,18 @@ private int maxGoalCount {
 	private void UpdateScoreLabel()
 	{
 		scoreLabel.text = string.Format("{0:#,###0}", score);
+		if (combo > 1) {
+			if (combo >= 10) {
+				int _index = (combo/10)%hardMaterials.Values.Count;
+				Material _mat = hardMaterials.Values.ToArray()[_index];
+				comboLabel.color = _mat.color;
+			} else {
+				comboLabel.color = Color.white;
+			}
+			comboLabel.text = string.Format("{0} COMBO !", combo);
+		} else {
+			comboLabel.text = "";
+		}
 	}
 
 //----------------
@@ -217,9 +231,10 @@ private float comboRate {
 	get {return isEasyMode ? 0.05f : 0.1f;}
 }
 private	float lastScoreAddedTime = -100f;
+private const float comboTimer = 1.5f;
 	public void AddScore(Cell.CellType type)
 	{
-		if (currentTime - lastScoreAddedTime <= 1f) {
+		if (currentTime - lastScoreAddedTime <= comboTimer) {
 			combo++;
 		} else {
 			combo = 1;
@@ -246,6 +261,13 @@ private	float lastScoreAddedTime = -100f;
 		float _addScore = _baseScore + _baseScore * (_comboF * comboRate);
 		score += (int)_addScore;
 		lastScoreAddedTime = currentTime;
+	}
+
+	private void CheckCombo()
+	{
+		if (currentTime - lastScoreAddedTime > comboTimer) {
+			combo = 1;
+		}
 	}
 
 //----------------

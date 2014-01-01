@@ -295,7 +295,7 @@ GameObject:
   - 4: {fileID: 73209386}
   - 114: {fileID: 73209387}
   m_Layer: 8
-  m_Name: Label
+  m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1201,7 +1201,7 @@ GameObject:
   - 4: {fileID: 701298984}
   - 114: {fileID: 701298985}
   m_Layer: 8
-  m_Name: Label
+  m_Name: TimeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1330,7 +1330,7 @@ GameObject:
   - 4: {fileID: 734139535}
   - 114: {fileID: 734139536}
   m_Layer: 8
-  m_Name: Label
+  m_Name: MinutesLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1702,6 +1702,7 @@ MonoBehaviour:
   separatorLabel: {fileID: 1165070904}
   scoreLabelsGo: {fileID: 1767321749}
   scoreLabel: {fileID: 1823572075}
+  comboLabel: {fileID: 1876077546}
   countLabelsGo: {fileID: 1688593583}
   normalCountLabel: {fileID: 1737958428}
   goalCountLabel: {fileID: 117742459}
@@ -1747,7 +1748,7 @@ GameObject:
   - 4: {fileID: 1165070903}
   - 114: {fileID: 1165070904}
   m_Layer: 8
-  m_Name: Label
+  m_Name: SeparatorLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2190,7 +2191,7 @@ GameObject:
   - 4: {fileID: 1440263168}
   - 114: {fileID: 1440263169}
   m_Layer: 8
-  m_Name: Label
+  m_Name: SecondsLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2852,6 +2853,7 @@ Transform:
   m_Children:
   - {fileID: 1823572074}
   - {fileID: 73209386}
+  - {fileID: 1876077547}
   m_Father: {fileID: 1456762276}
 --- !u!1 &1823572073
 GameObject:
@@ -2863,7 +2865,7 @@ GameObject:
   - 4: {fileID: 1823572074}
   - 114: {fileID: 1823572075}
   m_Layer: 8
-  m_Name: Label
+  m_Name: ScoreLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2959,6 +2961,62 @@ MonoBehaviour:
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
   mTexture: {fileID: 2800000, guid: ef9771beebd6a4c30b3c3e00d61a7ebb, type: 3}
   mMat: {fileID: 0}
+--- !u!1 &1876077545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1876077547}
+  - 114: {fileID: 1876077546}
+  m_Layer: 8
+  m_Name: ComboLabel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1876077546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1876077545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 5
+  mDepth: 0
+  mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
+  mText: 10 COMBO
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mPassword: 0
+  mShowLastChar: 0
+  mEffectStyle: 0
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!4 &1876077547
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1876077545}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 250, y: -35, z: 0}
+  m_LocalScale: {x: 30, y: 30, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1767321750}
 --- !u!1 &1911699339
 GameObject:
   m_ObjectHideFlags: 0

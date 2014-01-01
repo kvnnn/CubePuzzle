@@ -162,9 +162,10 @@ public class Cell : MonoInheritance
 		currentCount[to]++;
 	}
 
-	private void AddClearCount(CellType current)
+	private void AddClearCount(CellType type)
 	{
-		clearCount[current]++;
+		clearCount[type]++;
+		game.AddScore(type);
 	}
 
 //----------------
