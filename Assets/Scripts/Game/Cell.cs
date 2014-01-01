@@ -65,11 +65,11 @@ public class Cell : MonoInheritance
 			case CellType.Item:
 			break;
 			case CellType.Colored:
-				clearCount[currentType]++;
+				AddClearCount(currentType);
 				ToBomb();
 			break;
 			case CellType.Goal:
-				clearCount[currentType]++;
+				AddClearCount(currentType);
 				ToNormal();
 				cellManager.BombSameColor(matName);
 			break;
@@ -162,6 +162,11 @@ public class Cell : MonoInheritance
 		currentCount[to]++;
 	}
 
+	private void AddClearCount(CellType current)
+	{
+		clearCount[current]++;
+	}
+
 //----------------
 // Effect
 //----------------
@@ -191,7 +196,7 @@ private bool isBombing = false;
 						BombEffect _effect = _effectObject.GetComponent<BombEffect>();
 						_effect.StartEffect(tileMat,
 							()=>{
-								clearCount[currentType]++;
+								AddClearCount(currentType);
 								ToNormal();
 								cellManager.BombSurround(position);
 								isBombing = false;

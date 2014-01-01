@@ -21,16 +21,17 @@ public class Game : SingletonMonoBehaviour<Game>
 	public UILabel goalCountLabel;
 	public UILabel bombCountLabel;
 // Parameter
-	public GameStatus status = GameStatus.End;
+	public GameStatus status = GameStatus.Prepare;
 	private bool isEasyMode = false;
 
 	public IEnumerator Show(bool isEasyMode)
 	{
 		this.isEasyMode = isEasyMode;
 
+		// show main gameObject
 		gameObject.SetActive(true);
 		nguiGame.gameObject.SetActive(true);
-		status = GameStatus.End;
+		status = GameStatus.Prepare;
 
 		// OnShow
 		yield return StartCoroutine(cellManager.OnShow());
@@ -39,6 +40,7 @@ public class Game : SingletonMonoBehaviour<Game>
 
 	public void Hide()
 	{
+		// hide gameObject
 		gameObject.SetActive(false);
 		nguiGame.gameObject.SetActive(false);
 		timeLabelsGo.gameObject.SetActive(false);
@@ -56,11 +58,14 @@ public class Game : SingletonMonoBehaviour<Game>
 //----------------
 	public void StartGame()
 	{
+		// reset param
 		currentTime = 0f;
 		nextColoredTime = currentTime;
+		lastScoreAddedTime = -100f;
 
 		status = GameStatus.Play;
 
+		// reset label
 		UpdateTimeLabel();
 		timeLabelsGo.gameObject.SetActive(true);
 
@@ -191,17 +196,56 @@ private int maxGoalCount {
 		return _leftTime;
 	}
 
-public int score {get; set;}
-	private void UpdateScoreLabel()
-	{
-		scoreLabel.text = string.Format("{0:#,###0}", score);
-	}
-
 	private void UpdateCountLabel()
 	{
 		normalCountLabel.text = Cell.coloredClearCount.ToString();
 		goalCountLabel.text = Cell.goalClearCount.ToString();
 		bombCountLabel.text = Cell.bombClearCount.ToString();
+	}
+
+	private void UpdateScoreLabel()
+	{
+		scoreLabel.text = string.Format("{0:#,###0}", score);
+	}
+
+//----------------
+// Score
+//----------------
+private int score;
+private int combo;
+private float comboRate {
+	get {return isEasyMode ? 0.05f : 0.1f;}
+}
+private	float lastScoreAddedTime = -100f;
+	public void AddScore(Cell.CellType type)
+	{
+		if (currentTime - lastScoreAddedTime <= 1f) {
+			combo++;
+		} else {
+			combo = 1;
+		}
+		lastScoreAddedTime = currentTime;
+
+		float _baseScore = 0f;
+		switch (type) {
+			case Cell.CellType.Goal:
+				_baseScore = 200f;
+			break;
+			case Cell.CellType.Colored:
+				_baseScore = 50f;
+			break;
+			case Cell.CellType.Bomb:
+				_baseScore = 20f;
+			break;
+			case Cell.CellType.Item:
+			case Cell.CellType.Normal:
+			break;
+		}
+
+		float _comboF = (float)combo;
+		float _addScore = _baseScore + _baseScore * (_comboF * comboRate);
+		score += (int)_addScore;
+		lastScoreAddedTime = currentTime;
 	}
 
 //----------------
@@ -222,10 +266,12 @@ public int score {get; set;}
 		Left,
 	}
 	public enum GameStatus {
+		Prepare,
 		Play,
 		Pause,
 		End,
 	}
+	public bool isPrepare {get {return status == GameStatus.Prepare;}}
 	public bool isPlay {get {return status == GameStatus.Play;}}
 	public bool isPause {get {return status == GameStatus.Pause;}}
 	public bool isEnd {get {return status == GameStatus.End;}}
