@@ -131,7 +131,7 @@ private float nextColoredTime = 0f;
 		nextColoredTime = currentTime + Random.Range(3f, 5f);
 	}
 
-private int maxGoalCount = 2;
+private int maxGoalCount = 3;
 	private void ManageGoalCell()
 	{
 		if (Cell.goalCount >= maxGoalCount) {return
