@@ -179,7 +179,9 @@ private int maxGoalCount {
 	public void AddItem()
 	{
 		if (Cell.goalClearCount%5 != 0) {
-			return;
+			if (Random.Range(0, 1000) > 25) {
+				return;
+			}
 		}
 		Cell _cell = cellManager.GetRandomFreeCell();
 		_cell.ToRandomItem();
