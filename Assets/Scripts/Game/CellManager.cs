@@ -30,6 +30,7 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 //----------------
 	public IEnumerator CreateStage(int stageID)
 	{
+		// stageID = 3;
 		IntVector2[] _stageData = stages[stageID];
 		cells = new Dictionary<IntVector2, Cell>();
 		Vector3 _scale = cellPrefab.transform.localScale;
@@ -151,6 +152,7 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 				stages_ = new Dictionary<int, IntVector2[]>(){
 					{1, stage1},
 					{2, stage2},
+					{3, stage3},
 				};
 			}
 			return stages_;
@@ -211,6 +213,48 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 		new IntVector2(11,9),
 		new IntVector2(11,8),
 		new IntVector2(11,7),
+	};
+	private IntVector2[] stage3 = new IntVector2[]{
+		new IntVector2(0,6),
+		new IntVector2(0,5),
+		new IntVector2(0,4),
+		new IntVector2(0,3),
+		new IntVector2(1,6),
+		new IntVector2(1,5),
+		new IntVector2(1,4),
+		new IntVector2(1,3),
+		new IntVector2(10,6),
+		new IntVector2(10,5),
+		new IntVector2(10,4),
+		new IntVector2(10,3),
+		new IntVector2(11,6),
+		new IntVector2(11,5),
+		new IntVector2(11,4),
+		new IntVector2(11,3),
+		new IntVector2(4,0),
+		new IntVector2(4,1),
+		new IntVector2(4,2),
+		new IntVector2(5,0),
+		new IntVector2(5,1),
+		new IntVector2(5,2),
+		new IntVector2(6,0),
+		new IntVector2(6,1),
+		new IntVector2(6,2),
+		new IntVector2(7,0),
+		new IntVector2(7,1),
+		new IntVector2(7,2),
+		new IntVector2(4,9),
+		new IntVector2(4,8),
+		new IntVector2(4,7),
+		new IntVector2(5,9),
+		new IntVector2(5,8),
+		new IntVector2(5,7),
+		new IntVector2(6,9),
+		new IntVector2(6,8),
+		new IntVector2(6,7),
+		new IntVector2(7,9),
+		new IntVector2(7,8),
+		new IntVector2(7,7),
 	};
 // 0,9 1,9 2,9 3,9 4,9 5,9 6,9 7,9 8,9 9,9 10,9 11,9
 // 0,8 1,8 2,8 3,8 4,8 5,8 6,8 7,8 8,8 9,8 10,8 11,8
