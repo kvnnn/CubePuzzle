@@ -90,6 +90,24 @@ public class Cell : MonoInheritance
 		}
 	}
 
+	public void BombChange()
+	{
+		switch (currentType) {
+			case CellType.Colored:
+			case CellType.Goal:
+				AutoChange();
+			break;
+			case CellType.Bomb:
+				if (!isBombing) {
+					BombEffect();
+				}
+			break;
+			case CellType.Normal:
+			case CellType.Item:
+			break;
+		}
+	}
+
 	public void ToNormal()
 	{
 		if (isNormal) {return;}
@@ -182,7 +200,7 @@ private bool isBombing = false;
 					TweenScale _tween4 = TweenScale.Begin(icon.gameObject, 0.3f, _original * 0.9f);
 					_tween4.onFinished = (____t)=>{
 						ToNormal();
-						cellManager.BombSurround(this);
+						cellManager.BombSurround(position);
 						isBombing = false;
 					};
 				};
