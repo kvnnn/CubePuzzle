@@ -706,7 +706,7 @@ MonoBehaviour:
   mPivot: 4
   mDepth: 1
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
-  mText: START EASY
+  mText: EASY MODE
   mMaxLineWidth: 0
   mMaxLineHeight: 0
   mEncoding: 1
@@ -1074,7 +1074,7 @@ MonoBehaviour:
   mPivot: 4
   mDepth: 1
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
-  mText: START HARD
+  mText: HARD MODE
   mMaxLineWidth: 0
   mMaxLineHeight: 0
   mEncoding: 1
