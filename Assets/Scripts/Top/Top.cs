@@ -27,10 +27,16 @@ public class Top : SingletonMonoBehaviour<Top>
 //----------------
 // Touch Event
 //----------------
-	void StartClick()
+	void StartEasyClick()
 	{
 		Hide();
-		MasterManager.instance.StartCoroutine(Game.instance.Show());
+		MasterManager.instance.StartCoroutine(Game.instance.Show(true));
+	}
+
+	void StartHardClick()
+	{
+		Hide();
+		MasterManager.instance.StartCoroutine(Game.instance.Show(false));
 	}
 
 	void SettingClick()

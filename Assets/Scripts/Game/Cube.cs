@@ -28,6 +28,8 @@ public class Cube : SingletonMonoBehaviour<Cube>
 		transform.position = _pos;
 		_pos.y = halfCubeSize;
 
+		InitSides();
+
 		gameObject.SetActive(true);
 		TweenPosition _tweenPos = TweenPosition.Begin(gameObject, 0.25f, _pos);
 		_tweenPos.onFinished = (_tween)=>{
@@ -181,6 +183,26 @@ public class Cube : SingletonMonoBehaviour<Cube>
 			break;
 		}
 		return _matName;
+	}
+
+	private void InitSides()
+	{
+		foreach (Transform _trans in transform) {
+			Vector3 _pos = _trans.position - transform.position;
+			if (_pos.x > 0.45f) {
+				_trans.renderer.sharedMaterial = game.rightMaterial;
+			} else if (_pos.x < -0.45f) {
+				_trans.renderer.sharedMaterial = game.leftMaterial;
+			} else if (_pos.y > 0.45f) {
+				_trans.renderer.sharedMaterial = game.upMaterial;
+			} else if (_pos.y < -0.45f) {
+				_trans.renderer.sharedMaterial = game.downMaterial;
+			} else if (_pos.z > 0.45f) {
+				_trans.renderer.sharedMaterial = game.backMaterial;
+			} else if (_pos.z < -0.45f) {
+				_trans.renderer.sharedMaterial = game.frontMaterial;
+			}
+		}
 	}
 
 //----------------

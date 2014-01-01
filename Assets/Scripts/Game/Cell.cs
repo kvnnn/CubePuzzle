@@ -30,21 +30,6 @@ public class Cell : MonoInheritance
 		set {icon.material.color = value;}
 	}
 	public GameObject bombEffectPrefab;
-// Materials
-	private Dictionary<string, Material> materials_;
-	private Dictionary<string, Material> materials {
-		get {
-			if (materials_ == null) {
-				materials_ = new Dictionary<string, Material>();
-				string[] _names = new string[]{"Bomb", "Heart", "Star", "Time"};
-				foreach (string matName in _names) {
-					Material _mat = Resources.Load("Cubes/Icons/" + matName) as Material;
-					materials_.Add(_mat.name, _mat);
-				}
-			}
-			return materials_;
-		}
-	}
 
 	public void Init(IntVector2 position)
 	{
@@ -257,6 +242,24 @@ private bool isBombing = false;
 	private void toBomb() {
 		SetCurrentCount(CellType.Bomb);
 		currentType = CellType.Bomb;
+	}
+
+//----------------
+// Materials
+//----------------
+	private Dictionary<string, Material> materials_;
+	private Dictionary<string, Material> materials {
+		get {
+			if (materials_ == null) {
+				materials_ = new Dictionary<string, Material>();
+				string[] _names = new string[]{"Bomb", "Heart", "Star", "Time"};
+				foreach (string matName in _names) {
+					Material _mat = Resources.Load("Cubes/Icons/" + matName) as Material;
+					materials_.Add(_mat.name, _mat);
+				}
+			}
+			return materials_;
+		}
 	}
 
 //----------------

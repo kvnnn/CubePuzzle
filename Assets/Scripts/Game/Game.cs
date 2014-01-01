@@ -16,27 +16,12 @@ public class Game : SingletonMonoBehaviour<Game>
 	public UILabel pointLabel;
 // Parameter
 	public GameStatus status = GameStatus.End;
-// Materials
-	private Dictionary<string, Material> materials_;
-	private Dictionary<string, Material> materials {
-		get {
-			if (materials_ == null) {
-				materials_ = new Dictionary<string, Material>();
-				string[] _names = new string[]{"Red", "Purple", "Blue", "LightBlue", "Yellow", "Green"};
-				foreach (string matName in _names) {
-					Material _mat = Resources.Load("Cubes/Materials/" + matName) as Material;
-					materials_.Add(_mat.name, _mat);
-				}
-			}
-			return materials_;
-		}
-	}
-	private Material randomMaterial {
-		get {return materials.Values.ToArray()[Random.Range(0, materials.Count - 1)];}
-	}
+	private bool isEasyMode = false;
 
-	public IEnumerator Show()
+	public IEnumerator Show(bool isEasyMode)
 	{
+		this.isEasyMode = isEasyMode;
+
 		gameObject.SetActive(true);
 		nguiGame.gameObject.SetActive(true);
 		status = GameStatus.End;
@@ -187,4 +172,78 @@ private int maxGoalCount = 3;
 	public bool isPlay {get {return status == GameStatus.Play;}}
 	public bool isPause {get {return status == GameStatus.Pause;}}
 	public bool isEnd {get {return status == GameStatus.End;}}
+
+//----------------
+// Materials
+//----------------
+	private Dictionary<string, Material> materials {
+		get {
+			return isEasyMode ? easyMaterials : hardMaterials;
+		}
+	}
+	private Dictionary<string, Material> easyMaterials_;
+	private Dictionary<string, Material> easyMaterials {
+		get {
+			if (easyMaterials_ == null) {
+				easyMaterials_ = new Dictionary<string, Material>();
+				easyMaterials_.Add("Red", hardMaterials["Red"]);
+				easyMaterials_.Add("Blue", hardMaterials["Blue"]);
+				easyMaterials_.Add("Green", hardMaterials["Green"]);
+			}
+			return easyMaterials_;
+		}
+	}
+	private Dictionary<string, Material> hardMaterials_;
+	private Dictionary<string, Material> hardMaterials {
+		get {
+			if (hardMaterials_ == null) {
+				hardMaterials_ = new Dictionary<string, Material>();
+				string[] _names = new string[]{"Red", "Purple", "Blue", "LightBlue", "Yellow", "Green"};
+				foreach (string matName in _names) {
+					Material _mat = Resources.Load("Cubes/Materials/" + matName) as Material;
+					hardMaterials_.Add(_mat.name, _mat);
+				}
+			}
+			return hardMaterials_;
+		}
+	}
+	private Material randomMaterial {
+		get {return materials.Values.ToArray()[Random.Range(0, materials.Count - 1)];}
+	}
+	public Material upMaterial {
+		get {
+			string _key = isEasyMode ? "Red" : "Red";
+			return materials[_key];
+		}
+	}
+	public Material downMaterial {
+		get {
+			string _key = isEasyMode ? "Red" : "Purple";
+			return materials[_key];
+		}
+	}
+	public Material leftMaterial {
+		get {
+			string _key = isEasyMode ? "Green" : "Green";
+			return materials[_key];
+		}
+	}
+	public Material rightMaterial {
+		get {
+			string _key = isEasyMode ? "Green" : "Yellow";
+			return materials[_key];
+		}
+	}
+	public Material backMaterial {
+		get {
+			string _key = isEasyMode ? "Blue" : "Blue";
+			return materials[_key];
+		}
+	}
+	public Material frontMaterial {
+		get {
+			string _key = isEasyMode ? "Blue" : "LightBlue";
+			return materials[_key];
+		}
+	}
 }
