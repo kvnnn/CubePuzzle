@@ -102,7 +102,7 @@ public class Cell : MonoInheritance
 		if (isNormal) {return;}
 		toNormal();
 
-		tile.transform.localScale = new Vector3();
+		tile.transform.localScale = Vector3.zero;
 		tile.enabled = false;
 		tile.gameObject.SetActive(false);
 		icon.gameObject.SetActive(false);
@@ -113,7 +113,7 @@ public class Cell : MonoInheritance
 		if (isColored) {return;}
 		toColored();
 
-		tile.transform.localScale = new Vector3();
+		tile.transform.localScale = Vector3.zero;
 		tile.enabled = true;
 		tile.gameObject.SetActive(true);
 		tileMat = mat;
@@ -128,7 +128,7 @@ public class Cell : MonoInheritance
 		if (isGoal) {return;}
 		toGoal();
 
-		tile.transform.localScale = new Vector3();
+		tile.transform.localScale = Vector3.zero;
 		tile.enabled = false;
 		tile.gameObject.SetActive(true);
 		tileMat = mat;
@@ -165,7 +165,7 @@ public class Cell : MonoInheritance
 		if (isItem) {return;}
 		toItem(itemType);
 
-		tile.transform.localScale = new Vector3();
+		tile.transform.localScale = Vector3.zero;
 		tile.enabled = false;
 		tile.gameObject.SetActive(true);
 
@@ -232,7 +232,7 @@ public bool isBombing = false;
 						GameObject _effectObject = Instantiate(bombEffectPrefab, transform.position, new Quaternion()) as GameObject;
 						_effectObject.transform.parent = transform;
 						_effectObject.transform.localScale = Vector3.one;
-						_effectObject.transform.localPosition = new Vector3();
+						_effectObject.transform.localPosition = Vector3.zero;
 						BombEffect _effect = _effectObject.GetComponent<BombEffect>();
 						_effect.StartEffect(tileMat,
 							()=>{

@@ -34,7 +34,7 @@ public class BombEffect : MonoInheritance
 
 	private void TweenCube(GameObject cube, TweenTo tweenTo, bool setCallback)
 	{
-		Vector3 _pos = new Vector3();
+		Vector3 _pos = Vector3.zero;
 		switch (tweenTo) {
 			case TweenTo.UpLeft:
 				_pos.x -= cubeSize;

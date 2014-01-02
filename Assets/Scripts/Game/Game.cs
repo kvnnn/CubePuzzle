@@ -227,10 +227,10 @@ private float comboRate {
 	get {return isEasyMode ? 0.05f : 0.1f;}
 }
 private	float lastScoreAddedTime = -100f;
-private const float comboTimer = 2f;
+private const float COMBO_TIMER = 2f;
 	public void AddScore(Cell.CellType type)
 	{
-		if (currentTime - lastScoreAddedTime <= comboTimer) {
+		if (currentTime - lastScoreAddedTime <= COMBO_TIMER) {
 			combo++;
 			if (combo >= maxCombo) {
 				maxCombo = combo;
@@ -268,7 +268,7 @@ private const float comboTimer = 2f;
 
 	private void CheckCombo()
 	{
-		if (currentTime - lastScoreAddedTime > comboTimer) {
+		if (currentTime - lastScoreAddedTime > COMBO_TIMER) {
 			combo = 1;
 		}
 	}

@@ -62,19 +62,73 @@ public class Cube : SingletonMonoBehaviour<Cube>
   {
   	while (true) {
   		if (!rotating && game.isPlay) {
-				if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-					RotateTo(Game.Direction.Right);
-				} else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
-					RotateTo(Game.Direction.Left);
-				} else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
-					RotateTo(Game.Direction.Up);
-				} else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
-					RotateTo(Game.Direction.Down);
-				}
+  			KeyControl();
+  			TouchControl();
 			}
 			yield return false;
   	}
 	}
+
+	private void KeyControl()
+	{
+		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
+			RotateTo(Game.Direction.Right);
+		} else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
+			RotateTo(Game.Direction.Left);
+		} else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
+			RotateTo(Game.Direction.Up);
+		} else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
+			RotateTo(Game.Direction.Down);
+		}
+	}
+
+private Game.Direction? lastDirection;
+private Vector3 lastTouchedPos;
+private const float HORIZONTAL_OFFSET = 80f;
+private const float VERTICAL_OFFSET = 80f;
+	private void TouchControl()
+	{
+		if (isMove) {
+			Vector3 _touchPos = Input.mousePosition;
+			if (lastTouchedPos == Vector3.zero) {
+				lastTouchedPos = _touchPos;
+			}
+			Vector3 _diff = _touchPos - lastTouchedPos;
+			float _x = _diff.x;
+			float _y = _diff.y;
+
+			Game.Direction _moveTo;
+			if (Mathf.Abs(_x) < HORIZONTAL_OFFSET && Mathf.Abs(_y) < VERTICAL_OFFSET) {
+				if (lastDirection == null) {return;}
+				_moveTo = (Game.Direction)lastDirection;
+			} else {
+				if (Mathf.Abs(_x) > Mathf.Abs(_y)) {
+					if (_x > 0) {
+						_moveTo = Game.Direction.Right;
+					} else {
+						_moveTo = Game.Direction.Left;
+					}
+				} else {
+					if (_y > 0) {
+						_moveTo = Game.Direction.Up;
+					} else {
+						_moveTo = Game.Direction.Down;
+					}
+				}
+				lastTouchedPos = _touchPos;
+			}
+			RotateTo(_moveTo);
+			lastDirection  = _moveTo;
+		} else {
+			lastTouchedPos = Vector3.zero;
+			lastDirection = null;
+		}
+	}
+
+	void UpArrow() {RotateTo(Game.Direction.Up);}
+	void DownArrow() {RotateTo(Game.Direction.Down);}
+	void RightArrow() {RotateTo(Game.Direction.Right);}
+	void LeftArrow() {RotateTo(Game.Direction.Left);}
 
 //----------------
 // 回転・移動

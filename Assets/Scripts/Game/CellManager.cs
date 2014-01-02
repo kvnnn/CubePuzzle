@@ -124,7 +124,7 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 			for (int z = 0; z < maxSize.y; z++) {
 				if (_stageData.Contains(new IntVector2(x, z))) {continue;}
 
-				GameObject _object = (GameObject)Instantiate(cellPrefab, new Vector3(), new Quaternion());
+				GameObject _object = (GameObject)Instantiate(cellPrefab, Vector3.zero, new Quaternion());
 				_object.transform.parent = transform;
 				_object.transform.localPosition = new Vector3(_scale.x * x, 10f, _scale.z * z);
 				_object.name = string.Format("{0}:{1}", x, z);
