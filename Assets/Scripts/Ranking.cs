@@ -11,22 +11,26 @@ public class Ranking : SingletonMonoBehaviour<Ranking>
 	public RankingData easy;
 	public RankingData hard;
 // NGUI
+	public GameObject baseGo;
 
 	protected override void Awake()
 	{
 		base.Awake();
+		baseGo.gameObject.SetActive(false);
 		easy = new RankingData("easy_rankings");
 		hard = new RankingData("hard_rankings");
 	}
 
 	public void Show()
 	{
+		baseGo.gameObject.SetActive(true);
 		gameObject.SetActive(true);
 	}
 
 	public void Hide()
 	{
 		gameObject.SetActive(false);
+		baseGo.gameObject.SetActive(false);
 	}
 
 	public void SetScore(bool isEasy, int score, int maxCombo)

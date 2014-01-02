@@ -1312,7 +1312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &529402324
 Transform:
   m_ObjectHideFlags: 0
@@ -1323,8 +1323,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 902102787}
-  - {fileID: 1490917249}
+  - {fileID: 717016572}
   m_Father: {fileID: 412953098}
 --- !u!114 &529402325
 MonoBehaviour:
@@ -1337,6 +1336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3dfaa0533434a37b63f058037dcd7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseGo: {fileID: 717016571}
 --- !u!114 &529402326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1840,6 +1840,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2103949207}
   m_GameObject: {fileID: 704150032}
   m_Mesh: {fileID: 4300000, guid: 153e8cba34dd940aaa5b6723745b2328, type: 3}
+--- !u!1 &717016571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 717016572}
+  m_Layer: 0
+  m_Name: BaseRanking
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &717016572
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 717016571}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 902102787}
+  - {fileID: 1490917249}
+  m_Father: {fileID: 529402324}
 --- !u!1 &734139534
 GameObject:
   m_ObjectHideFlags: 0
@@ -2483,10 +2511,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 902102786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .5, z: 0}
-  m_LocalScale: {x: 700, y: 500, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 700, y: 500.000031, z: 1}
   m_Children: []
-  m_Father: {fileID: 529402324}
+  m_Father: {fileID: 717016572}
 --- !u!114 &902102788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4012,7 +4040,7 @@ Transform:
   m_Children:
   - {fileID: 318799302}
   - {fileID: 463757119}
-  m_Father: {fileID: 529402324}
+  m_Father: {fileID: 717016572}
 --- !u!114 &1490917250
 MonoBehaviour:
   m_ObjectHideFlags: 0
