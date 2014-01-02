@@ -22,6 +22,7 @@ public class Game : SingletonMonoBehaviour<Game>
 	public UILabel normalCountLabel;
 	public UILabel goalCountLabel;
 	public UILabel bombCountLabel;
+	public GameObject pauseWindowGo;
 // Parameter
 	public GameStatus status = GameStatus.Prepare;
 	private bool isEasyMode = false;
@@ -31,10 +32,17 @@ public class Game : SingletonMonoBehaviour<Game>
 		Time.timeScale = 1f;
 		this.isEasyMode = isEasyMode;
 
-		// show main gameObject
+		// show gameObject
 		gameObject.SetActive(true);
+		pauseWindowGo.gameObject.SetActive(false);
 		nguiGame.gameObject.SetActive(true);
 		status = GameStatus.Prepare;
+
+		// reset label
+		minutesLabel.text = "00";
+		secondLabel.text = "00";
+		scoreLabel.text = normalCountLabel.text = goalCountLabel.text = bombCountLabel.text = "0";
+		comboLabel.text = addedTimeLabel.text = "";
 
 		// OnShow
 		yield return StartCoroutine(cellManager.OnShow());
@@ -62,15 +70,13 @@ public class Game : SingletonMonoBehaviour<Game>
 		currentTime = 0f;
 		nextColoredTime = currentTime;
 		lastScoreAddedTime = -100f;
+		score = 0;
 
 		status = GameStatus.Play;
 
 		// reset label
 		UpdateTimeLabel();
-
-		score = 0;
 		UpdateScoreLabel();
-
 		UpdateCountLabel();
 	}
 
@@ -86,11 +92,13 @@ public class Game : SingletonMonoBehaviour<Game>
 		if (!isPlay) {return;}
 		status = GameStatus.Pause;
 		Time.timeScale = 0f;
+		pauseWindowGo.gameObject.SetActive(true);
 	}
 
 	public void ResumeGame()
 	{
 		if (!isPause) {return;}
+		pauseWindowGo.gameObject.SetActive(false);
 		Time.timeScale = 1f;
 		status = GameStatus.Play;
 	}
@@ -321,6 +329,24 @@ private float lastTimeAddedTime = 0f;
 	void PauseClick()
 	{
 		PauseGame();
+	}
+
+	void PlayClick()
+	{
+		ResumeGame();
+	}
+
+	void TitleClick()
+	{
+		EndGame();
+	}
+
+	void RestartClick()
+	{
+		status = GameStatus.Prepare;
+		cellManager.OnHide();
+		cube.OnHide();
+		StartCoroutine(Show(isEasyMode));
 	}
 
 //----------------
