@@ -10,6 +10,7 @@ public class Settings : SingletonMonoBehaviour<Settings>
 	private ControlType controllerType;
 	private bool isSoundOn;
 	private bool isPadLeft;
+	private Vector3 tiltBasePosition;
 // NGUI
 	public GameObject baseGo;
 	public UILabel contollerLabel;
@@ -23,6 +24,7 @@ public class Settings : SingletonMonoBehaviour<Settings>
 	private const string KEY_CONTROLLER = "controller_type";
 	private const string KEY_SOUND = "sound_on_off";
 	private const string KEY_PAD_DIRECTION = "pad_direction";
+	private const string KEY_TILT_POS = "tile_position";
 
 	protected override void Awake()
 	{
@@ -49,6 +51,13 @@ public class Settings : SingletonMonoBehaviour<Settings>
 			isPadLeft = true;
 		}
 		UpdatePad();
+
+		if (PlayerPrefs.HasKey(KEY_TILT_POS)) {
+			List<float> _data = PlayerPrefs.GetArray<float>(KEY_TILT_POS);
+			tiltBasePosition = new Vector3(_data[0], _data[1], _data[2]);
+		} else {
+			tiltBasePosition = new Vector3(0.5f, 0.5f, 0.5f);
+		}
 	}
 
 	public void Show()
@@ -66,6 +75,16 @@ public class Settings : SingletonMonoBehaviour<Settings>
 		baseGo.gameObject.SetActive(false);
 
 		Top.instance.mainGo.SetActive(true);
+	}
+
+	void FixedUpdate()
+	{
+		if (isTilt) {
+			Vector3 dir = Vector3.zero;
+			dir.x = -Input.acceleration.y;
+			dir.z = Input.acceleration.x;
+			UnityEngine.Debug.Log(dir);
+		}
 	}
 
 //----------------
@@ -157,6 +176,16 @@ private const string SOUND_OFF_SPRITE = "btn_sound_off";
 		} else {
 			padButtonLabel.text = "R";
 		}
+	}
+
+	void ResetClick()
+	{
+
+	}
+
+	private void UpdateTestArrow()
+	{
+
 	}
 
 //----------------
