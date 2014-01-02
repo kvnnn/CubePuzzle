@@ -2578,7 +2578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseGo: {fileID: 618616757}
   contollerLabel: {fileID: 1538610638}
-  soundButton: {fileID: 0}
+  soundButton: {fileID: 1923722782}
 --- !u!114 &625049498
 MonoBehaviour:
   m_ObjectHideFlags: 0
