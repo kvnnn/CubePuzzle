@@ -9,13 +9,20 @@ public class Settings : SingletonMonoBehaviour<Settings>
 // Parameter
 	private ControlType controllerType;
 	private bool isSoundOn;
+	private bool isPadLeft;
 // NGUI
 	public GameObject baseGo;
 	public UILabel contollerLabel;
 	public UIImageButton soundButton;
+	public GameObject padOptionGo;
+	public GameObject padGo;
+	public UILabel padButtonLabel;
+	public GameObject tiltOptionGo;
+	public UISprite arrowSprite;
 // db
 	private const string KEY_CONTROLLER = "controller_type";
 	private const string KEY_SOUND = "sound_on_off";
+	private const string KEY_PAD_DIRECTION = "pad_direction";
 
 	protected override void Awake()
 	{
@@ -35,6 +42,13 @@ public class Settings : SingletonMonoBehaviour<Settings>
 			isSoundOn = true;
 		}
 		UpdateSoundIcon();
+
+		if (PlayerPrefs.HasKey(KEY_PAD_DIRECTION)) {
+			isPadLeft = PlayerPrefs.GetBool(KEY_PAD_DIRECTION);
+		} else {
+			isPadLeft = true;
+		}
+		UpdatePad();
 	}
 
 	public void Show()
@@ -47,6 +61,7 @@ public class Settings : SingletonMonoBehaviour<Settings>
 
 	public void Hide()
 	{
+		PlayerPrefs.Flush();
 		gameObject.SetActive(false);
 		baseGo.gameObject.SetActive(false);
 
@@ -54,7 +69,7 @@ public class Settings : SingletonMonoBehaviour<Settings>
 	}
 
 //----------------
-// Touch Event
+// NGUI
 //----------------
 	void CloseClick()
 	{
@@ -77,12 +92,18 @@ public class Settings : SingletonMonoBehaviour<Settings>
 		switch (controllerType) {
 			case ControlType.Pad:
 				_text = "Control Pad";
+				padOptionGo.SetActive(true);
+				tiltOptionGo.SetActive(false);
 			break;
 			case ControlType.Swipe:
 				_text = "Swipe";
+				padOptionGo.SetActive(false);
+				tiltOptionGo.SetActive(false);
 			break;
 			case ControlType.Tilt:
 				_text = "Tilt";
+				padOptionGo.SetActive(false);
+				tiltOptionGo.SetActive(true);
 			break;
 		}
 		contollerLabel.text = _text;
@@ -104,6 +125,38 @@ private const string SOUND_OFF_SPRITE = "btn_sound_off";
 		soundButton.hoverSprite = _spriteName;
 		soundButton.pressedSprite = _spriteName;
 		soundButton.disabledSprite = _spriteName;
+	}
+
+	void ChangeControllerSideClick()
+	{
+		isPadLeft = !isPadLeft;
+		PlayerPrefs.SetBool(KEY_PAD_DIRECTION, isPadLeft);
+		UpdatePad();
+	}
+
+	private void UpdatePad()
+	{
+		Vector3 _pos = padGo.transform.localPosition;
+		if (isPadLeft) {
+			_pos.x = -1 * Mathf.Abs(_pos.x);
+		} else {
+			_pos.x = Mathf.Abs(_pos.x);
+		}
+		padGo.transform.localPosition = _pos;
+
+		_pos = Cube.instance.padGo.transform.localPosition;
+		if (isPadLeft) {
+			_pos.x = -1 * Mathf.Abs(_pos.x);
+		} else {
+			_pos.x = Mathf.Abs(_pos.x);
+		}
+		Cube.instance.transform.localPosition = _pos;
+
+		if (isPadLeft) {
+			padButtonLabel.text = "L";
+		} else {
+			padButtonLabel.text = "R";
+		}
 	}
 
 //----------------
