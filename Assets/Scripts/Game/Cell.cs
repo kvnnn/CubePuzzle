@@ -229,19 +229,23 @@ public bool isBombing = false;
 					_tween = TweenScale.Begin(icon.gameObject, 0.25f, _original * 0.9f);
 					_tween.ignoreTimeScale = false;
 					_tween.onFinished = (____t)=>{
-						GameObject _effectObject = Instantiate(bombEffectPrefab, transform.position, new Quaternion()) as GameObject;
-						_effectObject.transform.parent = transform;
-						_effectObject.transform.localScale = Vector3.one;
-						_effectObject.transform.localPosition = Vector3.zero;
-						BombEffect _effect = _effectObject.GetComponent<BombEffect>();
-						_effect.StartEffect(tileMat,
-							()=>{
-								AddClearCount(currentType);
-								ToNormal();
-								cellManager.BombSurround(position);
-								isBombing = false;
-							}
-						);
+						_tween = TweenScale.Begin(icon.gameObject, 0.125f, _original);
+						_tween.ignoreTimeScale = false;
+						_tween.onFinished = (_____t)=>{
+							GameObject _effectObject = Instantiate(bombEffectPrefab, transform.position, new Quaternion()) as GameObject;
+							_effectObject.transform.parent = transform;
+							_effectObject.transform.localScale = Vector3.one;
+							_effectObject.transform.localPosition = Vector3.zero;
+							BombEffect _effect = _effectObject.GetComponent<BombEffect>();
+							_effect.StartEffect(tileMat,
+								()=>{
+									AddClearCount(currentType);
+									ToNormal();
+									cellManager.BombSurround(position);
+									isBombing = false;
+								}
+							);
+						};
 					};
 				};
 			};
