@@ -158,6 +158,9 @@ private const float VERTICAL_OFFSET = 80f;
 
 	public void RotateTo(Game.Direction direction)
 	{
+		if (rotating || !game.isPlay) {
+			return;
+		}
 		if (!cellManager.IsAvailable(position, direction, NextMatColor(direction))) {
 			return;
 		}
