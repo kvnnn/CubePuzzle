@@ -115,15 +115,15 @@ public class Ranking : SingletonMonoBehaviour<Ranking>
 	{
 		Color _buttonColorTo;
 		if (isEasy) {
-			TweenAlpha _easyTween = TweenAlpha.Begin(easyRankingGo, 0.5f, 0f);
-			TweenAlpha _hardTween = TweenAlpha.Begin(hardRankingGo, 0.5f, 1f);
+			TweenAlpha _easyTween = TweenAlpha.Begin(easyRankingGo, 0.35f, 0f);
+			TweenAlpha _hardTween = TweenAlpha.Begin(hardRankingGo, 0.35f, 1f);
 			_buttonColorTo = new Color(0f, 200f/255f, 1f, 1f);
 		} else {
-			TweenAlpha _easyTween = TweenAlpha.Begin(easyRankingGo, 0.5f, 1f);
-			TweenAlpha _hardTween = TweenAlpha.Begin(hardRankingGo, 0.5f, 0f);
+			TweenAlpha _easyTween = TweenAlpha.Begin(easyRankingGo, 0.35f, 1f);
+			TweenAlpha _hardTween = TweenAlpha.Begin(hardRankingGo, 0.35f, 0f);
 			_buttonColorTo = new Color(1f, 0f, 200/255f, 1f);
 		}
-		TweenColor.Begin(difficultyButtonSprite.gameObject, 0.5f, _buttonColorTo);
+		TweenColor.Begin(difficultyButtonSprite.gameObject, 0.35f, _buttonColorTo);
 		isEasy = !isEasy;
 	}
 

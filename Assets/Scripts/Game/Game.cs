@@ -206,6 +206,9 @@ private int maxGoalCount {
 			case Cell.ItemType.TimeIncrease:
 				float _added = 20f;
 				currentTime -= _added;
+				if (isPrepareEnd) {
+					status = GameStatus.Play;
+				}
 				UpdateAddedTimeLabel(_added);
 			break;
 			case Cell.ItemType.PointIncrease:
