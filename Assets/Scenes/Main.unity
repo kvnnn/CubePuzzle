@@ -2139,6 +2139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f896776df6d42b79f700da4423cf0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nguiCamera: {fileID: 1281103086}
 --- !u!1 &591768765
 GameObject:
   m_ObjectHideFlags: 0
@@ -2732,6 +2733,22 @@ Prefab:
       propertyPath: game
       value: 
       objectReference: {fileID: 1024598113}
+    - target: {fileID: 11400000, guid: 4169e12accfa04b55be8d6e0d962ffa4, type: 2}
+      propertyPath: downArrow
+      value: 
+      objectReference: {fileID: 1024407886}
+    - target: {fileID: 11400000, guid: 4169e12accfa04b55be8d6e0d962ffa4, type: 2}
+      propertyPath: rightArrow
+      value: 
+      objectReference: {fileID: 2133523497}
+    - target: {fileID: 11400000, guid: 4169e12accfa04b55be8d6e0d962ffa4, type: 2}
+      propertyPath: upArrow
+      value: 
+      objectReference: {fileID: 838127867}
+    - target: {fileID: 11400000, guid: 4169e12accfa04b55be8d6e0d962ffa4, type: 2}
+      propertyPath: leftArrow
+      value: 
+      objectReference: {fileID: 1754018664}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4169e12accfa04b55be8d6e0d962ffa4, type: 2}
   m_RootGameObject: {fileID: 2098271176}
@@ -3040,7 +3057,6 @@ GameObject:
   - 114: {fileID: 838127869}
   - 65: {fileID: 838127872}
   - 114: {fileID: 838127871}
-  - 114: {fileID: 838127870}
   m_Layer: 8
   m_Name: Up
   m_TagString: Untagged
@@ -3080,21 +3096,6 @@ MonoBehaviour:
   mFillDirection: 4
   mFillAmount: 1
   mInvert: 0
---- !u!114 &838127870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 838127867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c4ff40739c7904ca26c14ffbdc4176, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 2098271176}
-  functionName: UpArrow
-  trigger: 3
-  includeChildren: 0
 --- !u!114 &838127871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3799,7 +3800,6 @@ GameObject:
   - 114: {fileID: 1024407888}
   - 65: {fileID: 1024407891}
   - 114: {fileID: 1024407890}
-  - 114: {fileID: 1024407889}
   m_Layer: 8
   m_Name: Down
   m_TagString: Untagged
@@ -3839,21 +3839,6 @@ MonoBehaviour:
   mFillDirection: 4
   mFillAmount: 1
   mInvert: 0
---- !u!114 &1024407889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1024407886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c4ff40739c7904ca26c14ffbdc4176, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 2098271176}
-  functionName: DownArrow
-  trigger: 3
-  includeChildren: 0
 --- !u!114 &1024407890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6210,7 +6195,6 @@ GameObject:
   - 114: {fileID: 1754018666}
   - 65: {fileID: 1754018669}
   - 114: {fileID: 1754018668}
-  - 114: {fileID: 1754018667}
   m_Layer: 8
   m_Name: Left
   m_TagString: Untagged
@@ -6250,21 +6234,6 @@ MonoBehaviour:
   mFillDirection: 4
   mFillAmount: 1
   mInvert: 0
---- !u!114 &1754018667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1754018664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c4ff40739c7904ca26c14ffbdc4176, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 2098271176}
-  functionName: LeftArrow
-  trigger: 3
-  includeChildren: 0
 --- !u!114 &1754018668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7836,6 +7805,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 1024598113}
+  upArrow: {fileID: 838127867}
+  downArrow: {fileID: 1024407886}
+  rightArrow: {fileID: 2133523497}
+  leftArrow: {fileID: 1754018664}
 --- !u!1 &2100314564
 GameObject:
   m_ObjectHideFlags: 0
@@ -7993,7 +7966,6 @@ GameObject:
   - 114: {fileID: 2133523499}
   - 65: {fileID: 2133523502}
   - 114: {fileID: 2133523501}
-  - 114: {fileID: 2133523500}
   m_Layer: 8
   m_Name: Right
   m_TagString: Untagged
@@ -8033,21 +8005,6 @@ MonoBehaviour:
   mFillDirection: 4
   mFillAmount: 1
   mInvert: 0
---- !u!114 &2133523500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2133523497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c4ff40739c7904ca26c14ffbdc4176, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 2098271176}
-  functionName: RightArrow
-  trigger: 3
-  includeChildren: 0
 --- !u!114 &2133523501
 MonoBehaviour:
   m_ObjectHideFlags: 0

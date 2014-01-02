@@ -5,6 +5,8 @@ using PlayerPrefs = PreviewLabs.PlayerPrefs;
 
 public class MasterManager : SingletonMonoBehaviour<MasterManager>
 {
+	public Camera nguiCamera;
+
 	protected override void Awake()
 	{
 		base.Awake();

@@ -16,6 +16,11 @@ public class Cube : SingletonMonoBehaviour<Cube>
 		get {return transform.localScale.x/2;}
 	}
 	private bool rotating = false;
+// NGUI
+	public GameObject upArrow;
+	public GameObject downArrow;
+	public GameObject rightArrow;
+	public GameObject leftArrow;
 
 	public IEnumerator OnShow()
 	{
@@ -62,8 +67,9 @@ public class Cube : SingletonMonoBehaviour<Cube>
   {
   	while (true) {
   		if (!rotating && game.isPlay) {
-  			KeyControl();
-  			TouchControl();
+  			// KeyControl();
+  			// TouchControl();
+  			Controller();
 			}
 			yield return false;
   	}
@@ -125,10 +131,28 @@ private const float VERTICAL_OFFSET = 80f;
 		}
 	}
 
-	void UpArrow() {RotateTo(Game.Direction.Up);}
-	void DownArrow() {RotateTo(Game.Direction.Down);}
-	void RightArrow() {RotateTo(Game.Direction.Right);}
-	void LeftArrow() {RotateTo(Game.Direction.Left);}
+	private void Controller()
+	{
+		if (isMove) {
+			Ray ray = MasterManager.instance.nguiCamera.ScreenPointToRay(Input.mousePosition);
+			RaycastHit[] _hits = Physics.RaycastAll(ray);
+			foreach (RaycastHit _hit in _hits) {
+				if (_hit.transform.gameObject == upArrow) {
+					RotateTo(Game.Direction.Up);
+					break;
+				} else if (_hit.transform.gameObject == downArrow) {
+					RotateTo(Game.Direction.Down);
+					break;
+				}  else if (_hit.transform.gameObject == rightArrow) {
+					RotateTo(Game.Direction.Right);
+					break;
+				}  else if (_hit.transform.gameObject == leftArrow) {
+					RotateTo(Game.Direction.Left);
+					break;
+				}
+			}
+		}
+	}
 
 //----------------
 // 回転・移動
@@ -158,9 +182,6 @@ private const float VERTICAL_OFFSET = 80f;
 
 	public void RotateTo(Game.Direction direction)
 	{
-		if (rotating || !game.isPlay) {
-			return;
-		}
 		if (!cellManager.IsAvailable(position, direction, NextMatColor(direction))) {
 			return;
 		}
