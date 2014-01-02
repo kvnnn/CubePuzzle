@@ -590,7 +590,7 @@ MonoBehaviour:
   tweenGroup: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 1
+  from: .5
   to: 0
 --- !u!114 &139251738
 MonoBehaviour:
@@ -5022,7 +5022,7 @@ MonoBehaviour:
   tweenGroup: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 1
+  from: .5
   to: 0
 --- !u!114 &1069149488
 MonoBehaviour:
@@ -5800,7 +5800,7 @@ MonoBehaviour:
   tweenGroup: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 1
+  from: .5
   to: 0
 --- !u!114 &1276973502
 MonoBehaviour:
@@ -6067,7 +6067,7 @@ MonoBehaviour:
   tweenGroup: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 1
+  from: .5
   to: 0
 --- !u!114 &1360745332
 MonoBehaviour:
