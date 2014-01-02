@@ -46,9 +46,6 @@ public class Game : SingletonMonoBehaviour<Game>
 		// hide gameObject
 		gameObject.SetActive(false);
 		nguiGame.gameObject.SetActive(false);
-		timeLabelsGo.gameObject.SetActive(false);
-		scoreLabelsGo.gameObject.SetActive(false);
-		countLabelsGo.gameObject.SetActive(false);
 		status = GameStatus.End;
 
 		// OnHide
@@ -70,14 +67,11 @@ public class Game : SingletonMonoBehaviour<Game>
 
 		// reset label
 		UpdateTimeLabel();
-		timeLabelsGo.gameObject.SetActive(true);
 
 		score = 0;
 		UpdateScoreLabel();
-		scoreLabelsGo.gameObject.SetActive(true);
 
 		UpdateCountLabel();
-		countLabelsGo.gameObject.SetActive(true);
 	}
 
 	public void EndGame()
@@ -290,14 +284,13 @@ private float lastTimeAddedTime = 0f;
 	private void CheckAddedTimeLabel()
 	{
 		if (currentTime - lastTimeAddedTime > 2f) {
-			addedTimeLabel.gameObject.SetActive(false);
+			addedTimeLabel.text = "";
 		}
 	}
 
 	private void UpdateAddedTimeLabel(float addTime)
 	{
 		addedTimeLabel.text = string.Format("+ {0}", addTime);
-		addedTimeLabel.gameObject.SetActive(true);
 		lastTimeAddedTime = currentTime;
 	}
 

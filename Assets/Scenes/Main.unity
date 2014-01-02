@@ -381,9 +381,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 5
-  mDepth: 0
+  mDepth: 4
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
-  mText: 000
+  mText: 0
   mMaxLineWidth: 70
   mMaxLineHeight: 0
   mEncoding: 1
@@ -760,7 +760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mDepth: 1
+  mDepth: 5
   mRect:
     serializedVersion: 2
     x: 0
@@ -830,7 +830,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: .125, g: .125, b: .125, a: .0196078438}
+  m_BackGroundColor: {r: .211764708, g: .211764708, b: .211764708, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1024,7 +1024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mColor: {r: .595588207, g: .595588207, b: .595588207, a: 1}
   mPivot: 1
-  mDepth: -5
+  mDepth: -6
   mAtlas: {fileID: 11400000, guid: 5a3aa506d3dcc4f3484153743e3fca8f, type: 2}
   mSpriteName: btn_red_pressed
   mFillCenter: 1
@@ -1362,7 +1362,7 @@ MonoBehaviour:
   mPivot: 5
   mDepth: 0
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
-  mText: 10
+  mText: 00
   mMaxLineWidth: 0
   mMaxLineHeight: 0
   mEncoding: 1
@@ -1420,6 +1420,54 @@ Prefab:
   m_RootGameObject: {fileID: 2098271176}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &827316240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 827316241}
+  - 114: {fileID: 827316242}
+  m_Layer: 8
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &827316241
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 827316240}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 60, y: 61, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2050723149}
+--- !u!114 &827316242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 827316240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mColor: {r: 0, g: .784313738, b: 1, a: 1}
+  mPivot: 4
+  mDepth: 2
+  mAtlas: {fileID: 11400000, guid: 5a3aa506d3dcc4f3484153743e3fca8f, type: 2}
+  mSpriteName: btn_pause
+  mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &851946057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1502,9 +1550,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 5
-  mDepth: 0
+  mDepth: 9
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
-  mText: 000
+  mText: 0
   mMaxLineWidth: 70
   mMaxLineHeight: 0
   mEncoding: 1
@@ -1577,7 +1625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &913876461
 Transform:
   m_ObjectHideFlags: 0
@@ -1604,7 +1652,7 @@ MonoBehaviour:
   mPivot: 5
   mDepth: 0
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
-  mText: + 10
+  mText: 
   mMaxLineWidth: 0
   mMaxLineHeight: 0
   mEncoding: 1
@@ -1779,7 +1827,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1041166334
 Transform:
   m_ObjectHideFlags: 0
@@ -2321,6 +2369,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2050723149}
   - {fileID: 1041166334}
   - {fileID: 1767321750}
   - {fileID: 1688593584}
@@ -2656,7 +2705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1688593584
 Transform:
   m_ObjectHideFlags: 0
@@ -2797,7 +2846,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: .125, g: .125, b: .125, a: .0196078438}
+  m_BackGroundColor: {r: .213235319, g: .213235319, b: .213235319, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2868,9 +2917,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 5
-  mDepth: 0
+  mDepth: 8
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
-  mText: 000
+  mText: 0
   mMaxLineWidth: 70
   mMaxLineHeight: 0
   mEncoding: 1
@@ -2898,7 +2947,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1767321750
 Transform:
   m_ObjectHideFlags: 0
@@ -3009,7 +3058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mDepth: 1
+  mDepth: 6
   mRect:
     serializedVersion: 2
     x: 0
@@ -3050,7 +3099,7 @@ MonoBehaviour:
   mPivot: 5
   mDepth: 0
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
-  mText: 10 COMBO
+  mText: 
   mMaxLineWidth: 0
   mMaxLineHeight: 0
   mEncoding: 1
@@ -3350,6 +3399,95 @@ MeshFilter:
   m_PrefabInternal: {fileID: 735956131}
   m_GameObject: {fileID: 2022745959}
   m_Mesh: {fileID: 4300000, guid: 153e8cba34dd940aaa5b6723745b2328, type: 3}
+--- !u!1 &2050723148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2050723149}
+  - 65: {fileID: 2050723153}
+  - 114: {fileID: 2050723152}
+  - 114: {fileID: 2050723151}
+  - 114: {fileID: 2050723150}
+  m_Layer: 8
+  m_Name: PauseButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2050723149
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2050723148}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 490, y: 320, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 827316241}
+  m_Father: {fileID: 1456762276}
+--- !u!114 &2050723150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2050723148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c041f61e4a9fbf4e830210f5d933ece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 0}
+  hover: {x: 1.04999995, y: 1.04999995, z: 1.04999995}
+  pressed: {x: .975000024, y: .975000024, z: .975000024}
+  duration: .200000003
+--- !u!114 &2050723151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2050723148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c4ff40739c7904ca26c14ffbdc4176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1024598111}
+  functionName: PauseClick
+  trigger: 0
+  includeChildren: 0
+--- !u!114 &2050723152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2050723148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4271d0dec29cc9845a75627e88f762af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 827316242}
+  normalSprite: btn_pause
+  hoverSprite: btn_pause
+  pressedSprite: btn_pause
+  disabledSprite: btn_pause
+--- !u!65 &2050723153
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2050723148}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 60, y: 61, z: 0}
+  m_Center: {x: 0, y: 0, z: -1}
 --- !u!1 &2072716095
 GameObject:
   m_ObjectHideFlags: 0
@@ -3572,7 +3710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mDepth: 1
+  mDepth: 7
   mRect:
     serializedVersion: 2
     x: 0
