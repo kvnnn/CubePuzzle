@@ -309,7 +309,7 @@ Transform:
   m_GameObject: {fileID: 73209385}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 1}
+  m_LocalScale: {x: 35, y: 35, z: 1}
   m_Children: []
   m_Father: {fileID: 1767321750}
 --- !u!114 &73209387
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 3
-  mDepth: 0
+  mDepth: 5
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
   mText: Score
   mMaxLineWidth: 0
@@ -1549,8 +1549,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 701298983}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -130, y: 0, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 1}
+  m_LocalPosition: {x: -140, y: 0, z: 0}
+  m_LocalScale: {x: 35, y: 35, z: 1}
   m_Children: []
   m_Father: {fileID: 1041166334}
 --- !u!114 &701298985
@@ -1566,7 +1566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 3
-  mDepth: 0
+  mDepth: 7
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
   mText: Time
   mMaxLineWidth: 0
@@ -1679,7 +1679,7 @@ Transform:
   m_GameObject: {fileID: 734139534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.5, y: 0, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 1}
+  m_LocalScale: {x: 35, y: 35, z: 1}
   m_Children: []
   m_Father: {fileID: 1041166334}
 --- !u!114 &734139536
@@ -1695,7 +1695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 5
-  mDepth: 0
+  mDepth: 6
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
   mText: 00
   mMaxLineWidth: 0
@@ -2313,7 +2313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 5
-  mDepth: 0
+  mDepth: 9
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
   mText: 
   mMaxLineWidth: 0
@@ -2566,7 +2566,7 @@ MonoBehaviour:
   minutesLabel: {fileID: 734139536}
   secondLabel: {fileID: 1440263169}
   separatorLabel: {fileID: 1165070904}
-  addedTimeLabel: {fileID: 701298985}
+  addedTimeLabel: {fileID: 913876462}
   scoreLabelsGo: {fileID: 1767321749}
   scoreLabel: {fileID: 1823572075}
   comboLabel: {fileID: 1876077546}
@@ -2600,7 +2600,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1041166333}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 95, y: 325, z: 0}
+  m_LocalPosition: {x: 55, y: 330, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 913876461}
@@ -2690,7 +2690,7 @@ Transform:
   m_GameObject: {fileID: 1165070902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 1}
+  m_LocalScale: {x: 25, y: 35, z: 1}
   m_Children: []
   m_Father: {fileID: 1041166334}
 --- !u!114 &1165070904
@@ -2706,7 +2706,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mDepth: 0
+  mDepth: 7
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
   mText: ':'
   mMaxLineWidth: 0
@@ -3391,7 +3391,7 @@ Transform:
   m_GameObject: {fileID: 1440263167}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.5, y: 0, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 1}
+  m_LocalScale: {x: 35, y: 35, z: 1}
   m_Children: []
   m_Father: {fileID: 1041166334}
 --- !u!114 &1440263169
@@ -3407,7 +3407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 3
-  mDepth: 0
+  mDepth: 6
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
   mText: 00
   mMaxLineWidth: 0
@@ -4357,8 +4357,8 @@ MonoBehaviour:
   coloredCountLabel: {fileID: 1174503289}
   goalCountLabel: {fileID: 1172628768}
   bombCountLabel: {fileID: 1965972000}
-  maxComboLabel: {fileID: 0}
-  scoreLabel: {fileID: 0}
+  maxComboLabel: {fileID: 1832377924}
+  scoreLabel: {fileID: 1440531579}
 --- !u!1 &1714612180
 GameObject:
   m_ObjectHideFlags: 0
@@ -4740,7 +4740,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1767321749}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 200, y: 325, z: 0}
+  m_LocalPosition: {x: 160, y: 330, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1823572074}
@@ -4770,8 +4770,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1823572073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 250, y: 0, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 1}
+  m_LocalPosition: {x: 290, y: 0, z: 0}
+  m_LocalScale: {x: 40, y: 40, z: 1}
   m_Children: []
   m_Father: {fileID: 1767321750}
 --- !u!114 &1823572075
@@ -4787,10 +4787,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 5
-  mDepth: 0
+  mDepth: 6
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
   mText: 0
-  mMaxLineWidth: 170
+  mMaxLineWidth: 190
   mMaxLineHeight: 0
   mEncoding: 1
   mMaxLineCount: 1
@@ -4813,7 +4813,7 @@ GameObject:
   - 4: {fileID: 1832377923}
   - 114: {fileID: 1832377924}
   m_Layer: 8
-  m_Name: ScoreLabel
+  m_Name: MaxComboLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4938,7 +4938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 5
-  mDepth: 0
+  mDepth: 6
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
   mText: 
   mMaxLineWidth: 0
