@@ -25,12 +25,16 @@ public class Ranking : SingletonMonoBehaviour<Ranking>
 	{
 		baseGo.gameObject.SetActive(true);
 		gameObject.SetActive(true);
+
+		Top.instance.mainGo.SetActive(false);
 	}
 
 	public void Hide()
 	{
 		gameObject.SetActive(false);
 		baseGo.gameObject.SetActive(false);
+
+		Top.instance.mainGo.SetActive(true);
 	}
 
 	public void SetScore(bool isEasy, int score, int maxCombo)

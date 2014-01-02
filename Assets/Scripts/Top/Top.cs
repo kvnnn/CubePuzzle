@@ -9,9 +9,11 @@ public class Top : SingletonMonoBehaviour<Top>
 
 // NGUI
 	public GameObject nguiTop;
+	public GameObject mainGo;
 
 	public void Show()
 	{
+		mainGo.SetActive(true);
 		gameObject.SetActive(true);
 		nguiTop.gameObject.SetActive(true);
 
