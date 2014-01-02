@@ -28,6 +28,7 @@ public class Game : SingletonMonoBehaviour<Game>
 
 	public IEnumerator Show(bool isEasyMode)
 	{
+		Time.timeScale = 1f;
 		this.isEasyMode = isEasyMode;
 
 		// show main gameObject
@@ -88,12 +89,14 @@ public class Game : SingletonMonoBehaviour<Game>
 
 	public void PauseGame()
 	{
+		if (!isPlay) {return;}
 		status = GameStatus.Pause;
 		Time.timeScale = 0f;
 	}
 
 	public void ResumeGame()
 	{
+		if (!isPause) {return;}
 		Time.timeScale = 1f;
 		status = GameStatus.Play;
 	}

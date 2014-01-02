@@ -20,6 +20,7 @@ public class BombEffect : MonoInheritance
 		}
 
 		TweenPosition _tween = TweenPosition.Begin(gameObject, 0.2f, transform.localPosition + new Vector3(0f, 0.5f, 0f));
+		_tween.ignoreTimeScale = false;
 		_tween.onFinished = (_t)=>{
 			TweenTo _tweenTo = TweenTo.UpLeft;
 			bool _setCallback = true;
@@ -65,7 +66,7 @@ public class BombEffect : MonoInheritance
 			break;
 		}
 		TweenPosition _tween = TweenPosition.Begin(cube, 0.2f, _pos);
-
+		_tween.ignoreTimeScale = false;
 		if (setCallback) {
 			_tween.onFinished = (_t)=>{
 				if (gameObject != null) {

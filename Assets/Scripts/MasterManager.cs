@@ -7,6 +7,7 @@ public class MasterManager : SingletonMonoBehaviour<MasterManager>
 	protected override void Awake()
 	{
 		base.Awake();
+		Time.timeScale = 1f;
 	}
 
 	void Start()

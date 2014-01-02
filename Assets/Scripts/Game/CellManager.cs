@@ -135,7 +135,7 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 
 				cells[_cell.position] = _cell;
 
-				TweenPosition.Begin(_object, 0.25f, new Vector3(_scale.x * x, 0f, _scale.z * z));
+				TweenPosition _tweenPos = TweenPosition.Begin(_object, 0.25f, new Vector3(_scale.x * x, 0f, _scale.z * z));
 				yield return StartCoroutine(WaitForSecondsIgnoreTimeScale(0.025f));
 			}
 		}
