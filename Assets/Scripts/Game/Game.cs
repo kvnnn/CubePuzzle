@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 public class Game : SingletonMonoBehaviour<Game>
 {
@@ -328,7 +327,8 @@ private float lastTimeAddedTime = 0f;
 		if (combo > 1) {
 			if (combo >= 10) {
 				int _index = (combo/10)%hardMaterials.Values.Count;
-				Material _mat = hardMaterials.Values.ToArray()[_index];
+				List<Material> _values = new List<Material>(hardMaterials.Values);
+				Material _mat = _values[_index];
 				comboLabel.color = _mat.color;
 			} else {
 				comboLabel.color = Color.white;
@@ -423,7 +423,10 @@ private float lastTimeAddedTime = 0f;
 		}
 	}
 	private Material randomMaterial {
-		get {return materials.Values.ToArray()[Random.Range(0, materials.Count)];}
+		get {
+			List<Material> _values = new List<Material>(materials.Values);
+			return _values[Random.Range(0, materials.Count)];
+		}
 	}
 	public Material upMaterial {
 		get {

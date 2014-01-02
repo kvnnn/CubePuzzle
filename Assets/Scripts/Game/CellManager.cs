@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 public class CellManager : SingletonMonoBehaviour<CellManager>
 {
@@ -17,7 +17,8 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 	public IEnumerator OnShow()
 	{
 		Cell.ResetCount();
-		yield return StartCoroutine(CreateStage(stages.Keys.ToArray()[Random.Range(0, stages.Count)]));
+		List<int> _keys = new List<int>(stages.Keys);
+		yield return StartCoroutine(CreateStage(_keys[UnityEngine.Random.Range(0, _keys.Count)]));
 	}
 
 	public void OnHide()
@@ -74,7 +75,7 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 		if (_pickabelCells.Count <= 0) {
 			return null;
 		} else {
-			return _pickabelCells[Random.Range(0, _pickabelCells.Count)];
+			return _pickabelCells[UnityEngine.Random.Range(0, _pickabelCells.Count)];
 		}
 	}
 
@@ -122,7 +123,7 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 		Vector3 _scale = cellPrefab.transform.localScale;
 		for (int x = 0; x < maxSize.x; x++) {
 			for (int z = 0; z < maxSize.y; z++) {
-				if (_stageData.Contains(new IntVector2(x, z))) {continue;}
+				if (Array.IndexOf(_stageData, new IntVector2(x, z)) > -1) {continue;}
 
 				GameObject _object = (GameObject)Instantiate(cellPrefab, Vector3.zero, new Quaternion());
 				_object.transform.parent = transform;
