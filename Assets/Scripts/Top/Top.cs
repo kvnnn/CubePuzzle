@@ -43,7 +43,7 @@ public class Top : SingletonMonoBehaviour<Top>
 
 	void SettingClick()
 	{
-
+		Settings.instance.Show();
 	}
 
 	void RankingClick()

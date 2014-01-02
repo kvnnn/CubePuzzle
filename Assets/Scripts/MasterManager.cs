@@ -22,6 +22,7 @@ public class MasterManager : SingletonMonoBehaviour<MasterManager>
 		Top.instance.Show();
 		Game.instance.Hide();
 		Ranking.instance.Hide();
+		Settings.instance.Hide();
 	}
 
 	void OnApplicationQuit()

@@ -17,6 +17,7 @@ public class Cube : SingletonMonoBehaviour<Cube>
 	}
 	private bool rotating = false;
 // NGUI
+	public GameObject padGo;
 	public GameObject upArrow;
 	public GameObject downArrow;
 	public GameObject rightArrow;
@@ -24,6 +25,12 @@ public class Cube : SingletonMonoBehaviour<Cube>
 
 	public IEnumerator OnShow()
 	{
+		if (Settings.instance.isPad) {
+			padGo.SetActive(true);
+		} else {
+			padGo.SetActive(false);
+		}
+
 		// Set To Start Position
 		Cell _startCell = cellManager.startCell;
 		Vector3 _startPos = _startCell.transform.position;
@@ -67,9 +74,17 @@ public class Cube : SingletonMonoBehaviour<Cube>
   {
   	while (true) {
   		if (!rotating && game.isPlay) {
-  			// KeyControl();
-  			// TouchControl();
-  			Controller();
+  			KeyControl();
+				if (Settings.instance.isPad) {
+					// Pad
+					Controller();
+				} else if (Settings.instance.isSwipe) {
+					// Swipe
+					TouchControl();
+				} else if (Settings.instance.isTilt) {
+					// Tilt
+
+				}
 			}
 			yield return false;
   	}
