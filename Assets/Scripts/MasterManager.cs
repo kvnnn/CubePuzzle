@@ -8,6 +8,10 @@ public class MasterManager : SingletonMonoBehaviour<MasterManager>
 	protected override void Awake()
 	{
 		base.Awake();
+
+		// Debug
+		// PlayerPrefs.DeleteAll();
+
 		Time.timeScale = 1f;
 	}
 
