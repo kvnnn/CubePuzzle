@@ -117,7 +117,7 @@ public class Game : SingletonMonoBehaviour<Game>
 // Manage Game
 //----------------
 private float currentTime = 0f;
-private const float END_TIME = 180f;
+private const float END_TIME = 10f;
 	private void Update()
 	{
 		if (isPrepareEnd && cellManager.IsStable()) {

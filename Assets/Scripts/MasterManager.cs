@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using PlayerPrefs = PreviewLabs.PlayerPrefs;
 
 public class MasterManager : SingletonMonoBehaviour<MasterManager>
 {
@@ -14,5 +15,10 @@ public class MasterManager : SingletonMonoBehaviour<MasterManager>
 	{
 		Top.instance.Show();
 		Game.instance.Hide();
+	}
+
+	void OnApplicationQuit()
+	{
+		PlayerPrefs.Flush();
 	}
 }
