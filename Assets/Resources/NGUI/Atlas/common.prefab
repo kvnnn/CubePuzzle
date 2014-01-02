@@ -43,14 +43,14 @@ MonoBehaviour:
   - name: btn_gray_pressed
     outer:
       serializedVersion: 2
-      x: 144
-      y: 45
+      x: 0
+      y: 225
       width: 80
       height: 27
     inner:
       serializedVersion: 2
-      x: 174
-      y: 55
+      x: 30
+      y: 235
       width: 20
       height: 7
     rotated: 0
@@ -61,14 +61,14 @@ MonoBehaviour:
   - name: btn_white_normal
     outer:
       serializedVersion: 2
-      x: 63
-      y: 67
+      x: 81
+      y: 253
       width: 80
       height: 30
     inner:
       serializedVersion: 2
-      x: 93
-      y: 77
+      x: 111
+      y: 263
       width: 20
       height: 5
     rotated: 0
@@ -79,14 +79,14 @@ MonoBehaviour:
   - name: btn_black_pressed
     outer:
       serializedVersion: 2
-      x: 144
-      y: 101
+      x: 162
+      y: 225
       width: 80
       height: 27
     inner:
       serializedVersion: 2
-      x: 174
-      y: 111
+      x: 192
+      y: 235
       width: 20
       height: 7
     rotated: 0
@@ -97,14 +97,14 @@ MonoBehaviour:
   - name: btn_black_normal
     outer:
       serializedVersion: 2
-      x: 63
-      y: 129
+      x: 0
+      y: 253
       width: 80
       height: 30
     inner:
       serializedVersion: 2
-      x: 93
-      y: 139
+      x: 30
+      y: 263
       width: 20
       height: 5
     rotated: 0
@@ -115,14 +115,14 @@ MonoBehaviour:
   - name: btn_green_pressed
     outer:
       serializedVersion: 2
-      x: 63
-      y: 11
+      x: 81
+      y: 225
       width: 80
       height: 27
     inner:
       serializedVersion: 2
-      x: 93
-      y: 21
+      x: 111
+      y: 235
       width: 20
       height: 7
     rotated: 0
@@ -133,14 +133,14 @@ MonoBehaviour:
   - name: btn_white_pressed
     outer:
       serializedVersion: 2
-      x: 63
-      y: 39
+      x: 162
+      y: 197
       width: 80
       height: 27
     inner:
       serializedVersion: 2
-      x: 93
-      y: 49
+      x: 192
+      y: 207
       width: 20
       height: 7
     rotated: 0
@@ -151,14 +151,14 @@ MonoBehaviour:
   - name: btn_red_pressed
     outer:
       serializedVersion: 2
-      x: 144
-      y: 17
+      x: 81
+      y: 197
       width: 80
       height: 27
     inner:
       serializedVersion: 2
-      x: 174
-      y: 27
+      x: 111
+      y: 207
       width: 20
       height: 7
     rotated: 0
@@ -169,14 +169,14 @@ MonoBehaviour:
   - name: btn_green_normal
     outer:
       serializedVersion: 2
-      x: 63
-      y: 98
+      x: 45
+      y: 311
       width: 80
       height: 30
     inner:
       serializedVersion: 2
-      x: 93
-      y: 108
+      x: 75
+      y: 321
       width: 20
       height: 5
     rotated: 0
@@ -187,14 +187,14 @@ MonoBehaviour:
   - name: btn_gray_normal
     outer:
       serializedVersion: 2
-      x: 63
-      y: 160
+      x: 162
+      y: 253
       width: 80
       height: 30
     inner:
       serializedVersion: 2
-      x: 93
-      y: 170
+      x: 192
+      y: 263
       width: 20
       height: 5
     rotated: 0
@@ -205,14 +205,14 @@ MonoBehaviour:
   - name: btn_blue_pressed
     outer:
       serializedVersion: 2
-      x: 144
-      y: 73
+      x: 0
+      y: 197
       width: 80
       height: 27
     inner:
       serializedVersion: 2
-      x: 174
-      y: 83
+      x: 30
+      y: 207
       width: 20
       height: 7
     rotated: 0
@@ -223,14 +223,14 @@ MonoBehaviour:
   - name: btn_blue_normal
     outer:
       serializedVersion: 2
-      x: 144
-      y: 160
+      x: 126
+      y: 311
       width: 80
       height: 30
     inner:
       serializedVersion: 2
-      x: 174
-      y: 170
+      x: 156
+      y: 321
       width: 20
       height: 5
     rotated: 0
@@ -241,14 +241,14 @@ MonoBehaviour:
   - name: btn_red_normal
     outer:
       serializedVersion: 2
-      x: 144
-      y: 129
+      x: 129
+      y: 353
       width: 80
       height: 30
     inner:
       serializedVersion: 2
-      x: 174
-      y: 139
+      x: 159
+      y: 363
       width: 20
       height: 5
     rotated: 0
@@ -259,14 +259,14 @@ MonoBehaviour:
   - name: btn_pause
     outer:
       serializedVersion: 2
-      x: 0
-      y: 3
+      x: 126
+      y: 385
       width: 60
       height: 61
     inner:
       serializedVersion: 2
-      x: 0
-      y: 3
+      x: 126
+      y: 385
       width: 60
       height: 61
     rotated: 0
@@ -278,13 +278,13 @@ MonoBehaviour:
     outer:
       serializedVersion: 2
       x: 132
-      y: 192
+      y: 448
       width: 64
       height: 64
     inner:
       serializedVersion: 2
       x: 132
-      y: 192
+      y: 448
       width: 64
       height: 64
     rotated: 0
@@ -296,13 +296,13 @@ MonoBehaviour:
     outer:
       serializedVersion: 2
       x: 197
-      y: 198
+      y: 454
       width: 58
       height: 58
     inner:
       serializedVersion: 2
       x: 197
-      y: 198
+      y: 454
       width: 58
       height: 58
     rotated: 0
@@ -313,14 +313,14 @@ MonoBehaviour:
   - name: btn_restart
     outer:
       serializedVersion: 2
-      x: 0
-      y: 191
+      x: 66
+      y: 447
       width: 65
       height: 65
     inner:
       serializedVersion: 2
-      x: 0
-      y: 191
+      x: 66
+      y: 447
       width: 65
       height: 65
     rotated: 0
@@ -331,14 +331,14 @@ MonoBehaviour:
   - name: btn_play
     outer:
       serializedVersion: 2
-      x: 66
-      y: 191
+      x: 0
+      y: 447
       width: 65
       height: 65
     inner:
       serializedVersion: 2
-      x: 66
-      y: 191
+      x: 0
+      y: 447
       width: 65
       height: 65
     rotated: 0
@@ -350,13 +350,13 @@ MonoBehaviour:
     outer:
       serializedVersion: 2
       x: 0
-      y: 65
+      y: 384
       width: 62
       height: 62
     inner:
       serializedVersion: 2
       x: 0
-      y: 65
+      y: 384
       width: 62
       height: 62
     rotated: 0
@@ -367,14 +367,14 @@ MonoBehaviour:
   - name: btn_sound_on
     outer:
       serializedVersion: 2
-      x: 0
-      y: 128
+      x: 63
+      y: 384
       width: 62
       height: 62
     inner:
       serializedVersion: 2
-      x: 0
-      y: 128
+      x: 63
+      y: 384
       width: 62
       height: 62
     rotated: 0
@@ -382,6 +382,78 @@ MonoBehaviour:
     paddingRight: .0483870953
     paddingTop: .0322580636
     paddingBottom: .0645161271
+  - name: arrow_right
+    outer:
+      serializedVersion: 2
+      x: 65
+      y: 342
+      width: 63
+      height: 41
+    inner:
+      serializedVersion: 2
+      x: 65
+      y: 342
+      width: 63
+      height: 41
+    rotated: 0
+    paddingLeft: .0476190485
+    paddingRight: .0317460336
+    paddingTop: .292682916
+    paddingBottom: .365853667
+  - name: arrow_down
+    outer:
+      serializedVersion: 2
+      x: 187
+      y: 384
+      width: 48
+      height: 62
+    inner:
+      serializedVersion: 2
+      x: 187
+      y: 384
+      width: 48
+      height: 62
+    rotated: 0
+    paddingLeft: .1875
+    paddingRight: .229166672
+    paddingTop: .0483870953
+    paddingBottom: .0483870953
+  - name: arrow_left
+    outer:
+      serializedVersion: 2
+      x: 0
+      y: 342
+      width: 64
+      height: 41
+    inner:
+      serializedVersion: 2
+      x: 0
+      y: 342
+      width: 64
+      height: 41
+    rotated: 0
+    paddingLeft: .03125
+    paddingRight: .03125
+    paddingTop: .317073166
+    paddingBottom: .341463417
+  - name: arrow_up
+    outer:
+      serializedVersion: 2
+      x: 0
+      y: 284
+      width: 44
+      height: 57
+    inner:
+      serializedVersion: 2
+      x: 0
+      y: 284
+      width: 44
+      height: 57
+    rotated: 0
+    paddingLeft: .295454532
+    paddingRight: .25
+    paddingTop: .105263159
+    paddingBottom: .0877192989
   mCoordinates: 0
   mPixelSize: 1
   mReplacement: {fileID: 0}
