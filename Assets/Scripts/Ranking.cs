@@ -10,12 +10,24 @@ public class Ranking : SingletonMonoBehaviour<Ranking>
 // RankingData
 	public RankingData easy;
 	public RankingData hard;
+// Parameter
+	private bool isEasy = true;
 // NGUI
 	public GameObject baseGo;
+	public GameObject easyRankingGo;
+	public UILabel easyScoreLabels;
+	public UILabel easyComboLabels;
+	public UILabel easyDateLabels;
+	public GameObject hardRankingGo;
+	public UILabel hardScoreLabels;
+	public UILabel hardComboLabels;
+	public UILabel hardDateLabels;
+	public UISprite difficultyButtonSprite;
 
 	protected override void Awake()
 	{
 		base.Awake();
+		isEasy = true;
 		baseGo.gameObject.SetActive(false);
 		easy = new RankingData("easy_rankings");
 		hard = new RankingData("hard_rankings");
@@ -27,6 +39,9 @@ public class Ranking : SingletonMonoBehaviour<Ranking>
 		gameObject.SetActive(true);
 
 		Top.instance.mainGo.SetActive(false);
+
+		UpdateEasyRanking();
+		UpdateHardRanking();
 	}
 
 	public void Hide()
@@ -50,11 +65,66 @@ public class Ranking : SingletonMonoBehaviour<Ranking>
 	}
 
 //----------------
+// NGUI
+//----------------
+	void UpdateEasyRanking()
+	{
+		string _scores = "";
+		string _combos = "";
+		string _dates = "";
+		foreach (RankingData.ScoreData _data in easy.scores) {
+			_scores += _data.scoreString;
+			_scores += "\n";
+			_combos += _data.comboString;
+			_combos += "\n";
+			_dates += _data.date + " - " + _data.time;
+			_dates += "\n";
+		}
+		easyScoreLabels.text = _scores;
+		easyComboLabels.text = _combos;
+		easyDateLabels.text = _dates;
+	}
+
+	void UpdateHardRanking()
+	{
+		string _scores = "";
+		string _combos = "";
+		string _dates = "";
+		foreach (RankingData.ScoreData _data in hard.scores) {
+			_scores += _data.scoreString;
+			_scores += "\n";
+			_combos += _data.comboString;
+			_combos += "\n";
+			_dates += _data.date + " - " + _data.time;
+			_dates += "\n";
+		}
+		hardScoreLabels.text = _scores;
+		hardComboLabels.text = _combos;
+		hardDateLabels.text = _dates;
+	}
+
+//----------------
 // Touch Event
 //----------------
 	void CloseClick()
 	{
 		Hide();
+	}
+
+	void DifficultyChangeClick()
+	{
+		Color _buttonColorTo;
+		if (isEasy) {
+			TweenAlpha _easyTween = TweenAlpha.Begin(easyRankingGo, 0.5f, 0f);
+			TweenAlpha _hardTween = TweenAlpha.Begin(hardRankingGo, 0.5f, 1f);
+			_buttonColorTo = new Color(0f, 200f/255f, 1f, 1f);
+		} else {
+			TweenAlpha _easyTween = TweenAlpha.Begin(easyRankingGo, 0.5f, 1f);
+			TweenAlpha _hardTween = TweenAlpha.Begin(hardRankingGo, 0.5f, 0f);
+			_buttonColorTo = new Color(1f, 0f, 200/255f, 1f);
+		}
+		TweenColor.Begin(difficultyButtonSprite.gameObject, 0.5f, _buttonColorTo);
+		isEasy = !isEasy;
 	}
 
 //----------------
@@ -132,8 +202,11 @@ public class Ranking : SingletonMonoBehaviour<Ranking>
 			{
 				this.score = score;
 				this.combo = combo;
-				date = string.Format("{0}", DateTime.Now.ToShortDateString());
-				time = string.Format("{0}", DateTime.Now.ToShortTimeString());
+				DateTime _date = DateTime.Now;
+				System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-US");
+
+				date = _date.ToString("MMM dd", ci);;
+				time = _date.ToString("HH:mm", ci);;
 			}
 			public ScoreData(string str)
 			{
