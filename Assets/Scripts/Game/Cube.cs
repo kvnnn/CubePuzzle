@@ -77,13 +77,13 @@ public class Cube : SingletonMonoBehaviour<Cube>
   			KeyControl();
 				if (Settings.instance.isPad) {
 					// Pad
-					Controller();
+					PadController();
 				} else if (Settings.instance.isSwipe) {
 					// Swipe
 					TouchControl();
 				} else if (Settings.instance.isTilt) {
 					// Tilt
-
+					TileController();
 				}
 			}
 			yield return false;
@@ -146,7 +146,7 @@ private const float VERTICAL_OFFSET = 80f;
 		}
 	}
 
-	private void Controller()
+	private void PadController()
 	{
 		if (isMove) {
 			Ray ray = MasterManager.instance.nguiCamera.ScreenPointToRay(Input.mousePosition);
@@ -167,6 +167,15 @@ private const float VERTICAL_OFFSET = 80f;
 				}
 			}
 		}
+	}
+
+	private void TileController()
+	{
+		Vector3 dir = Vector3.zero;
+		dir.x = -Input.acceleration.y;
+		dir.z = Input.acceleration.x;
+
+		UnityEngine.Debug.Log(dir);
 	}
 
 //----------------
