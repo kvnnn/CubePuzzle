@@ -105,8 +105,8 @@ public class Cube : SingletonMonoBehaviour<Cube>
 
 private Game.Direction? lastDirection;
 private Vector3 lastTouchedPos;
-private const float HORIZONTAL_OFFSET = 80f;
-private const float VERTICAL_OFFSET = 80f;
+private const float HORIZONTAL_OFFSET = 100f;
+private const float VERTICAL_OFFSET = 100f;
 	private void TouchControl()
 	{
 		if (isMove) {
@@ -178,15 +178,15 @@ private const float VERTICAL_OFFSET = 80f;
 		float _x = dir.x;
 		float _y = dir.y;
 		if (Mathf.Abs(_x) > Mathf.Abs(_y)) {
-			if (_x > 0.1) {
+			if (_x > 0.2) {
 				RotateTo(Game.Direction.Right);
-			} else if (_x < -0.1) {
+			} else if (_x < -0.2) {
 				RotateTo(Game.Direction.Left);
 			}
 		} else {
-			if (_y > 0.1) {
+			if (_y > 0.2) {
 				RotateTo(Game.Direction.Up);
-			} else if (_y < -0.1) {
+			} else if (_y < -0.2) {
 				RotateTo(Game.Direction.Down);
 			}
 		}

@@ -56,7 +56,7 @@ public class Settings : SingletonMonoBehaviour<Settings>
 			List<float> _data = PlayerPrefs.GetArray<float>(KEY_TILT_POS);
 			tiltBasePosition = new Vector3(_data[0], _data[1], _data[2]);
 		} else {
-			tiltBasePosition = new Vector3(0f, 0.5f, 0f);
+			ResetClick();
 		}
 	}
 
