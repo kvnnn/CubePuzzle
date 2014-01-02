@@ -56,7 +56,7 @@ public class Settings : SingletonMonoBehaviour<Settings>
 			List<float> _data = PlayerPrefs.GetArray<float>(KEY_TILT_POS);
 			tiltBasePosition = new Vector3(_data[0], _data[1], _data[2]);
 		} else {
-			tiltBasePosition = new Vector3(0.5f, 0.5f, 0.5f);
+			tiltBasePosition = new Vector3(0f, 0.5f, 0f);
 		}
 	}
 
@@ -80,10 +80,7 @@ public class Settings : SingletonMonoBehaviour<Settings>
 	void FixedUpdate()
 	{
 		if (isTilt) {
-			Vector3 dir = Vector3.zero;
-			dir.x = -Input.acceleration.y;
-			dir.z = Input.acceleration.x;
-			UnityEngine.Debug.Log(dir);
+			UpdateTestArrow();
 		}
 	}
 
@@ -180,12 +177,45 @@ private const string SOUND_OFF_SPRITE = "btn_sound_off";
 
 	void ResetClick()
 	{
-
+		tiltBasePosition = new Vector3(Input.acceleration.x, Input.acceleration.y, 0f);
+		PlayerPrefs.SetArray<float>(KEY_TILT_POS, new List<float>(){tiltBasePosition.x,tiltBasePosition.y,tiltBasePosition.z});
 	}
 
+private string UP_ARROW = "arrow_up";
+private string DOWN_ARROW = "arrow_down";
+private string LEFT_ARROW = "arrow_left";
+private string RIGHT_ARROW = "arrow_right";
 	private void UpdateTestArrow()
 	{
+		Vector3 dir = Vector3.zero;
+		dir.x = Input.acceleration.x;
+		dir.y = Input.acceleration.y;
+		dir = dir - tiltBasePosition;
+UnityEngine.Debug.LogError("DIR : " + dir);
+		float _x = dir.x;
+		float _y = dir.y;
 
+		if (Mathf.Abs(_x) > Mathf.Abs(_y)) {
+			if (_x > 0.1) {
+				arrowSprite.enabled = true;
+				arrowSprite.spriteName = RIGHT_ARROW;
+			} else if (_x < -0.1) {
+				arrowSprite.enabled = true;
+				arrowSprite.spriteName = LEFT_ARROW;
+			} else {
+				arrowSprite.enabled = false;
+			}
+		} else {
+			if (_y > 0.1) {
+				arrowSprite.enabled = true;
+				arrowSprite.spriteName = UP_ARROW;
+			} else if (_y < -0.1) {
+				arrowSprite.enabled = true;
+				arrowSprite.spriteName = DOWN_ARROW;
+			} else {
+				arrowSprite.enabled = false;
+			}
+		}
 	}
 
 //----------------

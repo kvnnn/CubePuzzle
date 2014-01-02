@@ -172,8 +172,8 @@ private const float VERTICAL_OFFSET = 80f;
 	private void TileController()
 	{
 		Vector3 dir = Vector3.zero;
-		dir.x = -Input.acceleration.y;
-		dir.z = Input.acceleration.x;
+		dir.x = Input.acceleration.x;
+		dir.y = Input.acceleration.y;
 
 		UnityEngine.Debug.Log(dir);
 	}
