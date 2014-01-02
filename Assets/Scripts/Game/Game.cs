@@ -19,13 +19,14 @@ public class Game : SingletonMonoBehaviour<Game>
 	public UILabel scoreLabel;
 	public UILabel comboLabel;
 	public GameObject countLabelsGo;
-	public UILabel normalCountLabel;
+	public UILabel coloredCountLabel;
 	public UILabel goalCountLabel;
 	public UILabel bombCountLabel;
 	public GameObject pauseWindowGo;
+	public Result resultWindow;
 // Parameter
 	public GameStatus status = GameStatus.Prepare;
-	private bool isEasyMode = false;
+	public bool isEasyMode = false;
 
 	public IEnumerator Show(bool isEasyMode)
 	{
@@ -35,13 +36,14 @@ public class Game : SingletonMonoBehaviour<Game>
 		// show gameObject
 		gameObject.SetActive(true);
 		pauseWindowGo.gameObject.SetActive(false);
+		resultWindow.gameObject.SetActive(false);
 		nguiGame.gameObject.SetActive(true);
 		status = GameStatus.Prepare;
 
 		// reset label
 		minutesLabel.text = "00";
 		secondLabel.text = "00";
-		scoreLabel.text = normalCountLabel.text = goalCountLabel.text = bombCountLabel.text = "0";
+		scoreLabel.text = coloredCountLabel.text = goalCountLabel.text = bombCountLabel.text = "0";
 		comboLabel.text = addedTimeLabel.text = "";
 
 		// OnShow
@@ -54,6 +56,8 @@ public class Game : SingletonMonoBehaviour<Game>
 		// hide gameObject
 		gameObject.SetActive(false);
 		nguiGame.gameObject.SetActive(false);
+		pauseWindowGo.gameObject.SetActive(false);
+		resultWindow.gameObject.SetActive(false);
 		status = GameStatus.End;
 
 		// OnHide
@@ -70,7 +74,7 @@ public class Game : SingletonMonoBehaviour<Game>
 		currentTime = 0f;
 		nextColoredTime = currentTime;
 		lastScoreAddedTime = -100f;
-		score = 0;
+		score = combo = maxCombo = 0;
 
 		status = GameStatus.Play;
 
@@ -103,6 +107,12 @@ public class Game : SingletonMonoBehaviour<Game>
 		status = GameStatus.Play;
 	}
 
+	public void ShowResult()
+	{
+		status = GameStatus.End;
+		resultWindow.Show();
+	}
+
 //----------------
 // Manage Game
 //----------------
@@ -111,7 +121,7 @@ private const float END_TIME = 180f;
 	private void Update()
 	{
 		if (isPrepareEnd && cellManager.IsStable()) {
-			EndGame();
+			ShowResult();
 		}
 
 		if (!isPlay) {return;}
@@ -207,8 +217,9 @@ private int maxGoalCount {
 //----------------
 // Score
 //----------------
-private int score;
-private int combo;
+public int score {get; private set;}
+public int combo {get; private set;}
+public int maxCombo {get; private set;}
 private float comboRate {
 	get {return isEasyMode ? 0.05f : 0.1f;}
 }
@@ -218,6 +229,9 @@ private const float comboTimer = 2f;
 	{
 		if (currentTime - lastScoreAddedTime <= comboTimer) {
 			combo++;
+			if (combo >= maxCombo) {
+				maxCombo = combo;
+			}
 		} else {
 			combo = 1;
 		}
@@ -300,7 +314,7 @@ private float lastTimeAddedTime = 0f;
 
 	private void UpdateCountLabel()
 	{
-		normalCountLabel.text = Cell.coloredClearCount.ToString();
+		coloredCountLabel.text = Cell.coloredClearCount.ToString();
 		goalCountLabel.text = Cell.goalClearCount.ToString();
 		bombCountLabel.text = Cell.bombClearCount.ToString();
 	}
