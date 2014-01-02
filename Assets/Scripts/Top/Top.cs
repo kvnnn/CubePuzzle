@@ -46,6 +46,6 @@ public class Top : SingletonMonoBehaviour<Top>
 
 	void RankingClick()
 	{
-
+		Ranking.instance.Show();
 	}
 }

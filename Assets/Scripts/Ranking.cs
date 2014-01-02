@@ -19,6 +19,16 @@ public class Ranking : SingletonMonoBehaviour<Ranking>
 		hard = new RankingData("hard_rankings");
 	}
 
+	public void Show()
+	{
+		gameObject.SetActive(true);
+	}
+
+	public void Hide()
+	{
+		gameObject.SetActive(false);
+	}
+
 	public void SetScore(bool isEasy, int score, int maxCombo)
 	{
 		RankingData _ranking = isEasy ? easy : hard;
@@ -29,6 +39,14 @@ public class Ranking : SingletonMonoBehaviour<Ranking>
 	{
 		RankingData _ranking = isEasy ? easy : hard;
 		return _ranking.IsMaxScore(score);
+	}
+
+//----------------
+// Touch Event
+//----------------
+	void CloseClick()
+	{
+		Hide();
 	}
 
 //----------------
