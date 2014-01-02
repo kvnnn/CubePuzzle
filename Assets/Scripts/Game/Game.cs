@@ -150,11 +150,7 @@ private float nextColoredTime = 0f;
 
 	private void ColoredRandomNextTime()
 	{
-		if (isEasyMode) {
-			nextColoredTime = currentTime + Random.Range(3f, 5f);
-		} else {
-			nextColoredTime = currentTime + Random.Range(3f, 5f);
-		}
+		nextColoredTime = currentTime + Random.Range(1f, 3f);
 	}
 
 private int maxGoalCount {
