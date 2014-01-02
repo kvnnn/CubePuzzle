@@ -137,7 +137,7 @@ public class Cell : MonoInheritance
 		iconColor = tileColor;
 		icon.gameObject.SetActive(true);
 
-		TweenScale.Begin(tile.gameObject, 1f, new Vector3(1f, 1f, 1f));
+		TweenScale.Begin(tile.gameObject, 1f, Vector3.one);
 	}
 
 	public void ToBomb()
@@ -183,7 +183,7 @@ public class Cell : MonoInheritance
 		iconColor = Color.white;
 		icon.gameObject.SetActive(true);
 
-		TweenScale.Begin(tile.gameObject, 1f, new Vector3(1f, 1f, 1f));
+		TweenScale.Begin(tile.gameObject, 1f, Vector3.one);
 	}
 
 //----------------
