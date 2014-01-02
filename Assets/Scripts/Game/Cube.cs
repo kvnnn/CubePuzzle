@@ -174,8 +174,22 @@ private const float VERTICAL_OFFSET = 80f;
 		Vector3 dir = Vector3.zero;
 		dir.x = Input.acceleration.x;
 		dir.y = Input.acceleration.y;
-
-		UnityEngine.Debug.Log(dir);
+		dir = dir - Settings.instance.tiltBasePosition;
+		float _x = dir.x;
+		float _y = dir.y;
+		if (Mathf.Abs(_x) > Mathf.Abs(_y)) {
+			if (_x > 0.1) {
+				RotateTo(Game.Direction.Right);
+			} else if (_x < -0.1) {
+				RotateTo(Game.Direction.Left);
+			}
+		} else {
+			if (_y > 0.1) {
+				RotateTo(Game.Direction.Up);
+			} else if (_y < -0.1) {
+				RotateTo(Game.Direction.Down);
+			}
+		}
 	}
 
 //----------------

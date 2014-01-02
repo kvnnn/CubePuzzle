@@ -10,7 +10,7 @@ public class Settings : SingletonMonoBehaviour<Settings>
 	private ControlType controllerType;
 	private bool isSoundOn;
 	private bool isPadLeft;
-	private Vector3 tiltBasePosition;
+	public Vector3 tiltBasePosition;
 // NGUI
 	public GameObject baseGo;
 	public UILabel contollerLabel;
@@ -191,7 +191,6 @@ private string RIGHT_ARROW = "arrow_right";
 		dir.x = Input.acceleration.x;
 		dir.y = Input.acceleration.y;
 		dir = dir - tiltBasePosition;
-UnityEngine.Debug.LogError("DIR : " + dir);
 		float _x = dir.x;
 		float _y = dir.y;
 
