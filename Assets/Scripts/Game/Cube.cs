@@ -17,7 +17,8 @@ public class Cube : SingletonMonoBehaviour<Cube>
 	}
 	private bool rotating = false;
 // NGUI
-	public GameObject padGo;
+	public GameObject padHGo;
+	public GameObject padVGo;
 	public GameObject upArrow;
 	public GameObject downArrow;
 	public GameObject rightArrow;
@@ -26,9 +27,11 @@ public class Cube : SingletonMonoBehaviour<Cube>
 	public IEnumerator OnShow()
 	{
 		if (Settings.instance.isPad) {
-			padGo.SetActive(true);
+			padHGo.SetActive(true);
+			padVGo.SetActive(true);
 		} else {
-			padGo.SetActive(false);
+			padHGo.SetActive(false);
+			padVGo.SetActive(false);
 		}
 
 		// Set To Start Position
@@ -57,6 +60,8 @@ public class Cube : SingletonMonoBehaviour<Cube>
 	{
 		StopCoroutine("ControlCoroutine");
 		gameObject.SetActive(false);
+		padHGo.SetActive(false);
+		padVGo.SetActive(false);
 	}
 
 //----------------

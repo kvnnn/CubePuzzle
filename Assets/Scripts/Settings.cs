@@ -16,7 +16,8 @@ public class Settings : SingletonMonoBehaviour<Settings>
 	public UILabel contollerLabel;
 	public UIImageButton soundButton;
 	public GameObject padOptionGo;
-	public GameObject padGo;
+	public GameObject padHGo;
+	public GameObject padVGo;
 	public UILabel padButtonLabel;
 	public GameObject tiltOptionGo;
 	public UISprite arrowSprite;
@@ -152,21 +153,29 @@ private const string SOUND_OFF_SPRITE = "btn_sound_off";
 
 	private void UpdatePad()
 	{
-		Vector3 _pos = padGo.transform.localPosition;
+		Vector3 _posH = padHGo.transform.localPosition;
+		Vector3 _posV = padVGo.transform.localPosition;
 		if (isPadLeft) {
-			_pos.x = -1 * Mathf.Abs(_pos.x);
+			_posH.x = -1 * Mathf.Abs(_posH.x);
+			_posV.x = Mathf.Abs(_posV.x);
 		} else {
-			_pos.x = Mathf.Abs(_pos.x);
+			_posH.x = Mathf.Abs(_posH.x);
+			_posV.x = -1 * Mathf.Abs(_posV.x);
 		}
-		padGo.transform.localPosition = _pos;
+		padHGo.transform.localPosition = _posH;
+		padVGo.transform.localPosition = _posV;
 
-		_pos = Cube.instance.padGo.transform.localPosition;
+		_posH = Cube.instance.padHGo.transform.localPosition;
+		_posV = Cube.instance.padVGo.transform.localPosition;
 		if (isPadLeft) {
-			_pos.x = -1 * Mathf.Abs(_pos.x);
+			_posH.x = -1 * Mathf.Abs(_posH.x);
+			_posV.x = Mathf.Abs(_posV.x);
 		} else {
-			_pos.x = Mathf.Abs(_pos.x);
+			_posH.x = Mathf.Abs(_posH.x);
+			_posV.x = -1 * Mathf.Abs(_posV.x);
 		}
-		Cube.instance.transform.localPosition = _pos;
+		Cube.instance.padHGo.transform.localPosition = _posH;
+		Cube.instance.padVGo.transform.localPosition = _posV;
 
 		if (isPadLeft) {
 			padButtonLabel.text = "L";
