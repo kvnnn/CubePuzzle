@@ -72,6 +72,7 @@ public class Game : SingletonMonoBehaviour<Game>
 		// reset param
 		currentTime = 0f;
 		nextColoredTime = currentTime;
+		endTime = END_TIME;
 		lastScoreAddedTime = -100f;
 		score = combo = maxCombo = 0;
 
@@ -116,6 +117,7 @@ public class Game : SingletonMonoBehaviour<Game>
 // Manage Game
 //----------------
 private float currentTime = 0f;
+private float endTime = 180f;
 private const float END_TIME = 180f;
 	private void Update()
 	{
@@ -204,7 +206,7 @@ private int maxGoalCount {
 		switch (itemType) {
 			case Cell.ItemType.TimeIncrease:
 				float _added = 20f;
-				currentTime -= _added;
+				endTime += _added;
 				if (isPrepareEnd) {
 					status = GameStatus.Play;
 				}
@@ -277,7 +279,7 @@ private const float COMBO_TIMER = 2f;
 //----------------
 	private float UpdateTimeLabel()
 	{
-		float _leftTime = END_TIME - currentTime;
+		float _leftTime = endTime - currentTime;
 
 		float minutes = Mathf.Floor(_leftTime/60);
 		minutes = Mathf.Max(0, minutes);
