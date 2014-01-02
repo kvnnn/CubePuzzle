@@ -30,7 +30,7 @@ public class Result : MonoInheritance
 			difficultyLabel.color = new Color(0f, 200f/255f, 1f, 1f);
 		} else {
 			difficultyLabel.text = "Hard";
-			difficultyLabel.color = new Color(200/255f, 0f, 1f, 1f);
+			difficultyLabel.color = new Color(1f, 0f, 200/255f, 1f);
 		}
 
 		coloredCountLabel.text = Cell.coloredClearCount.ToString();
