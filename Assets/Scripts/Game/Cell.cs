@@ -89,7 +89,7 @@ public class Cell : MonoInheritance
 				BombEffect();
 			break;
 			case CellType.Item:
-				game.ActivateItem(currentItemType);
+				game.ActivateItem(currentItemType, position);
 				ToNormal();
 			break;
 			case CellType.Normal:
@@ -156,7 +156,11 @@ public class Cell : MonoInheritance
 
 	public void ToRandomItem()
 	{
-		int _enum = UnityEngine.Random.Range(1, Enum.GetNames(typeof(ItemType)).Length);
+		int _startIndex = 1;
+		if (game.goalIncreaseCount > Game.MAX_GOAL_INCREASE) {
+			_startIndex = 2;
+		}
+		int _enum = UnityEngine.Random.Range(_startIndex, Enum.GetNames(typeof(ItemType)).Length);
 		ToItem((ItemType)_enum);
 	}
 
@@ -176,6 +180,12 @@ public class Cell : MonoInheritance
 			break;
 			case ItemType.PointIncrease:
 				_itemMat = "Heart";
+			break;
+			case ItemType.GoalIncrease:
+				_itemMat = "StarB";
+			break;
+			case ItemType.CrossBomb:
+				_itemMat = "Cross2";
 			break;
 		}
 
@@ -265,8 +275,10 @@ public bool isBombing = false;
 	}
 	public enum ItemType {
 		None = 0,
-		TimeIncrease = 1,
-		PointIncrease = 2,
+		GoalIncrease = 1,
+		TimeIncrease = 2,
+		PointIncrease = 3,
+		CrossBomb = 4,
 	}
 	public bool isNormal {get {return currentType == CellType.Normal;}}
 	public bool isColored {get {return currentType == CellType.Colored;}}
@@ -307,7 +319,7 @@ public bool isBombing = false;
 		get {
 			if (materials_ == null) {
 				materials_ = new Dictionary<string, Material>();
-				string[] _names = new string[]{"Bomb", "Heart", "Star", "Time"};
+				string[] _names = new string[]{"Bomb", "Heart", "Star", "StarB", "Time", "Cross1", "Cross2"};
 				foreach (string matName in _names) {
 					Material _mat = Resources.Load("Cubes/Icons/" + matName) as Material;
 					materials_.Add(_mat.name, _mat);

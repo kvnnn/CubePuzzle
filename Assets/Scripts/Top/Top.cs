@@ -10,10 +10,12 @@ public class Top : SingletonMonoBehaviour<Top>
 // NGUI
 	public GameObject nguiTop;
 	public GameObject mainGo;
+	public GameObject helpGo;
 
 	public void Show()
 	{
 		mainGo.SetActive(true);
+		helpGo.SetActive(false);
 		gameObject.SetActive(true);
 		nguiTop.gameObject.SetActive(true);
 
@@ -24,6 +26,7 @@ public class Top : SingletonMonoBehaviour<Top>
 	{
 		gameObject.SetActive(false);
 		nguiTop.gameObject.SetActive(false);
+		helpGo.SetActive(false);
 	}
 
 //----------------
@@ -49,5 +52,17 @@ public class Top : SingletonMonoBehaviour<Top>
 	void RankingClick()
 	{
 		Ranking.instance.Show();
+	}
+
+	void HelpClick()
+	{
+		mainGo.SetActive(false);
+		helpGo.SetActive(true);
+	}
+
+	void HelpCloseClick()
+	{
+		mainGo.SetActive(true);
+		helpGo.SetActive(false);
 	}
 }

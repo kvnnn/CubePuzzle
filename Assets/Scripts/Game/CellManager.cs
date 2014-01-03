@@ -112,6 +112,24 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 		}
 	}
 
+	public void BombCorss(IntVector2 pos)
+	{
+		for (int x = 0; x < maxSize.x; x++) {
+			if (pos.x == x) {continue;}
+			IntVector2 _pos = new IntVector2(x, pos.x);
+			if (!cells.ContainsKey(_pos)) {continue;}
+			Cell _cell = cells[_pos];
+			_cell.BombChange();
+		}
+		for (int y = 0; y < maxSize.y; y++) {
+			if (pos.y == y) {continue;}
+			IntVector2 _pos = new IntVector2(pos.x, y);
+			if (!cells.ContainsKey(_pos)) {continue;}
+			Cell _cell = cells[_pos];
+			_cell.BombChange();
+		}
+	}
+
 //----------------
 // Stage
 //----------------

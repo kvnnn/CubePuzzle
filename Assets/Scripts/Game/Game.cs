@@ -75,6 +75,7 @@ public class Game : SingletonMonoBehaviour<Game>
 		endTime = END_TIME;
 		lastScoreAddedTime = -100f;
 		score = combo = maxCombo = 0;
+		goalIncreaseCount = 0;
 
 		status = GameStatus.Play;
 
@@ -175,9 +176,12 @@ private float nextColoredTime = 0f;
 private int maxGoalCount {
 	get {
 		int _max = isEasyMode ? 5 : 10;
+		_max = _max + goalIncreaseCount;
 		return Mathf.Min((Cell.goalClearCount/5) + 1, _max);;
 	}
 }
+public int goalIncreaseCount {get; private set;}
+public const int MAX_GOAL_INCREASE = 5;
 	private void ManageGoalCell()
 	{
 		if (Cell.goalCount >= maxGoalCount) {return
@@ -193,7 +197,7 @@ private int maxGoalCount {
 	public void AddItem()
 	{
 		if (Cell.goalClearCount%5 != 0) {
-			if (Random.Range(0, 1000) > 25) {
+			if (Random.Range(0, 1000) > 50) {
 				return;
 			}
 		}
@@ -201,7 +205,7 @@ private int maxGoalCount {
 		_cell.ToRandomItem();
 	}
 
-	public void ActivateItem(Cell.ItemType itemType)
+	public void ActivateItem(Cell.ItemType itemType, IntVector2 pos)
 	{
 		switch (itemType) {
 			case Cell.ItemType.TimeIncrease:
@@ -213,7 +217,13 @@ private int maxGoalCount {
 				UpdateAddedTimeLabel(_added);
 			break;
 			case Cell.ItemType.PointIncrease:
-				CalculateScore(1000f);
+				CalculateScore(3000f);
+			break;
+			case Cell.ItemType.GoalIncrease:
+				goalIncreaseCount++;
+			break;
+			case Cell.ItemType.CrossBomb:
+				cellManager.BombCorss(pos);
 			break;
 		}
 	}
