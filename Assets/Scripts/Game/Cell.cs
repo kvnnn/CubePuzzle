@@ -74,6 +74,22 @@ public class Cell : MonoInheritance
 				ToNormal();
 				cellManager.BombSameColor(matName);
 				game.AddItem();
+				cellManager.GoalChangeSurround(position);
+			break;
+		}
+	}
+
+	public void GoalChange()
+	{
+		switch (currentType) {
+			case CellType.Normal:
+			case CellType.Bomb:
+			case CellType.Item:
+			case CellType.Goal:
+			break;
+			case CellType.Colored:
+				AddClearCount(currentType);
+				ToBomb();
 			break;
 		}
 	}

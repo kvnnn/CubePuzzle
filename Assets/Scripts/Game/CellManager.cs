@@ -88,6 +88,22 @@ public class CellManager : SingletonMonoBehaviour<CellManager>
 	}
 
 //----------------
+// Goal
+//----------------
+	public void GoalChangeSurround(IntVector2 pos)
+	{
+		for (int x = -1; x < 2; x++) {
+			for (int y = -1; y < 2; y++) {
+				if (x == 0 && y == 0) {continue;}
+				IntVector2 _pos = new IntVector2(pos.x + x, pos.y + y);
+				if (!cells.ContainsKey(_pos)) {continue;}
+				Cell _cell = cells[_pos];
+				_cell.GoalChange();
+			}
+		}
+	}
+
+//----------------
 // Bomb
 //----------------
 	public void BombSameColor(string matName)
