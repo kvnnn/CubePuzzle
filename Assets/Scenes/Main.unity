@@ -4862,7 +4862,7 @@ MonoBehaviour:
   mDepth: 111
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
   mText: Title
-  mMaxLineWidth: 70
+  mMaxLineWidth: 0
   mMaxLineHeight: 0
   mEncoding: 1
   mMaxLineCount: 1
@@ -8431,7 +8431,7 @@ MonoBehaviour:
   mDepth: 111
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
   mText: Restart
-  mMaxLineWidth: 70
+  mMaxLineWidth: 0
   mMaxLineHeight: 0
   mEncoding: 1
   mMaxLineCount: 1
@@ -8781,7 +8781,7 @@ MonoBehaviour:
   mDepth: 111
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
   mText: Play
-  mMaxLineWidth: 70
+  mMaxLineWidth: 0
   mMaxLineHeight: 0
   mEncoding: 1
   mMaxLineCount: 1
@@ -8837,7 +8837,7 @@ MonoBehaviour:
   mDepth: 111
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
   mText: Restart
-  mMaxLineWidth: 70
+  mMaxLineWidth: 0
   mMaxLineHeight: 0
   mEncoding: 1
   mMaxLineCount: 1
@@ -9092,7 +9092,7 @@ MonoBehaviour:
   mDepth: 111
   mFont: {fileID: 11400000, guid: b9954c914f59a4b498507be593258c57, type: 2}
   mText: Title
-  mMaxLineWidth: 70
+  mMaxLineWidth: 0
   mMaxLineHeight: 0
   mEncoding: 1
   mMaxLineCount: 1
