@@ -149,7 +149,7 @@ private const float END_TIME = 180f;
 	}
 
 private int maxColoredCount {
-	get {return isEasyMode ? 50 : 70;}
+	get {return isEasyMode ? 65 : 80;}
 }
 private int minColoredCount {
 	get {return isEasyMode ? 3 : 5;}
@@ -170,18 +170,22 @@ private float nextColoredTime = 0f;
 
 	private void ColoredRandomNextTime()
 	{
+		float _min = 1f - (Cell.goalCount/5) * 0.2f;
+		_min = Mathf.Min(_min, 0.25f);
+		float _max = 3f - (Cell.goalCount/5) * 0.2f;
+		_max = Mathf.Min(_max, 1.5f);
 		nextColoredTime = currentTime + Random.Range(1f, 3f);
 	}
 
 private int maxGoalCount {
 	get {
-		int _max = isEasyMode ? 5 : 10;
+		int _max = isEasyMode ? 2 : 4;
 		_max = _max + goalIncreaseCount;
 		return Mathf.Min((Cell.goalClearCount/5) + 1, _max);;
 	}
 }
 public int goalIncreaseCount {get; private set;}
-public const int MAX_GOAL_INCREASE = 5;
+public const int MAX_GOAL_INCREASE = 3;
 	private void ManageGoalCell()
 	{
 		if (Cell.goalCount >= maxGoalCount) {return
@@ -221,6 +225,7 @@ public const int MAX_GOAL_INCREASE = 5;
 			break;
 			case Cell.ItemType.GoalIncrease:
 				goalIncreaseCount++;
+				goalIncreaseCount = Mathf.Min(goalIncreaseCount, MAX_GOAL_INCREASE);
 			break;
 			case Cell.ItemType.CrossBomb:
 				cellManager.BombCorss(pos);
